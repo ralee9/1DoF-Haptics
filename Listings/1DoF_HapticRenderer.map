@@ -1,0 +1,1493 @@
+Component: ARM Compiler 5.06 update 3 (build 300) Tool: armlink [4d35c9]
+
+==============================================================================
+
+Section Cross References
+
+    aduc702x.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    aduc702x.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    aduc702x.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    aduc702x.o(RESET) refers to irq_arm.o(i.Undef_Handler) for Undef_Handler
+    aduc702x.o(RESET) refers to irq_arm.o(i.SWI_Handler) for SWI_Handler
+    aduc702x.o(RESET) refers to irq_arm.o(i.PAbt_Handler) for PAbt_Handler
+    aduc702x.o(RESET) refers to irq_arm.o(i.DAbt_Handler) for DAbt_Handler
+    aduc702x.o(RESET) refers to irq_arm.o(i.IRQ_Handler) for IRQ_Handler
+    aduc702x.o(RESET) refers to irq_arm.o(i.FIQ_Handler) for FIQ_Handler
+    aduc702x.o(RESET) refers to aduc702x.o(STACK) for Stack_Top
+    aduc702x.o(RESET) refers to __main.o(!!!main) for __main
+    aduc702x.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    aduc702x.o(.text) refers to aduc702x.o(HEAP) for Heap_Mem
+    aduc702x.o(.text) refers to aduc702x.o(STACK) for Stack_Mem
+    1dofhapticrenderer.o(i.ADCinput) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    1dofhapticrenderer.o(i.ADCinput) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.ADCinput) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.ADCinput) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.ADCpoweron) refers to 1dofhapticrenderer.o(i.delay_sw) for delay_sw
+    1dofhapticrenderer.o(i.General_IRQ_Handler) refers to 1dofhapticrenderer.o(.data) for timer0_Flag
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to 1dofhapticrenderer.o(i.pot_voltage) for pot_voltage
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to faddsub_noclz.o(x$fpl$frsb) for __aeabi_frsub
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.PID_virtualWall) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.PID_zeroStiffness) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.check_sensor_status) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.check_sensor_status) refers to 1dofhapticrenderer.o(i.delay_us) for delay_us
+    1dofhapticrenderer.o(i.check_sensor_status) refers to 1dofhapticrenderer.o(.data) for i
+    1dofhapticrenderer.o(i.dataUpdate_msg) refers to 1dofhapticrenderer.o(.data) for g_loop_count
+    1dofhapticrenderer.o(i.dataUpdate_testmsg) refers to 1dofhapticrenderer.o(.data) for counterTest_message
+    1dofhapticrenderer.o(i.delay_ms) refers to 1dofhapticrenderer.o(i.delay_us) for delay_us
+    1dofhapticrenderer.o(i.delay_us) refers to 1dofhapticrenderer.o(.data) for timer1_Flag
+    1dofhapticrenderer.o(i.displacement_OpticalToADC) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.displacement_OpticalToADC) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.displacement_OpticalToADC) refers to pow.o(i.pow) for pow
+    1dofhapticrenderer.o(i.displacement_OpticalToADC) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.displacement_OpticalToADC) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to pow.o(i.pow) for pow
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.displacement_SpeakerToDAC) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.force_VoltsToGrams) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.force_VoltsToGrams) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.force_VoltsToGrams) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.force_VoltsToGrams) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.initial_read_store_sensors) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to modff.o(i.modff) for modff
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    1dofhapticrenderer.o(i.interp_cal_constants) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.delay_sw) for delay_sw
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.system_init) for system_init
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.ADCpoweron) for ADCpoweron
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.SPI_init) for SPI_init
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.outputDAC) for outputDAC
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.store_DAC_data) for store_DAC_data
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.delay_ms) for delay_ms
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.initial_read_store_sensors) for initial_read_store_sensors
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.sensor_avg) for sensor_avg
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
+    1dofhapticrenderer.o(i.main) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.force_VoltsToGrams) for force_VoltsToGrams
+    1dofhapticrenderer.o(i.main) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.main) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.main) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.main) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.main) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.timer0_init) for timer0_init
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.sine_wave) for sine_wave
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.PID_virtualWall) for PID_virtualWall
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.PID_zeroStiffness) for PID_zeroStiffness
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.membrane_puncture) for membrane_puncture
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.check_sensor_status) for check_sensor_status
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.send_curr_data) for send_curr_data
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.parse_SPI_data) for parse_SPI_data
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.waitForRestOfPeriod) for waitForRestOfPeriod
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(i.General_IRQ_Handler) for General_IRQ_Handler
+    1dofhapticrenderer.o(i.main) refers to irq_arm.o(.data) for IRQ
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(.bss) for test_messages
+    1dofhapticrenderer.o(i.main) refers to 1dofhapticrenderer.o(.data) for pTest_msg
+    1dofhapticrenderer.o(i.membrane_puncture) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.membrane_puncture) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.membrane_puncture) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.membrane_puncture) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.force_VoltsToGrams) for force_VoltsToGrams
+    1dofhapticrenderer.o(i.membrane_puncture) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.interp_cal_constants) for interp_cal_constants
+    1dofhapticrenderer.o(i.membrane_puncture) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
+    1dofhapticrenderer.o(i.membrane_puncture) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    1dofhapticrenderer.o(i.membrane_puncture) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.membrane_puncture) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    1dofhapticrenderer.o(i.membrane_puncture) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    1dofhapticrenderer.o(i.membrane_puncture) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
+    1dofhapticrenderer.o(i.membrane_puncture) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.membrane_puncture) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.membrane_puncture) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to pow.o(i.pow) for pow
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.outputDAC) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.outputDAC) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.outputDAC) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.outputDAC) refers to floor.o(i.floor) for floor
+    1dofhapticrenderer.o(i.outputDAC) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    1dofhapticrenderer.o(i.outputDAC) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.outputDAC) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    1dofhapticrenderer.o(i.outputDAC) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.outputDAC) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.outputDAC) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.parse_SPI_data) refers to rt_memclr_w.o(.text) for __aeabi_memclr4
+    1dofhapticrenderer.o(i.parse_SPI_data) refers to 1dofhapticrenderer.o(.data) for g_speaker_mode
+    1dofhapticrenderer.o(i.pot_voltage) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    1dofhapticrenderer.o(i.pot_voltage) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to 1dofhapticrenderer.o(i.displacement_SpeakerToDAC) for displacement_SpeakerToDAC
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to 1dofhapticrenderer.o(.constdata) for .constdata
+    1dofhapticrenderer.o(i.ratchet_simulation) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.read_sensors) refers to 1dofhapticrenderer.o(i.ADCinput) for ADCinput
+    1dofhapticrenderer.o(i.read_store_sensors) refers to 1dofhapticrenderer.o(i.ADCinput) for ADCinput
+    1dofhapticrenderer.o(i.read_store_sensors) refers to 1dofhapticrenderer.o(.data) for sensor_status
+    1dofhapticrenderer.o(i.send_curr_data) refers to 1dofhapticrenderer.o(i.SPI_write) for SPI_write
+    1dofhapticrenderer.o(i.send_curr_data) refers to 1dofhapticrenderer.o(i.SPI_read) for SPI_read
+    1dofhapticrenderer.o(i.send_curr_data) refers to 1dofhapticrenderer.o(i.delay_us) for delay_us
+    1dofhapticrenderer.o(i.send_curr_data) refers to 1dofhapticrenderer.o(.data) for i
+    1dofhapticrenderer.o(i.send_test_data) refers to 1dofhapticrenderer.o(i.SPI_write) for SPI_write
+    1dofhapticrenderer.o(i.send_test_data) refers to 1dofhapticrenderer.o(i.delay_us) for delay_us
+    1dofhapticrenderer.o(i.sensor_avg) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.sensor_avg) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
+    1dofhapticrenderer.o(i.sensor_avg) refers to 1dofhapticrenderer.o(i.delay_us) for delay_us
+    1dofhapticrenderer.o(i.sensor_avg) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.sensor_avg) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.sensor_avg) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.sensor_avg) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.sine_wave) refers to pow.o(i.pow) for pow
+    1dofhapticrenderer.o(i.sine_wave) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    1dofhapticrenderer.o(i.sine_wave) refers to 1dofhapticrenderer.o(i.read_store_sensors) for read_store_sensors
+    1dofhapticrenderer.o(i.sine_wave) refers to 1dofhapticrenderer.o(i.pot_voltage) for pot_voltage
+    1dofhapticrenderer.o(i.sine_wave) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.sine_wave) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
+    1dofhapticrenderer.o(i.sine_wave) refers to aeabi_sdiv.o(.text) for __aeabi_idivmod
+    1dofhapticrenderer.o(i.sine_wave) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    1dofhapticrenderer.o(i.sine_wave) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.sine_wave) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    1dofhapticrenderer.o(i.sine_wave) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.sine_wave) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.sine_wave) refers to sin.o(i.sin) for sin
+    1dofhapticrenderer.o(i.sine_wave) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.sine_wave) refers to 1dofhapticrenderer.o(.data) for pCurr_data
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to pow.o(i.pow) for pow
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.speaker_DACtoDisplacement) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.store_DAC_data) refers to 1dofhapticrenderer.o(.data) for sensor_status
+    1dofhapticrenderer.o(i.testmode) refers to 1dofhapticrenderer.o(i.outputDAC) for outputDAC
+    1dofhapticrenderer.o(i.testmode) refers to 1dofhapticrenderer.o(i.delay_ms) for delay_ms
+    1dofhapticrenderer.o(i.testmode) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
+    1dofhapticrenderer.o(i.testmode) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    1dofhapticrenderer.o(i.testmode) refers to d2f.o(x$fpl$d2f) for __aeabi_d2f
+    1dofhapticrenderer.o(i.testmode) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    1dofhapticrenderer.o(i.testmode) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    1dofhapticrenderer.o(i.testmode) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    1dofhapticrenderer.o(i.timer0_init) refers to 1dofhapticrenderer.o(.data) for timer0_Flag
+    1dofhapticrenderer.o(i.waitForRestOfPeriod) refers to 1dofhapticrenderer.o(.data) for timer0_Flag
+    irq_arm.o(i.DAbt_Handler) refers to irq_arm.o(.data) for DABORT
+    irq_arm.o(i.FIQ_Handler) refers to irq_arm.o(.data) for FIQ
+    irq_arm.o(i.IRQ_Handler) refers to irq_arm.o(.data) for IRQ
+    irq_arm.o(i.PAbt_Handler) refers to irq_arm.o(.data) for PABORT
+    irq_arm.o(i.SWI_Handler) refers to irq_arm.o(.data) for SWI
+    irq_arm.o(i.Undef_Handler) refers to irq_arm.o(.data) for UNDEF
+    aeabi_sdiv.o(.text_udiv) refers to aeabi_sdiv.o(.text) for __arm_div2
+    aeabi_sdiv_div0.o(.text_udiv) refers to aeabi_sdiv_div0.o(.text) for __arm_div2
+    __main.o(!!!main) refers to __rtentry.o(.ARM.Collect$$rtentry$$00000000) for __rt_entry
+    d2f.o(x$fpl$d2f) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    d2f.o(x$fpl$d2f) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    d2f.o(x$fpl$d2f) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    daddsub_noclz.o(x$fpl$dadd) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$dadd) refers to daddsub_noclz.o(x$fpl$dsub) for _dsub1
+    daddsub_noclz.o(x$fpl$dadd) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    daddsub_noclz.o(x$fpl$dadd) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    daddsub_noclz.o(x$fpl$drsb) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$drsb) refers to daddsub_noclz.o(x$fpl$dadd) for _dadd1
+    daddsub_noclz.o(x$fpl$drsb) refers to daddsub_noclz.o(x$fpl$dsub) for _dsub1
+    daddsub_noclz.o(x$fpl$dsub) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    daddsub_noclz.o(x$fpl$dsub) refers to daddsub_noclz.o(x$fpl$dadd) for _dadd1
+    daddsub_noclz.o(x$fpl$dsub) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    ddiv.o(x$fpl$drdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ddiv.o(x$fpl$drdiv) refers to ddiv.o(x$fpl$ddiv) for ddiv_entry
+    ddiv.o(x$fpl$ddiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ddiv.o(x$fpl$ddiv) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    ddiv.o(x$fpl$ddiv) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfix.o(x$fpl$dfix) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfix.o(x$fpl$dfix) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dfix.o(x$fpl$dfixr) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dfix.o(x$fpl$dfixr) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dflt_noclz.o(x$fpl$dfltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dflt_noclz.o(x$fpl$dfltu) refers to dflt_noclz.o(x$fpl$dflt) for __dflt_normalise
+    dflt_noclz.o(x$fpl$dflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dleqf.o(x$fpl$dleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dleqf.o(x$fpl$dleqf) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    dleqf.o(x$fpl$dleqf) refers to dcmpi.o(x$fpl$dcmpinf) for __fpl_dcmp_Inf
+    dmul.o(x$fpl$dmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dmul.o(x$fpl$dmul) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    dmul.o(x$fpl$dmul) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    drleqf.o(x$fpl$drleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    drleqf.o(x$fpl$drleqf) refers to dleqf.o(x$fpl$dleqf) for __fpl_dcmple_InfNaN
+    f2d.o(x$fpl$f2d) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    f2d.o(x$fpl$f2d) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    f2d.o(x$fpl$f2d) refers to dretinf.o(x$fpl$dretinf) for __fpl_dretinf
+    faddsub_noclz.o(x$fpl$fadd) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_noclz.o(x$fpl$fadd) refers to faddsub_noclz.o(x$fpl$fsub) for _fsub1
+    faddsub_noclz.o(x$fpl$fadd) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    faddsub_noclz.o(x$fpl$fadd) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    faddsub_noclz.o(x$fpl$frsb) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_noclz.o(x$fpl$frsb) refers to faddsub_noclz.o(x$fpl$fadd) for _fadd1
+    faddsub_noclz.o(x$fpl$frsb) refers to faddsub_noclz.o(x$fpl$fsub) for _fsub1
+    faddsub_noclz.o(x$fpl$fsub) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    faddsub_noclz.o(x$fpl$fsub) refers to faddsub_noclz.o(x$fpl$fadd) for _fadd1
+    faddsub_noclz.o(x$fpl$fsub) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fdiv.o(x$fpl$frdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$frdiv) refers to fdiv.o(x$fpl$fdiv) for _fdiv1
+    fdiv.o(x$fpl$fdiv) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fdiv.o(x$fpl$fdiv) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fdiv.o(x$fpl$fdiv) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffix.o(x$fpl$ffix) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffix.o(x$fpl$ffix) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    ffix.o(x$fpl$ffixr) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    ffix.o(x$fpl$ffixr) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fflt_noclz.o(x$fpl$ffltu) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fflt_noclz.o(x$fpl$ffltu) refers to fflt_noclz.o(x$fpl$fflt) for __fflt_normalise
+    fflt_noclz.o(x$fpl$fflt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fleqf.o(x$fpl$fleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fleqf.o(x$fpl$fleqf) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    fleqf.o(x$fpl$fleqf) refers to fcmpi.o(x$fpl$fcmpinf) for __fpl_fcmp_Inf
+    fmul.o(x$fpl$fmul) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fmul.o(x$fpl$fmul) refers to fretinf.o(x$fpl$fretinf) for __fpl_fretinf
+    fmul.o(x$fpl$fmul) refers to fnaninf.o(x$fpl$fnaninf) for __fpl_fnaninf
+    frleqf.o(x$fpl$frleqf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    frleqf.o(x$fpl$frleqf) refers to fleqf.o(x$fpl$fleqf) for __fpl_fcmple_InfNaN
+    floor.o(i.__softfp_floor) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    floor.o(i.__softfp_floor) refers to floor.o(i.floor) for floor
+    floor.o(i.floor) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    floor.o(i.floor) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    floor.o(i.floor) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    floor.o(i.floor) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    modff.o(i.__softfp_modff) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    modff.o(i.__softfp_modff) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    modff.o(i.modff) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    modff.o(i.modff) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
+    pow.o(i.__softfp_pow) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    pow.o(i.__softfp_pow) refers to pow.o(i.pow) for pow
+    pow.o(i.pow) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    pow.o(i.pow) refers to dunder.o(i.__mathlib_dbl_infnan2) for __mathlib_dbl_infnan2
+    pow.o(i.pow) refers to _rserrno.o(.text) for __set_errno
+    pow.o(i.pow) refers to dunder.o(i.__mathlib_dbl_divzero) for __mathlib_dbl_divzero
+    pow.o(i.pow) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    pow.o(i.pow) refers to sqrt.o(i.sqrt) for sqrt
+    pow.o(i.pow) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    pow.o(i.pow) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    pow.o(i.pow) refers to dunder.o(i.__mathlib_dbl_invalid) for __mathlib_dbl_invalid
+    pow.o(i.pow) refers to dunder.o(i.__mathlib_dbl_overflow) for __mathlib_dbl_overflow
+    pow.o(i.pow) refers to dunder.o(i.__mathlib_dbl_underflow) for __mathlib_dbl_underflow
+    pow.o(i.pow) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    pow.o(i.pow) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    pow.o(i.pow) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    pow.o(i.pow) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    pow.o(i.pow) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    pow.o(i.pow) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    pow.o(i.pow) refers to fpclassify.o(i.__ARM_fpclassify) for __ARM_fpclassify
+    pow.o(i.pow) refers to qnan.o(.constdata) for __mathlib_zero
+    pow.o(i.pow) refers to pow.o(.constdata) for .constdata
+    pow.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    pow_x.o(i.____softfp_pow$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    pow_x.o(i.____softfp_pow$lsc) refers to pow_x.o(i.__pow$lsc) for __pow$lsc
+    pow_x.o(i.__pow$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    pow_x.o(i.__pow$lsc) refers to dunder.o(i.__mathlib_dbl_infnan2) for __mathlib_dbl_infnan2
+    pow_x.o(i.__pow$lsc) refers to _rserrno.o(.text) for __set_errno
+    pow_x.o(i.__pow$lsc) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    pow_x.o(i.__pow$lsc) refers to sqrt.o(i.sqrt) for sqrt
+    pow_x.o(i.__pow$lsc) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    pow_x.o(i.__pow$lsc) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    pow_x.o(i.__pow$lsc) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    pow_x.o(i.__pow$lsc) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    pow_x.o(i.__pow$lsc) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    pow_x.o(i.__pow$lsc) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    pow_x.o(i.__pow$lsc) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    pow_x.o(i.__pow$lsc) refers to drleqf.o(x$fpl$drleqf) for __aeabi_cdrcmple
+    pow_x.o(i.__pow$lsc) refers to qnan.o(.constdata) for __mathlib_zero
+    pow_x.o(i.__pow$lsc) refers to pow_x.o(.constdata) for .constdata
+    pow_x.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin.o(i.__softfp_sin) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin.o(i.__softfp_sin) refers to sin.o(i.sin) for sin
+    sin.o(i.sin) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin.o(i.sin) refers to _rserrno.o(.text) for __set_errno
+    sin.o(i.sin) refers to dunder.o(i.__mathlib_dbl_invalid) for __mathlib_dbl_invalid
+    sin.o(i.sin) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    sin.o(i.sin) refers to rred.o(i.__ieee754_rem_pio2) for __ieee754_rem_pio2
+    sin.o(i.sin) refers to cos_i.o(i.__kernel_cos) for __kernel_cos
+    sin.o(i.sin) refers to sin_i.o(i.__kernel_sin) for __kernel_sin
+    sin_x.o(i.____softfp_sin$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_x.o(i.____softfp_sin$lsc) refers to sin_x.o(i.__sin$lsc) for __sin$lsc
+    sin_x.o(i.__sin$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_x.o(i.__sin$lsc) refers to _rserrno.o(.text) for __set_errno
+    sin_x.o(i.__sin$lsc) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    sin_x.o(i.__sin$lsc) refers to rred.o(i.__ieee754_rem_pio2) for __ieee754_rem_pio2
+    sin_x.o(i.__sin$lsc) refers to cos_i.o(i.__kernel_cos) for __kernel_cos
+    sin_x.o(i.__sin$lsc) refers to sin_i.o(i.__kernel_sin) for __kernel_sin
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for __rt_entry_li
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for __rt_entry_main
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$0000000C) for __rt_entry_postli_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000009) for __rt_entry_postsh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry2.o(.ARM.Collect$$rtentry$$00000002) for __rt_entry_presh_1
+    __rtentry.o(.ARM.Collect$$rtentry$$00000000) refers (Special) to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for __rt_entry_sh
+    aeabi_idiv0_sigfpe.o(.text) refers to rt_div0.o(.text) for __rt_div0
+    _rserrno.o(.text) refers to rt_errno_addr_intlibspace.o(.text) for __aeabi_errno_addr
+    dcmpi.o(x$fpl$dcmpinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dnaninf.o(x$fpl$dnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dretinf.o(x$fpl$dretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fcmpi.o(x$fpl$fcmpinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fnaninf.o(x$fpl$fnaninf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    fretinf.o(x$fpl$fretinf) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    scalbn.o(x$fpl$scalbn) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    scalbn.o(x$fpl$scalbn) refers to dcheck1.o(x$fpl$dcheck1) for __fpl_dcheck_NaN1
+    cos_i.o(i.__kernel_cos) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    cos_i.o(i.__kernel_cos) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    cos_i.o(i.__kernel_cos) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    cos_i.o(i.__kernel_cos) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    cos_i.o(i.__kernel_cos) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    cos_i.o(i.__kernel_cos) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    cos_i.o(i.__kernel_cos) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    cos_i.o(i.__kernel_cos) refers to cos_i.o(.constdata) for .constdata
+    cos_i.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dunder.o(i.__mathlib_dbl_divzero) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_infnan) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    dunder.o(i.__mathlib_dbl_infnan2) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    dunder.o(i.__mathlib_dbl_invalid) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_overflow) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    dunder.o(i.__mathlib_dbl_posinfnan) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    dunder.o(i.__mathlib_dbl_underflow) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    fpclassify.o(i.__ARM_fpclassify) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    poly.o(i.__kernel_poly) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    poly.o(i.__kernel_poly) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    poly.o(i.__kernel_poly) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    qnan.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    rred.o(i.__ieee754_rem_pio2) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    rred.o(i.__ieee754_rem_pio2) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    rred.o(i.__ieee754_rem_pio2) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    rred.o(i.__ieee754_rem_pio2) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    rred.o(i.__ieee754_rem_pio2) refers to dfix.o(x$fpl$dfix) for __aeabi_d2iz
+    rred.o(i.__ieee754_rem_pio2) refers to dflt_noclz.o(x$fpl$dflt) for __aeabi_i2d
+    rred.o(i.__ieee754_rem_pio2) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    rred.o(i.__ieee754_rem_pio2) refers to dflt_noclz.o(x$fpl$dfltu) for __aeabi_ui2d
+    rred.o(i.__ieee754_rem_pio2) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    rred.o(i.__ieee754_rem_pio2) refers to rred.o(.constdata) for .constdata
+    rred.o(i.__use_accurate_range_reduction) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    rred.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_i.o(i.__kernel_sin) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_i.o(i.__kernel_sin) refers to fpclassify.o(i.__ARM_fpclassify) for __ARM_fpclassify
+    sin_i.o(i.__kernel_sin) refers to dunder.o(i.__mathlib_dbl_underflow) for __mathlib_dbl_underflow
+    sin_i.o(i.__kernel_sin) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    sin_i.o(i.__kernel_sin) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    sin_i.o(i.__kernel_sin) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    sin_i.o(i.__kernel_sin) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    sin_i.o(i.__kernel_sin) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    sin_i.o(i.__kernel_sin) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    sin_i.o(i.__kernel_sin) refers to sin_i.o(.constdata) for .constdata
+    sin_i.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_i_x.o(i.____kernel_sin$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sin_i_x.o(i.____kernel_sin$lsc) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    sin_i_x.o(i.____kernel_sin$lsc) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    sin_i_x.o(i.____kernel_sin$lsc) refers to scalbn.o(x$fpl$scalbn) for __ARM_scalbn
+    sin_i_x.o(i.____kernel_sin$lsc) refers to daddsub_noclz.o(x$fpl$dsub) for __aeabi_dsub
+    sin_i_x.o(i.____kernel_sin$lsc) refers to daddsub_noclz.o(x$fpl$drsb) for __aeabi_drsub
+    sin_i_x.o(i.____kernel_sin$lsc) refers to daddsub_noclz.o(x$fpl$dadd) for __aeabi_dadd
+    sin_i_x.o(i.____kernel_sin$lsc) refers to sin_i_x.o(.constdata) for .constdata
+    sin_i_x.o(.constdata) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sqrt.o(i.__softfp_sqrt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sqrt.o(i.__softfp_sqrt) refers to dsqrt_noumaal.o(x$fpl$dsqrt) for _dsqrt
+    sqrt.o(i.__softfp_sqrt) refers to _rserrno.o(.text) for __set_errno
+    sqrt.o(i.sqrt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sqrt.o(i.sqrt) refers to dsqrt_noumaal.o(x$fpl$dsqrt) for _dsqrt
+    sqrt.o(i.sqrt) refers to _rserrno.o(.text) for __set_errno
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to _rserrno.o(.text) for __set_errno
+    sqrt_x.o(i.____softfp_sqrt$lsc) refers to dsqrt_noumaal.o(x$fpl$dsqrt) for _dsqrt
+    sqrt_x.o(i.__sqrt$lsc) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sqrt_x.o(i.__sqrt$lsc) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
+    sqrt_x.o(i.__sqrt$lsc) refers to _rserrno.o(.text) for __set_errno
+    sqrt_x.o(i.__sqrt$lsc) refers to dsqrt_noumaal.o(x$fpl$dsqrt) for _dsqrt
+    __rtentry2.o(.ARM.Collect$$rtentry$$00000008) refers to boardinit2.o(.text) for _platform_post_stackheap_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) refers to libinit.o(.ARM.Collect$$libinit$$00000000) for __rt_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) refers to boardinit3.o(.text) for _platform_post_lib_init
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to exit.o(.text) for exit
+    __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) refers to 1dofhapticrenderer.o(i.main) for main
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000001) for .ARM.Collect$$rtentry$$00000001
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$00000008) for .ARM.Collect$$rtentry$$00000008
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000A) for .ARM.Collect$$rtentry$$0000000A
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000B) for .ARM.Collect$$rtentry$$0000000B
+    __rtentry2.o(.ARM.exidx) refers to __rtentry2.o(.ARM.Collect$$rtentry$$0000000D) for .ARM.Collect$$rtentry$$0000000D
+    __rtentry4.o(.ARM.Collect$$rtentry$$00000004) refers to sys_stackheap_outer.o(.text) for __user_setup_stackheap
+    __rtentry4.o(.ARM.exidx) refers to __rtentry4.o(.ARM.Collect$$rtentry$$00000004) for .ARM.Collect$$rtentry$$00000004
+    rt_div0.o(.text) refers to defsig_fpe_outer.o(.text) for __rt_SIGFPE
+    rt_errno_addr.o(.text) refers to rt_errno_addr.o(.bss) for __aeabi_errno_addr_data
+    rt_errno_addr_intlibspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    dcheck1.o(x$fpl$dcheck1) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dcheck1.o(x$fpl$dcheck1) refers to retnan.o(x$fpl$retnan) for __fpl_return_NaN
+    dsqrt_noumaal.o(x$fpl$dsqrt) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    dsqrt_noumaal.o(x$fpl$dsqrt) refers to dnaninf.o(x$fpl$dnaninf) for __fpl_dnaninf
+    libspace.o(.text) refers to libspace.o(.bss) for __libspace_start
+    sys_stackheap_outer.o(.text) refers to libspace.o(.text) for __user_perproc_libspace
+    sys_stackheap_outer.o(.text) refers to aduc702x.o(.text) for __user_initial_stackheap
+    exit.o(.text) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for __rt_exit
+    defsig_fpe_outer.o(.text) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig_fpe_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_fpe_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002E) for __rt_lib_init_alloca_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000002C) for __rt_lib_init_argv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001B) for __rt_lib_init_atexit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000021) for __rt_lib_init_clock_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000032) for __rt_lib_init_cpp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000030) for __rt_lib_init_exceptions_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000002) for __rt_lib_init_fp_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001F) for __rt_lib_init_fp_trap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000023) for __rt_lib_init_getenv_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000A) for __rt_lib_init_heap_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000011) for __rt_lib_init_lc_collate_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000013) for __rt_lib_init_lc_ctype_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000015) for __rt_lib_init_lc_monetary_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000017) for __rt_lib_init_lc_numeric_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000019) for __rt_lib_init_lc_time_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000004) for __rt_lib_init_preinit_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000E) for __rt_lib_init_rand_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000033) for __rt_lib_init_return
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000001D) for __rt_lib_init_signal_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$00000025) for __rt_lib_init_stdio_1
+    libinit.o(.ARM.Collect$$libinit$$00000000) refers (Special) to libinit2.o(.ARM.Collect$$libinit$$0000000C) for __rt_lib_init_user_alloc_1
+    retnan.o(x$fpl$retnan) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    retnan.o(x$fpl$retnan) refers to trapv.o(x$fpl$trapveneer) for __fpl_cmpreturn
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.Collect$$rtexit$$00000000) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for __rt_exit_exit
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for __rt_exit_ls
+    rtexit.o(.ARM.exidx) refers (Special) to rtexit2.o(.ARM.Collect$$rtexit$$00000002) for __rt_exit_prels_1
+    rtexit.o(.ARM.exidx) refers to rtexit.o(.ARM.Collect$$rtexit$$00000000) for .ARM.Collect$$rtexit$$00000000
+    rt_raise.o(.text) refers to __raise.o(.text) for __raise
+    rt_raise.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_exit.o(.text) refers to sys_exit.o(.text) for _sys_exit
+    defsig_fpe_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    libinit2.o(.ARM.Collect$$libinit$$00000001) refers to fpinit.o(x$fpl$fpinit) for _fp_init
+    libinit2.o(.ARM.Collect$$libinit$$00000010) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000012) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000014) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000016) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000018) refers to libinit2.o(.ARM.Collect$$libinit$$0000000F) for .ARM.Collect$$libinit$$0000000F
+    libinit2.o(.ARM.Collect$$libinit$$00000026) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    libinit2.o(.ARM.Collect$$libinit$$00000027) refers to argv_veneer.o(.emb_text) for __ARM_argv_veneer
+    trapv.o(x$fpl$trapveneer) refers (Special) to usenofp.o(x$fpl$usenofp) for __I$use$fp
+    sys_exit.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_exit.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    rtexit2.o(.ARM.Collect$$rtexit$$00000003) refers to libshutdown.o(.ARM.Collect$$libshutdown$$00000000) for __rt_lib_shutdown
+    rtexit2.o(.ARM.Collect$$rtexit$$00000004) refers to sys_exit.o(.text) for _sys_exit
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000001) for .ARM.Collect$$rtexit$$00000001
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000003) for .ARM.Collect$$rtexit$$00000003
+    rtexit2.o(.ARM.exidx) refers to rtexit2.o(.ARM.Collect$$rtexit$$00000004) for .ARM.Collect$$rtexit$$00000004
+    __raise.o(.text) refers to __raise.o(i.__ARM_common_call_via_r2) for __ARM_common_call_via_r2
+    __raise.o(.text) refers to defsig.o(CL$$defsig) for __default_signal_handler
+    defsig_general.o(.text) refers to sys_wrch.o(.text) for _ttywrch
+    argv_veneer.o(.emb_text) refers to no_argv.o(.text) for __ARM_get_argv
+    sys_wrch.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_wrch.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig.o(CL$$defsig) refers to defsig_fpe_inner.o(.text) for __rt_SIGFPE_inner
+    defsig.o(CL$$defsig) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    _get_argv_nomalloc.o(.text) refers (Special) to hrguard.o(.text) for __heap_region$guard
+    _get_argv_nomalloc.o(.text) refers to defsig_rtmem_outer.o(.text) for __rt_SIGRTMEM
+    _get_argv_nomalloc.o(.text) refers to sys_command.o(.text) for _sys_command_string
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000002) for __rt_lib_shutdown_cpp_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000007) for __rt_lib_shutdown_fp_trap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F) for __rt_lib_shutdown_heap_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000010) for __rt_lib_shutdown_return
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A) for __rt_lib_shutdown_signal_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$00000004) for __rt_lib_shutdown_stdio_1
+    libshutdown.o(.ARM.Collect$$libshutdown$$00000000) refers (Special) to libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C) for __rt_lib_shutdown_user_alloc_1
+    sys_command.o(.text) refers (Special) to use_no_semi.o(.text) for __I$use$semihosting
+    sys_command.o(.text) refers (Special) to indicate_semi.o(.text) for __semihosting_library_function
+    defsig_abrt_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtred_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_rtmem_outer.o(.text) refers to defsig_rtmem_inner.o(.text) for __rt_SIGRTMEM_inner
+    defsig_rtmem_outer.o(.text) refers to defsig_exit.o(.text) for __sig_exit
+    defsig_rtmem_formal.o(.text) refers to rt_raise.o(.text) for __rt_raise
+    defsig_stak_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_pvfn_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_cppl_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_segv_inner.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+    defsig_other.o(.text) refers to defsig_general.o(.text) for __default_signal_display
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing 1dofhapticrenderer.o(i.dataUpdate_msg), (184 bytes).
+    Removing 1dofhapticrenderer.o(i.dataUpdate_testformat), (40 bytes).
+    Removing 1dofhapticrenderer.o(i.dataUpdate_testmsg), (208 bytes).
+    Removing 1dofhapticrenderer.o(i.displacement_OpticalToADC), (168 bytes).
+    Removing 1dofhapticrenderer.o(i.displacement_SpeakerToDAC), (248 bytes).
+    Removing 1dofhapticrenderer.o(i.ratchet_simulation), (1440 bytes).
+    Removing 1dofhapticrenderer.o(i.read_sensors), (112 bytes).
+    Removing 1dofhapticrenderer.o(i.send_test_data), (176 bytes).
+    Removing 1dofhapticrenderer.o(i.speaker_DACtoDisplacement), (256 bytes).
+    Removing 1dofhapticrenderer.o(i.testmode), (404 bytes).
+    Removing 1dofhapticrenderer.o(.constdata), (24 bytes).
+
+11 unused section(s) (total 3260 bytes) removed from the image.
+
+==============================================================================
+
+Adding Veneers to the image
+
+    Adding AT veneer (8 bytes, Inline) for call to '__rt_lib_init' from __rtentry2.o(.ARM.Collect$$rtentry$$0000000A).
+    Adding AT veneer (8 bytes, Inline) for call to '__rt_lib_shutdown' from rtexit2.o(.ARM.Collect$$rtexit$$00000003).
+    Adding TA veneer (4 bytes, Inline) for call to '__rt_exit' from exit.o(.text).
+    Adding AT veneer (8 bytes, Inline) for call to '__set_errno' from pow.o(i.pow).
+    Adding TA veneer (4 bytes, Inline) for call to '__aeabi_errno_addr' from _rserrno.o(.text).
+    Adding AT veneer (8 bytes, Inline) for call to '_sys_exit' from rtexit2.o(.ARM.Collect$$rtexit$$00000004).
+
+6 Veneer(s) (total 40 bytes) added to the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../clib/angel/dczerorl.s                 0x00000000   Number         0  __dczerorl.o ABSOLUTE
+    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_div0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
+    ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
+    ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
+    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
+    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
+    ../clib/divrt.s                          0x00000000   Number         0  divrt_7tdmi.o ABSOLUTE
+    ../clib/divrt.s                          0x00000000   Number         0  divrt_7tdmi_div0.o ABSOLUTE
+    ../clib/fenv.c                           0x00000000   Number         0  _rserrno.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
+    ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
+    ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
+    ../fplib/d2f.s                           0x00000000   Number         0  d2f.o ABSOLUTE
+    ../fplib/daddsub.s                       0x00000000   Number         0  daddsub_noclz.o ABSOLUTE
+    ../fplib/dcheck1.s                       0x00000000   Number         0  dcheck1.o ABSOLUTE
+    ../fplib/dcmpi.s                         0x00000000   Number         0  dcmpi.o ABSOLUTE
+    ../fplib/ddiv.s                          0x00000000   Number         0  ddiv.o ABSOLUTE
+    ../fplib/dfix.s                          0x00000000   Number         0  dfix.o ABSOLUTE
+    ../fplib/dflt.s                          0x00000000   Number         0  dflt_noclz.o ABSOLUTE
+    ../fplib/dleqf.s                         0x00000000   Number         0  dleqf.o ABSOLUTE
+    ../fplib/dmul.s                          0x00000000   Number         0  dmul.o ABSOLUTE
+    ../fplib/dnaninf.s                       0x00000000   Number         0  dnaninf.o ABSOLUTE
+    ../fplib/dretinf.s                       0x00000000   Number         0  dretinf.o ABSOLUTE
+    ../fplib/drleqf.s                        0x00000000   Number         0  drleqf.o ABSOLUTE
+    ../fplib/dsqrt.s                         0x00000000   Number         0  dsqrt_noumaal.o ABSOLUTE
+    ../fplib/f2d.s                           0x00000000   Number         0  f2d.o ABSOLUTE
+    ../fplib/faddsub.s                       0x00000000   Number         0  faddsub_noclz.o ABSOLUTE
+    ../fplib/fcmpi.s                         0x00000000   Number         0  fcmpi.o ABSOLUTE
+    ../fplib/fdiv.s                          0x00000000   Number         0  fdiv.o ABSOLUTE
+    ../fplib/ffix.s                          0x00000000   Number         0  ffix.o ABSOLUTE
+    ../fplib/fflt.s                          0x00000000   Number         0  fflt_noclz.o ABSOLUTE
+    ../fplib/fleqf.s                         0x00000000   Number         0  fleqf.o ABSOLUTE
+    ../fplib/fmul.s                          0x00000000   Number         0  fmul.o ABSOLUTE
+    ../fplib/fnaninf.s                       0x00000000   Number         0  fnaninf.o ABSOLUTE
+    ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
+    ../fplib/fretinf.s                       0x00000000   Number         0  fretinf.o ABSOLUTE
+    ../fplib/frleqf.s                        0x00000000   Number         0  frleqf.o ABSOLUTE
+    ../fplib/retnan.s                        0x00000000   Number         0  retnan.o ABSOLUTE
+    ../fplib/scalbn.s                        0x00000000   Number         0  scalbn.o ABSOLUTE
+    ../fplib/trapv.s                         0x00000000   Number         0  trapv.o ABSOLUTE
+    ../fplib/usenofp.s                       0x00000000   Number         0  usenofp.o ABSOLUTE
+    ../mathlib/cos_i.c                       0x00000000   Number         0  cos_i.o ABSOLUTE
+    ../mathlib/dunder.c                      0x00000000   Number         0  dunder.o ABSOLUTE
+    ../mathlib/floor.c                       0x00000000   Number         0  floor.o ABSOLUTE
+    ../mathlib/fpclassify.c                  0x00000000   Number         0  fpclassify.o ABSOLUTE
+    ../mathlib/modff.c                       0x00000000   Number         0  modff.o ABSOLUTE
+    ../mathlib/poly.c                        0x00000000   Number         0  poly.o ABSOLUTE
+    ../mathlib/pow.c                         0x00000000   Number         0  pow.o ABSOLUTE
+    ../mathlib/pow.c                         0x00000000   Number         0  pow_x.o ABSOLUTE
+    ../mathlib/qnan.c                        0x00000000   Number         0  qnan.o ABSOLUTE
+    ../mathlib/rred.c                        0x00000000   Number         0  rred.o ABSOLUTE
+    ../mathlib/sin.c                         0x00000000   Number         0  sin.o ABSOLUTE
+    ../mathlib/sin.c                         0x00000000   Number         0  sin_x.o ABSOLUTE
+    ../mathlib/sin_i.c                       0x00000000   Number         0  sin_i_x.o ABSOLUTE
+    ../mathlib/sin_i.c                       0x00000000   Number         0  sin_i.o ABSOLUTE
+    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt_x.o ABSOLUTE
+    ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt.o ABSOLUTE
+    1DoFHapticRenderer.c                     0x00000000   Number         0  1dofhapticrenderer.o ABSOLUTE
+    ADuC702x.s                               0x00000000   Number         0  aduc702x.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    irq_arm.c                                0x00000000   Number         0  irq_arm.o ABSOLUTE
+    .data                                    0x00010000   Section      584  1dofhapticrenderer.o(.data)
+    .data                                    0x00010248   Section       24  irq_arm.o(.data)
+    .bss                                     0x00010260   Section      908  1dofhapticrenderer.o(.bss)
+    .bss                                     0x000105ec   Section       96  libspace.o(.bss)
+    HEAP                                     0x00010650   Section        0  aduc702x.o(HEAP)
+    STACK                                    0x00010650   Section     1664  aduc702x.o(STACK)
+    Heap_Mem                                 0x00010650   Data           0  aduc702x.o(HEAP)
+    Stack_Mem                                0x00010650   Data        1024  aduc702x.o(STACK)
+    Stack_Top                                0x00010cd0   Data           0  aduc702x.o(STACK)
+    RESET                                    0x00080000   Section      188  aduc702x.o(RESET)
+    !!!main                                  0x000800bc   Section        8  __main.o(!!!main)
+    !!!scatter                               0x000800c4   Section       60  __scatter.o(!!!scatter)
+    !!dczerorl                               0x00080100   Section       68  __dczerorl.o(!!dczerorl)
+    !!handler_zi                             0x00080144   Section       44  __scatter_zi.o(!!handler_zi)
+    .ARM.Collect$$libinit$$00000000          0x00080178   Section        2  libinit.o(.ARM.Collect$$libinit$$00000000)
+    .ARM.Collect$$libinit$$00000002          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000002)
+    .ARM.Collect$$libinit$$00000004          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000004)
+    .ARM.Collect$$libinit$$0000000A          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000000A)
+    .ARM.Collect$$libinit$$0000000C          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000000C)
+    .ARM.Collect$$libinit$$0000000E          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000000E)
+    .ARM.Collect$$libinit$$00000011          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000011)
+    .ARM.Collect$$libinit$$00000013          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000013)
+    .ARM.Collect$$libinit$$00000015          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000015)
+    .ARM.Collect$$libinit$$00000017          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000017)
+    .ARM.Collect$$libinit$$00000019          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000019)
+    .ARM.Collect$$libinit$$0000001B          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000001B)
+    .ARM.Collect$$libinit$$0000001D          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000001D)
+    .ARM.Collect$$libinit$$0000001F          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000001F)
+    .ARM.Collect$$libinit$$00000021          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000021)
+    .ARM.Collect$$libinit$$00000023          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000023)
+    .ARM.Collect$$libinit$$00000025          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000025)
+    .ARM.Collect$$libinit$$0000002C          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000002C)
+    .ARM.Collect$$libinit$$0000002E          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$0000002E)
+    .ARM.Collect$$libinit$$00000030          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000030)
+    .ARM.Collect$$libinit$$00000032          0x0008017a   Section        0  libinit2.o(.ARM.Collect$$libinit$$00000032)
+    .ARM.Collect$$libinit$$00000033          0x0008017a   Section       12  libinit2.o(.ARM.Collect$$libinit$$00000033)
+    .ARM.Collect$$libshutdown$$00000000      0x00080190   Section        4  libshutdown.o(.ARM.Collect$$libshutdown$$00000000)
+    .ARM.Collect$$libshutdown$$00000002      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000002)
+    .ARM.Collect$$libshutdown$$00000004      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000004)
+    .ARM.Collect$$libshutdown$$00000007      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000007)
+    .ARM.Collect$$libshutdown$$0000000A      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A)
+    .ARM.Collect$$libshutdown$$0000000C      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C)
+    .ARM.Collect$$libshutdown$$0000000F      0x00080194   Section        0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F)
+    .ARM.Collect$$libshutdown$$00000010      0x00080194   Section        6  libshutdown2.o(.ARM.Collect$$libshutdown$$00000010)
+    .ARM.Collect$$rtentry$$00000000          0x0008019c   Section        0  __rtentry.o(.ARM.Collect$$rtentry$$00000000)
+    .ARM.Collect$$rtentry$$00000002          0x0008019c   Section        0  __rtentry2.o(.ARM.Collect$$rtentry$$00000002)
+    .ARM.Collect$$rtentry$$00000004          0x0008019c   Section        8  __rtentry4.o(.ARM.Collect$$rtentry$$00000004)
+    .ARM.Collect$$rtentry$$00000009          0x000801a4   Section        0  __rtentry2.o(.ARM.Collect$$rtentry$$00000009)
+    .ARM.Collect$$rtentry$$0000000A          0x000801a4   Section        4  __rtentry2.o(.ARM.Collect$$rtentry$$0000000A)
+    .ARM.Collect$$rtentry$$0000000C          0x000801a8   Section        0  __rtentry2.o(.ARM.Collect$$rtentry$$0000000C)
+    .ARM.Collect$$rtentry$$0000000D          0x000801a8   Section       40  __rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
+    .ARM.Collect$$rtexit$$00000000           0x000801d4   Section        4  rtexit.o(.ARM.Collect$$rtexit$$00000000)
+    .ARM.Collect$$rtexit$$00000002           0x000801d8   Section        0  rtexit2.o(.ARM.Collect$$rtexit$$00000002)
+    .ARM.Collect$$rtexit$$00000003           0x000801d8   Section        4  rtexit2.o(.ARM.Collect$$rtexit$$00000003)
+    .ARM.Collect$$rtexit$$00000004           0x000801dc   Section        8  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
+    .text                                    0x000801e4   Section       32  aduc702x.o(.text)
+    .text                                    0x00080204   Section       84  rt_memclr_w.o(.text)
+    .text                                    0x00080258   Section      384  aeabi_sdiv.o(.text)
+    __arm_div8                               0x00080284   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div5                               0x000802a8   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div2                               0x000802cc   ARM Code       0  aeabi_sdiv.o(.text)
+    __arm_div_large                          0x00080308   ARM Code       0  aeabi_sdiv.o(.text)
+    .text                                    0x000803d8   Section        0  heapauxi.o(.text)
+    .text                                    0x000803e8   Section        0  _rserrno.o(.text)
+    .text                                    0x00080408   Section       12  rt_errno_addr_intlibspace.o(.text)
+    .text                                    0x00080414   Section       12  libspace.o(.text)
+    .text                                    0x00080420   Section       96  sys_stackheap_outer.o(.text)
+    .text                                    0x00080480   Section        0  exit.o(.text)
+    .text                                    0x0008049c   Section        0  sys_exit.o(.text)
+    .text                                    0x000804a8   Section        4  use_no_semi.o(.text)
+    .text                                    0x000804ac   Section        0  indicate_semi.o(.text)
+    i.ADCinput                               0x000804ac   Section        0  1dofhapticrenderer.o(i.ADCinput)
+    i.ADCpoweron                             0x00080508   Section        0  1dofhapticrenderer.o(i.ADCpoweron)
+    i.DAbt_Handler                           0x00080530   Section        0  irq_arm.o(i.DAbt_Handler)
+    i.FIQ_Handler                            0x00080560   Section        0  irq_arm.o(i.FIQ_Handler)
+    i.General_IRQ_Handler                    0x00080590   Section        0  1dofhapticrenderer.o(i.General_IRQ_Handler)
+    i.IRQ_Handler                            0x00080604   Section        0  irq_arm.o(i.IRQ_Handler)
+    i.PAbt_Handler                           0x00080634   Section        0  irq_arm.o(i.PAbt_Handler)
+    i.PID_virtualWall                        0x00080664   Section        0  1dofhapticrenderer.o(i.PID_virtualWall)
+    i.PID_zeroStiffness                      0x00080a68   Section        0  1dofhapticrenderer.o(i.PID_zeroStiffness)
+    i.SPI_init                               0x00080e58   Section        0  1dofhapticrenderer.o(i.SPI_init)
+    i.SPI_read                               0x00080e8c   Section        0  1dofhapticrenderer.o(i.SPI_read)
+    i.SPI_write                              0x00080ebc   Section        0  1dofhapticrenderer.o(i.SPI_write)
+    i.SWI_Handler                            0x00080ee8   Section        0  irq_arm.o(i.SWI_Handler)
+    i.Undef_Handler                          0x00080f18   Section        0  irq_arm.o(i.Undef_Handler)
+    i.__ARM_fpclassify                       0x00080f48   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i.__ieee754_rem_pio2                     0x00080f78   Section        0  rred.o(i.__ieee754_rem_pio2)
+    i.__kernel_cos                           0x0008148c   Section        0  cos_i.o(i.__kernel_cos)
+    i.__kernel_poly                          0x00081628   Section        0  poly.o(i.__kernel_poly)
+    i.__kernel_sin                           0x00081728   Section        0  sin_i.o(i.__kernel_sin)
+    i.__mathlib_dbl_divzero                  0x000818a4   Section        0  dunder.o(i.__mathlib_dbl_divzero)
+    i.__mathlib_dbl_infnan                   0x000818bc   Section        0  dunder.o(i.__mathlib_dbl_infnan)
+    i.__mathlib_dbl_infnan2                  0x000818c4   Section        0  dunder.o(i.__mathlib_dbl_infnan2)
+    i.__mathlib_dbl_invalid                  0x000818c8   Section        0  dunder.o(i.__mathlib_dbl_invalid)
+    i.__mathlib_dbl_overflow                 0x000818dc   Section        0  dunder.o(i.__mathlib_dbl_overflow)
+    i.__mathlib_dbl_underflow                0x000818f0   Section        0  dunder.o(i.__mathlib_dbl_underflow)
+    i.check_sensor_status                    0x00081904   Section        0  1dofhapticrenderer.o(i.check_sensor_status)
+    i.delay_ms                               0x00081a78   Section        0  1dofhapticrenderer.o(i.delay_ms)
+    i.delay_sw                               0x00081ab0   Section        0  1dofhapticrenderer.o(i.delay_sw)
+    i.delay_us                               0x00081ac4   Section        0  1dofhapticrenderer.o(i.delay_us)
+    i.floor                                  0x00081b50   Section        0  floor.o(i.floor)
+    i.force_VoltsToGrams                     0x00081ca4   Section        0  1dofhapticrenderer.o(i.force_VoltsToGrams)
+    i.initial_read_store_sensors             0x00081cf0   Section        0  1dofhapticrenderer.o(i.initial_read_store_sensors)
+    i.interp_cal_constants                   0x00081d24   Section        0  1dofhapticrenderer.o(i.interp_cal_constants)
+    i.main                                   0x00082008   Section        0  1dofhapticrenderer.o(i.main)
+    i.membrane_puncture                      0x0008297c   Section        0  1dofhapticrenderer.o(i.membrane_puncture)
+    i.modff                                  0x00082efc   Section        0  modff.o(i.modff)
+    i.optical_ADCtoDisplacement              0x00082f60   Section        0  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
+    i.outputDAC                              0x00083008   Section        0  1dofhapticrenderer.o(i.outputDAC)
+    i.parse_SPI_data                         0x000831bc   Section        0  1dofhapticrenderer.o(i.parse_SPI_data)
+    i.pot_voltage                            0x000832b0   Section        0  1dofhapticrenderer.o(i.pot_voltage)
+    i.pow                                    0x000832e8   Section        0  pow.o(i.pow)
+    i.read_store_sensors                     0x000841d8   Section        0  1dofhapticrenderer.o(i.read_store_sensors)
+    i.send_curr_data                         0x0008432c   Section        0  1dofhapticrenderer.o(i.send_curr_data)
+    i.sensor_avg                             0x00084490   Section        0  1dofhapticrenderer.o(i.sensor_avg)
+    i.sin                                    0x00084524   Section        0  sin.o(i.sin)
+    i.sine_wave                              0x0008461c   Section        0  1dofhapticrenderer.o(i.sine_wave)
+    i.sqrt                                   0x000847a8   Section        0  sqrt.o(i.sqrt)
+    i.store_DAC_data                         0x00084818   Section        0  1dofhapticrenderer.o(i.store_DAC_data)
+    i.system_init                            0x00084838   Section        0  1dofhapticrenderer.o(i.system_init)
+    i.timer0_init                            0x000848d0   Section        0  1dofhapticrenderer.o(i.timer0_init)
+    i.waitForRestOfPeriod                    0x00084910   Section        0  1dofhapticrenderer.o(i.waitForRestOfPeriod)
+    x$fpl$d2f                                0x00084970   Section      108  d2f.o(x$fpl$d2f)
+    x$fpl$dadd                               0x000849dc   Section      340  daddsub_noclz.o(x$fpl$dadd)
+    _dadd1                                   0x000849ec   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    x$fpl$dcheck1                            0x00084b30   Section       16  dcheck1.o(x$fpl$dcheck1)
+    x$fpl$dcmpinf                            0x00084b40   Section       28  dcmpi.o(x$fpl$dcmpinf)
+    x$fpl$ddiv                               0x00084b5c   Section      736  ddiv.o(x$fpl$ddiv)
+    ddiv_entry                               0x00084b64   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    x$fpl$dfix                               0x00084e3c   Section      112  dfix.o(x$fpl$dfix)
+    x$fpl$dflt                               0x00084eac   Section       88  dflt_noclz.o(x$fpl$dflt)
+    x$fpl$dfltu                              0x00084f04   Section       12  dflt_noclz.o(x$fpl$dfltu)
+    x$fpl$dleqf                              0x00084f10   Section      148  dleqf.o(x$fpl$dleqf)
+    x$fpl$dmul                               0x00084fa4   Section      384  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x00085124   Section      192  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x000851e4   Section       16  dretinf.o(x$fpl$dretinf)
+    x$fpl$drleqf                             0x000851f4   Section      140  drleqf.o(x$fpl$drleqf)
+    x$fpl$drsb                               0x00085280   Section       24  daddsub_noclz.o(x$fpl$drsb)
+    x$fpl$dsqrt                              0x00085298   Section      520  dsqrt_noumaal.o(x$fpl$dsqrt)
+    x$fpl$dsub                               0x000854a0   Section      580  daddsub_noclz.o(x$fpl$dsub)
+    _dsub1                                   0x000854b0   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    x$fpl$f2d                                0x000856e4   Section      100  f2d.o(x$fpl$f2d)
+    x$fpl$fadd                               0x00085748   Section      196  faddsub_noclz.o(x$fpl$fadd)
+    _fadd1                                   0x00085754   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    x$fpl$fcmpinf                            0x0008580c   Section       28  fcmpi.o(x$fpl$fcmpinf)
+    x$fpl$fdiv                               0x00085828   Section      400  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x00085828   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    x$fpl$ffix                               0x000859b8   Section       68  ffix.o(x$fpl$ffix)
+    x$fpl$fflt                               0x000859fc   Section       92  fflt_noclz.o(x$fpl$fflt)
+    x$fpl$fleqf                              0x00085a58   Section      132  fleqf.o(x$fpl$fleqf)
+    x$fpl$fmul                               0x00085adc   Section      256  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x00085bdc   Section      168  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x00085c84   Section       16  fretinf.o(x$fpl$fretinf)
+    x$fpl$frleqf                             0x00085c94   Section      124  frleqf.o(x$fpl$frleqf)
+    x$fpl$frsb                               0x00085d10   Section       20  faddsub_noclz.o(x$fpl$frsb)
+    x$fpl$fsub                               0x00085d24   Section      304  faddsub_noclz.o(x$fpl$fsub)
+    _fsub1                                   0x00085d30   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    x$fpl$retnan                             0x00085e54   Section      116  retnan.o(x$fpl$retnan)
+    x$fpl$scalbn                             0x00085ec8   Section      104  scalbn.o(x$fpl$scalbn)
+    x$fpl$trapveneer                         0x00085f30   Section       60  trapv.o(x$fpl$trapveneer)
+    x$fpl$usenofp                            0x00085f6c   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x00085f70   Section      136  pow.o(.constdata)
+    bp                                       0x00085f70   Data          16  pow.o(.constdata)
+    dp_h                                     0x00085f80   Data          16  pow.o(.constdata)
+    dp_l                                     0x00085f90   Data          16  pow.o(.constdata)
+    L                                        0x00085fa0   Data          48  pow.o(.constdata)
+    P                                        0x00085fd0   Data          40  pow.o(.constdata)
+    .constdata                               0x00085ff8   Section       48  cos_i.o(.constdata)
+    C                                        0x00085ff8   Data          48  cos_i.o(.constdata)
+    .constdata                               0x00086028   Section        8  qnan.o(.constdata)
+    .constdata                               0x00086030   Section      200  rred.o(.constdata)
+    pio2s                                    0x00086030   Data          48  rred.o(.constdata)
+    twooverpi                                0x00086060   Data         152  rred.o(.constdata)
+    .constdata                               0x000860f8   Section       40  sin_i.o(.constdata)
+    S                                        0x000860f8   Data          40  sin_i.o(.constdata)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv1$ARM_ISAv4$S$PE$A:L22$X:L11$S22$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$IEEEX$EBA8$UX$STANDARDLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __ARM_use_no_argv                        0x00000000   Number         0  1dofhapticrenderer.o ABSOLUTE
+    __ARM_exceptions_init                     - Undefined Weak Reference
+    __alloca_initialize                       - Undefined Weak Reference
+    __arm_preinit_                            - Undefined Weak Reference
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __rt_locale                               - Undefined Weak Reference
+    __sigvec_lookup                           - Undefined Weak Reference
+    _atexit_init                              - Undefined Weak Reference
+    _call_atexit_fns                          - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _fp_trap_init                             - Undefined Weak Reference
+    _fp_trap_shutdown                         - Undefined Weak Reference
+    _get_lc_collate                           - Undefined Weak Reference
+    _get_lc_ctype                             - Undefined Weak Reference
+    _get_lc_monetary                          - Undefined Weak Reference
+    _get_lc_numeric                           - Undefined Weak Reference
+    _get_lc_time                              - Undefined Weak Reference
+    _getenv_init                              - Undefined Weak Reference
+    _handle_redirection                       - Undefined Weak Reference
+    _init_alloc                               - Undefined Weak Reference
+    _init_user_alloc                          - Undefined Weak Reference
+    _initio                                   - Undefined Weak Reference
+    _rand_init                                - Undefined Weak Reference
+    _signal_finish                            - Undefined Weak Reference
+    _signal_init                              - Undefined Weak Reference
+    _terminate_alloc                          - Undefined Weak Reference
+    _terminate_user_alloc                     - Undefined Weak Reference
+    _terminateio                              - Undefined Weak Reference
+    force_volts                              0x00010000   Data           4  1dofhapticrenderer.o(.data)
+    force_volts_avg                          0x00010004   Data           4  1dofhapticrenderer.o(.data)
+    force_preload                            0x00010008   Data           4  1dofhapticrenderer.o(.data)
+    opticalPos_volts                         0x0001000c   Data           4  1dofhapticrenderer.o(.data)
+    opticalPos_mm                            0x00010010   Data           4  1dofhapticrenderer.o(.data)
+    inductPos_volts                          0x00010014   Data           4  1dofhapticrenderer.o(.data)
+    inductPos_mm                             0x00010018   Data           4  1dofhapticrenderer.o(.data)
+    speaker_voltageHex                       0x0001001c   Data           4  1dofhapticrenderer.o(.data)
+    speaker_volts                            0x00010020   Data           4  1dofhapticrenderer.o(.data)
+    desiredSpeaker_volts                     0x00010024   Data           4  1dofhapticrenderer.o(.data)
+    lastDesiredSpeaker_volts                 0x00010028   Data           4  1dofhapticrenderer.o(.data)
+    desiredSpeaker_mm                        0x0001002c   Data           4  1dofhapticrenderer.o(.data)
+    lastDesiredSpeaker_mm                    0x00010030   Data           4  1dofhapticrenderer.o(.data)
+    rest_pos_volts                           0x00010034   Data           4  1dofhapticrenderer.o(.data)
+    rest_pos_mm                              0x00010038   Data           4  1dofhapticrenderer.o(.data)
+    g_speaker_mode                           0x0001003c   Data           1  1dofhapticrenderer.o(.data)
+    g_virtual_knob1                          0x00010040   Data           4  1dofhapticrenderer.o(.data)
+    g_virtual_knob2                          0x00010044   Data           4  1dofhapticrenderer.o(.data)
+    g_virtual_knob3                          0x00010048   Data           4  1dofhapticrenderer.o(.data)
+    forceSlope                               0x0001004c   Data           4  1dofhapticrenderer.o(.data)
+    intersectionPoint                        0x00010050   Data           4  1dofhapticrenderer.o(.data)
+    counterTest_message                      0x00010054   Data           4  1dofhapticrenderer.o(.data)
+    g_loop_count                             0x00010058   Data           1  1dofhapticrenderer.o(.data)
+    pTest_msg                                0x0001005c   Data           4  1dofhapticrenderer.o(.data)
+    pCurr_data                               0x00010060   Data           4  1dofhapticrenderer.o(.data)
+    pInit_data                               0x00010064   Data           4  1dofhapticrenderer.o(.data)
+    pTest_data                               0x00010068   Data           4  1dofhapticrenderer.o(.data)
+    pPID_zero                                0x0001006c   Data           4  1dofhapticrenderer.o(.data)
+    pPID_wall                                0x00010070   Data           4  1dofhapticrenderer.o(.data)
+    pPID_mem                                 0x00010074   Data           4  1dofhapticrenderer.o(.data)
+    pPID_ratchet                             0x00010078   Data           4  1dofhapticrenderer.o(.data)
+    pSine_const                              0x0001007c   Data           4  1dofhapticrenderer.o(.data)
+    cal_x                                    0x00010080   Data          80  1dofhapticrenderer.o(.data)
+    cal_m_DACtoForce                         0x000100d0   Data          80  1dofhapticrenderer.o(.data)
+    cal_b_DACtoForce                         0x00010120   Data          80  1dofhapticrenderer.o(.data)
+    cal_m_ForcetoDAC                         0x00010170   Data          80  1dofhapticrenderer.o(.data)
+    cal_b_ForcetoDAC                         0x000101c0   Data          80  1dofhapticrenderer.o(.data)
+    pDAC_to_Force                            0x00010210   Data           4  1dofhapticrenderer.o(.data)
+    pForce_to_DAC                            0x00010214   Data           4  1dofhapticrenderer.o(.data)
+    pInterpolated                            0x00010218   Data           4  1dofhapticrenderer.o(.data)
+    timer0_Flag                              0x0001021c   Data           4  1dofhapticrenderer.o(.data)
+    timer1_Flag                              0x00010220   Data           4  1dofhapticrenderer.o(.data)
+    flag                                     0x00010224   Data           4  1dofhapticrenderer.o(.data)
+    counter                                  0x00010228   Data           4  1dofhapticrenderer.o(.data)
+    i                                        0x0001022c   Data           4  1dofhapticrenderer.o(.data)
+    g_membrane_punctured                     0x00010230   Data           4  1dofhapticrenderer.o(.data)
+    g_in_membrane_flag                       0x00010234   Data           4  1dofhapticrenderer.o(.data)
+    g_membrane_entry                         0x00010238   Data           4  1dofhapticrenderer.o(.data)
+    g_ratchet_punctured                      0x0001023c   Data           4  1dofhapticrenderer.o(.data)
+    sensor_status                            0x00010240   Data           8  1dofhapticrenderer.o(.data)
+    IRQ                                      0x00010248   Data           4  irq_arm.o(.data)
+    SWI                                      0x0001024c   Data           4  irq_arm.o(.data)
+    FIQ                                      0x00010250   Data           4  irq_arm.o(.data)
+    UNDEF                                    0x00010254   Data           4  irq_arm.o(.data)
+    PABORT                                   0x00010258   Data           4  irq_arm.o(.data)
+    DABORT                                   0x0001025c   Data           4  irq_arm.o(.data)
+    SPI_received_data                        0x00010260   Data          14  1dofhapticrenderer.o(.bss)
+    test_messages                            0x00010270   Data          12  1dofhapticrenderer.o(.bss)
+    curr_data                                0x0001027c   Data          32  1dofhapticrenderer.o(.bss)
+    init_data                                0x0001029c   Data          32  1dofhapticrenderer.o(.bss)
+    test_data                                0x000102bc   Data          32  1dofhapticrenderer.o(.bss)
+    PID_zeroStiff                            0x000102dc   Data          68  1dofhapticrenderer.o(.bss)
+    PID_wall                                 0x00010320   Data          68  1dofhapticrenderer.o(.bss)
+    PID_membrane                             0x00010364   Data          68  1dofhapticrenderer.o(.bss)
+    PID_ratchet                              0x000103a8   Data          68  1dofhapticrenderer.o(.bss)
+    Sine_const                               0x000103ec   Data          20  1dofhapticrenderer.o(.bss)
+    DAC_to_Force                             0x00010400   Data         240  1dofhapticrenderer.o(.bss)
+    Force_to_DAC                             0x000104f0   Data         240  1dofhapticrenderer.o(.bss)
+    interpolated                             0x000105e0   Data          12  1dofhapticrenderer.o(.bss)
+    __libspace_start                         0x000105ec   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x0001064c   Data           0  libspace.o(.bss)
+    Reset_Handler                            0x00080040   ARM Code       0  aduc702x.o(RESET)
+    __main                                   0x000800bc   ARM Code       8  __main.o(!!!main)
+    __scatterload                            0x000800c4   ARM Code       0  __scatter.o(!!!scatter)
+    __scatterload_rt2                        0x000800c4   ARM Code      52  __scatter.o(!!!scatter)
+    __scatterload_null                       0x000800d8   ARM Code       0  __scatter.o(!!!scatter)
+    __decompress                             0x00080100   ARM Code      68  __dczerorl.o(!!dczerorl)
+    __decompress0                            0x00080100   ARM Code       0  __dczerorl.o(!!dczerorl)
+    __scatterload_zeroinit                   0x00080144   ARM Code      44  __scatter_zi.o(!!handler_zi)
+    Inline ARM to Thumb Veneer to __rt_lib_init 0x00080170   ARM Code       8  libinit.o(.ARM.Collect$$libinit$$00000000)
+    __rt_lib_init                            0x00080179   Thumb Code     0  libinit.o(.ARM.Collect$$libinit$$00000000)
+    __rt_lib_init_alloca_1                   0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000002E)
+    __rt_lib_init_argv_1                     0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000002C)
+    __rt_lib_init_atexit_1                   0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000001B)
+    __rt_lib_init_clock_1                    0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000021)
+    __rt_lib_init_cpp_1                      0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000032)
+    __rt_lib_init_exceptions_1               0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000030)
+    __rt_lib_init_fp_1                       0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000002)
+    __rt_lib_init_fp_trap_1                  0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000001F)
+    __rt_lib_init_getenv_1                   0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000023)
+    __rt_lib_init_heap_1                     0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000000A)
+    __rt_lib_init_lc_collate_1               0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000011)
+    __rt_lib_init_lc_ctype_1                 0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000013)
+    __rt_lib_init_lc_monetary_1              0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000015)
+    __rt_lib_init_lc_numeric_1               0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000017)
+    __rt_lib_init_lc_time_1                  0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000019)
+    __rt_lib_init_preinit_1                  0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000004)
+    __rt_lib_init_rand_1                     0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000000E)
+    __rt_lib_init_return                     0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000033)
+    __rt_lib_init_signal_1                   0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000001D)
+    __rt_lib_init_stdio_1                    0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$00000025)
+    __rt_lib_init_user_alloc_1               0x0008017b   Thumb Code     0  libinit2.o(.ARM.Collect$$libinit$$0000000C)
+    Inline ARM to Thumb Veneer to __rt_lib_shutdown 0x00080188   ARM Code       8  libshutdown.o(.ARM.Collect$$libshutdown$$00000000)
+    __rt_lib_shutdown                        0x00080191   Thumb Code     0  libshutdown.o(.ARM.Collect$$libshutdown$$00000000)
+    __rt_lib_shutdown_cpp_1                  0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000002)
+    __rt_lib_shutdown_fp_trap_1              0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000007)
+    __rt_lib_shutdown_heap_1                 0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000F)
+    __rt_lib_shutdown_return                 0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000010)
+    __rt_lib_shutdown_signal_1               0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000A)
+    __rt_lib_shutdown_stdio_1                0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$00000004)
+    __rt_lib_shutdown_user_alloc_1           0x00080195   Thumb Code     0  libshutdown2.o(.ARM.Collect$$libshutdown$$0000000C)
+    __rt_entry                               0x0008019c   ARM Code       0  __rtentry.o(.ARM.Collect$$rtentry$$00000000)
+    __rt_entry_presh_1                       0x0008019c   ARM Code       0  __rtentry2.o(.ARM.Collect$$rtentry$$00000002)
+    __rt_entry_sh                            0x0008019c   ARM Code       0  __rtentry4.o(.ARM.Collect$$rtentry$$00000004)
+    __rt_entry_li                            0x000801a4   ARM Code       0  __rtentry2.o(.ARM.Collect$$rtentry$$0000000A)
+    __rt_entry_postsh_1                      0x000801a4   ARM Code       0  __rtentry2.o(.ARM.Collect$$rtentry$$00000009)
+    __rt_entry_main                          0x000801a8   ARM Code       0  __rtentry2.o(.ARM.Collect$$rtentry$$0000000D)
+    __rt_entry_postli_1                      0x000801a8   ARM Code       0  __rtentry2.o(.ARM.Collect$$rtentry$$0000000C)
+    Inline Thumb to ARM Veneer to __rt_exit  0x000801d1   Thumb Code     4  rtexit.o(.ARM.Collect$$rtexit$$00000000)
+    __rt_exit                                0x000801d4   ARM Code       0  rtexit.o(.ARM.Collect$$rtexit$$00000000)
+    __rt_exit_ls                             0x000801d8   ARM Code       0  rtexit2.o(.ARM.Collect$$rtexit$$00000003)
+    __rt_exit_prels_1                        0x000801d8   ARM Code       0  rtexit2.o(.ARM.Collect$$rtexit$$00000002)
+    __rt_exit_exit                           0x000801dc   ARM Code       0  rtexit2.o(.ARM.Collect$$rtexit$$00000004)
+    __user_initial_stackheap                 0x000801e4   ARM Code       0  aduc702x.o(.text)
+    __aeabi_memclr4                          0x00080204   ARM Code       0  rt_memclr_w.o(.text)
+    __aeabi_memclr8                          0x00080204   ARM Code       0  rt_memclr_w.o(.text)
+    __rt_memclr_w                            0x00080204   ARM Code      84  rt_memclr_w.o(.text)
+    _memset_w                                0x00080208   ARM Code       0  rt_memclr_w.o(.text)
+    __aeabi_idiv                             0x00080258   ARM Code       0  aeabi_sdiv.o(.text)
+    __aeabi_idivmod                          0x00080258   ARM Code     384  aeabi_sdiv.o(.text)
+    __use_two_region_memory                  0x000803d9   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x000803db   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x000803dd   Thumb Code     2  heapauxi.o(.text)
+    Inline ARM to Thumb Veneer to __set_errno 0x000803e0   ARM Code       8  _rserrno.o(.text)
+    __read_errno                             0x000803e9   Thumb Code    14  _rserrno.o(.text)
+    __set_errno                              0x000803f7   Thumb Code    12  _rserrno.o(.text)
+    Inline Thumb to ARM Veneer to __aeabi_errno_addr 0x00080405   Thumb Code     4  rt_errno_addr_intlibspace.o(.text)
+    __aeabi_errno_addr                       0x00080408   ARM Code      12  rt_errno_addr_intlibspace.o(.text)
+    __errno$intlibspace                      0x00080408   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
+    __rt_errno_addr$intlibspace              0x00080408   ARM Code       0  rt_errno_addr_intlibspace.o(.text)
+    __user_libspace                          0x00080414   ARM Code      12  libspace.o(.text)
+    __user_perproc_libspace                  0x00080414   ARM Code       0  libspace.o(.text)
+    __user_perthread_libspace                0x00080414   ARM Code       0  libspace.o(.text)
+    __user_setup_stackheap                   0x00080420   ARM Code      96  sys_stackheap_outer.o(.text)
+    exit                                     0x00080481   Thumb Code    20  exit.o(.text)
+    Inline ARM to Thumb Veneer to _sys_exit  0x00080494   ARM Code       8  sys_exit.o(.text)
+    _sys_exit                                0x0008049d   Thumb Code     8  sys_exit.o(.text)
+    __I$use$semihosting                      0x000804a8   ARM Code       0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x000804a8   ARM Code       4  use_no_semi.o(.text)
+    ADCinput                                 0x000804ac   ARM Code      80  1dofhapticrenderer.o(i.ADCinput)
+    __semihosting_library_function           0x000804ac   ARM Code       0  indicate_semi.o(.text)
+    ADCpoweron                               0x00080508   ARM Code      36  1dofhapticrenderer.o(i.ADCpoweron)
+    DAbt_Handler                             0x00080530   ARM Code      44  irq_arm.o(i.DAbt_Handler)
+    FIQ_Handler                              0x00080560   ARM Code      44  irq_arm.o(i.FIQ_Handler)
+    General_IRQ_Handler                      0x00080590   ARM Code     104  1dofhapticrenderer.o(i.General_IRQ_Handler)
+    IRQ_Handler                              0x00080604   ARM Code      44  irq_arm.o(i.IRQ_Handler)
+    PAbt_Handler                             0x00080634   ARM Code      44  irq_arm.o(i.PAbt_Handler)
+    PID_virtualWall                          0x00080664   ARM Code     980  1dofhapticrenderer.o(i.PID_virtualWall)
+    PID_zeroStiffness                        0x00080a68   ARM Code     972  1dofhapticrenderer.o(i.PID_zeroStiffness)
+    SPI_init                                 0x00080e58   ARM Code      40  1dofhapticrenderer.o(i.SPI_init)
+    SPI_read                                 0x00080e8c   ARM Code      40  1dofhapticrenderer.o(i.SPI_read)
+    SPI_write                                0x00080ebc   ARM Code      36  1dofhapticrenderer.o(i.SPI_write)
+    SWI_Handler                              0x00080ee8   ARM Code      44  irq_arm.o(i.SWI_Handler)
+    Undef_Handler                            0x00080f18   ARM Code      44  irq_arm.o(i.Undef_Handler)
+    __ARM_fpclassify                         0x00080f48   ARM Code      48  fpclassify.o(i.__ARM_fpclassify)
+    __ieee754_rem_pio2                       0x00080f78   ARM Code    1236  rred.o(i.__ieee754_rem_pio2)
+    __kernel_cos                             0x0008148c   ARM Code     404  cos_i.o(i.__kernel_cos)
+    __kernel_poly                            0x00081628   ARM Code     256  poly.o(i.__kernel_poly)
+    __kernel_sin                             0x00081728   ARM Code     368  sin_i.o(i.__kernel_sin)
+    __mathlib_dbl_divzero                    0x000818a4   ARM Code      24  dunder.o(i.__mathlib_dbl_divzero)
+    __mathlib_dbl_infnan                     0x000818bc   ARM Code       8  dunder.o(i.__mathlib_dbl_infnan)
+    __mathlib_dbl_infnan2                    0x000818c4   ARM Code       4  dunder.o(i.__mathlib_dbl_infnan2)
+    __mathlib_dbl_invalid                    0x000818c8   ARM Code      20  dunder.o(i.__mathlib_dbl_invalid)
+    __mathlib_dbl_overflow                   0x000818dc   ARM Code      20  dunder.o(i.__mathlib_dbl_overflow)
+    __mathlib_dbl_underflow                  0x000818f0   ARM Code      20  dunder.o(i.__mathlib_dbl_underflow)
+    check_sensor_status                      0x00081904   ARM Code     360  1dofhapticrenderer.o(i.check_sensor_status)
+    delay_ms                                 0x00081a78   ARM Code      56  1dofhapticrenderer.o(i.delay_ms)
+    delay_sw                                 0x00081ab0   ARM Code      20  1dofhapticrenderer.o(i.delay_sw)
+    delay_us                                 0x00081ac4   ARM Code     128  1dofhapticrenderer.o(i.delay_us)
+    floor                                    0x00081b50   ARM Code     332  floor.o(i.floor)
+    force_VoltsToGrams                       0x00081ca4   ARM Code      64  1dofhapticrenderer.o(i.force_VoltsToGrams)
+    initial_read_store_sensors               0x00081cf0   ARM Code      52  1dofhapticrenderer.o(i.initial_read_store_sensors)
+    interp_cal_constants                     0x00081d24   ARM Code     732  1dofhapticrenderer.o(i.interp_cal_constants)
+    main                                     0x00082008   ARM Code    2200  1dofhapticrenderer.o(i.main)
+    membrane_puncture                        0x0008297c   ARM Code    1360  1dofhapticrenderer.o(i.membrane_puncture)
+    modff                                    0x00082efc   ARM Code     100  modff.o(i.modff)
+    optical_ADCtoDisplacement                0x00082f60   ARM Code     144  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
+    outputDAC                                0x00083008   ARM Code     384  1dofhapticrenderer.o(i.outputDAC)
+    parse_SPI_data                           0x000831bc   ARM Code     228  1dofhapticrenderer.o(i.parse_SPI_data)
+    pot_voltage                              0x000832b0   ARM Code      52  1dofhapticrenderer.o(i.pot_voltage)
+    pow                                      0x000832e8   ARM Code    3824  pow.o(i.pow)
+    read_store_sensors                       0x000841d8   ARM Code     308  1dofhapticrenderer.o(i.read_store_sensors)
+    send_curr_data                           0x0008432c   ARM Code     352  1dofhapticrenderer.o(i.send_curr_data)
+    sensor_avg                               0x00084490   ARM Code     140  1dofhapticrenderer.o(i.sensor_avg)
+    sin                                      0x00084524   ARM Code     244  sin.o(i.sin)
+    sine_wave                                0x0008461c   ARM Code     368  1dofhapticrenderer.o(i.sine_wave)
+    sqrt                                     0x000847a8   ARM Code     112  sqrt.o(i.sqrt)
+    store_DAC_data                           0x00084818   ARM Code      28  1dofhapticrenderer.o(i.store_DAC_data)
+    system_init                              0x00084838   ARM Code     148  1dofhapticrenderer.o(i.system_init)
+    timer0_init                              0x000848d0   ARM Code      52  1dofhapticrenderer.o(i.timer0_init)
+    waitForRestOfPeriod                      0x00084910   ARM Code      92  1dofhapticrenderer.o(i.waitForRestOfPeriod)
+    __aeabi_d2f                              0x00084970   ARM Code       0  d2f.o(x$fpl$d2f)
+    _d2f                                     0x00084970   ARM Code     108  d2f.o(x$fpl$d2f)
+    __aeabi_dadd                             0x000849dc   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    _dadd                                    0x000849dc   ARM Code     336  daddsub_noclz.o(x$fpl$dadd)
+    __fpl_dcheck_NaN1                        0x00084b30   ARM Code      12  dcheck1.o(x$fpl$dcheck1)
+    __fpl_dcmp_Inf                           0x00084b40   ARM Code      28  dcmpi.o(x$fpl$dcmpinf)
+    __aeabi_ddiv                             0x00084b5c   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    _ddiv                                    0x00084b5c   ARM Code     600  ddiv.o(x$fpl$ddiv)
+    __aeabi_d2iz                             0x00084e3c   ARM Code       0  dfix.o(x$fpl$dfix)
+    _dfix                                    0x00084e3c   ARM Code     112  dfix.o(x$fpl$dfix)
+    __aeabi_i2d                              0x00084eac   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    _dflt                                    0x00084eac   ARM Code      88  dflt_noclz.o(x$fpl$dflt)
+    __dflt_normalise                         0x00084ebc   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    __aeabi_ui2d                             0x00084f04   ARM Code       0  dflt_noclz.o(x$fpl$dfltu)
+    _dfltu                                   0x00084f04   ARM Code      12  dflt_noclz.o(x$fpl$dfltu)
+    __aeabi_cdcmple                          0x00084f10   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    _dcmple                                  0x00084f10   ARM Code     148  dleqf.o(x$fpl$dleqf)
+    __fpl_dcmple_InfNaN                      0x00084f8c   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    __aeabi_dmul                             0x00084fa4   ARM Code       0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x00084fa4   ARM Code     372  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x00085124   ARM Code     192  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x000851e4   ARM Code      16  dretinf.o(x$fpl$dretinf)
+    __aeabi_cdrcmple                         0x000851f4   ARM Code       0  drleqf.o(x$fpl$drleqf)
+    _drcmple                                 0x000851f4   ARM Code     140  drleqf.o(x$fpl$drleqf)
+    __aeabi_drsub                            0x00085280   ARM Code       0  daddsub_noclz.o(x$fpl$drsb)
+    _drsb                                    0x00085280   ARM Code      24  daddsub_noclz.o(x$fpl$drsb)
+    _dsqrt                                   0x00085298   ARM Code     516  dsqrt_noumaal.o(x$fpl$dsqrt)
+    __aeabi_dsub                             0x000854a0   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    _dsub                                    0x000854a0   ARM Code     576  daddsub_noclz.o(x$fpl$dsub)
+    __aeabi_f2d                              0x000856e4   ARM Code       0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x000856e4   ARM Code     100  f2d.o(x$fpl$f2d)
+    __aeabi_fadd                             0x00085748   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    _fadd                                    0x00085748   ARM Code     196  faddsub_noclz.o(x$fpl$fadd)
+    __fpl_fcmp_Inf                           0x0008580c   ARM Code      28  fcmpi.o(x$fpl$fcmpinf)
+    __aeabi_fdiv                             0x00085828   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x00085828   ARM Code     396  fdiv.o(x$fpl$fdiv)
+    __aeabi_f2iz                             0x000859b8   ARM Code       0  ffix.o(x$fpl$ffix)
+    _ffix                                    0x000859b8   ARM Code      68  ffix.o(x$fpl$ffix)
+    __aeabi_i2f                              0x000859fc   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    _fflt                                    0x000859fc   ARM Code      92  fflt_noclz.o(x$fpl$fflt)
+    __fflt_normalise                         0x00085a08   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    __aeabi_cfcmple                          0x00085a58   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    _fcmple                                  0x00085a58   ARM Code     132  fleqf.o(x$fpl$fleqf)
+    __fpl_fcmple_InfNaN                      0x00085ac4   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    __aeabi_fmul                             0x00085adc   ARM Code       0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x00085adc   ARM Code     256  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x00085bdc   ARM Code     168  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x00085c84   ARM Code      16  fretinf.o(x$fpl$fretinf)
+    __aeabi_cfrcmple                         0x00085c94   ARM Code       0  frleqf.o(x$fpl$frleqf)
+    _frcmple                                 0x00085c94   ARM Code     124  frleqf.o(x$fpl$frleqf)
+    __aeabi_frsub                            0x00085d10   ARM Code       0  faddsub_noclz.o(x$fpl$frsb)
+    _frsb                                    0x00085d10   ARM Code      20  faddsub_noclz.o(x$fpl$frsb)
+    __aeabi_fsub                             0x00085d24   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    _fsub                                    0x00085d24   ARM Code     304  faddsub_noclz.o(x$fpl$fsub)
+    __fpl_return_NaN                         0x00085e54   ARM Code     116  retnan.o(x$fpl$retnan)
+    __ARM_scalbn                             0x00085ec8   ARM Code     104  scalbn.o(x$fpl$scalbn)
+    __fpl_cmpreturn                          0x00085f30   ARM Code      60  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x00085f6c   Number         0  usenofp.o(x$fpl$usenofp)
+    __mathlib_zero                           0x00086028   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x00086120   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00086140   Number         0  anon$$obj.o(Region$$Table)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x000800bc
+
+  Load Region LR_IROM1 (Base: 0x00080000, Size: 0x000063a0, Max: 0x0000f800, ABSOLUTE, COMPRESSED[0x000062c4])
+
+    Execution Region RW_IRAM1 (Base: 0x00010000, Size: 0x00000cd0, Max: 0x00002000, ABSOLUTE, COMPRESSED[0x00000184])
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00010000   0x00000248   Data   RW           52    .data               1dofhapticrenderer.o
+    0x00010248   0x00000018   Data   RW          308    .data               irq_arm.o
+    0x00010260   0x0000038c   Zero   RW           50    .bss                1dofhapticrenderer.o
+    0x000105ec   0x00000060   Zero   RW          538    .bss                c_t.l(libspace.o)
+    0x0001064c   0x00000004   PAD
+    0x00010650   0x00000000   Zero   RW            2    HEAP                aduc702x.o
+    0x00010650   0x00000680   Zero   RW            1    STACK               aduc702x.o
+
+
+    Execution Region ER_IROM1 (Base: 0x00080000, Size: 0x00006140, Max: 0x0000f800, ABSOLUTE)
+
+    Base Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00080000   0x000000bc   Code   RO            3    RESET               aduc702x.o
+    0x000800bc   0x00000008   Code   RO          368  * !!!main             c_t.l(__main.o)
+    0x000800c4   0x0000003c   Code   RO          688    !!!scatter          c_t.l(__scatter.o)
+    0x00080100   0x00000044   Code   RO          686    !!dczerorl          c_t.l(__dczerorl.o)
+    0x00080144   0x0000002c   Code   RO          690    !!handler_zi        c_t.l(__scatter_zi.o)
+    0x00080170   0x00000008   Ven    RO          553    .ARM.Collect$$libinit$$00000000  c_t.l(libinit.o)
+    0x00080178   0x00000002   Code   RO          553    .ARM.Collect$$libinit$$00000000  c_t.l(libinit.o)
+    0x0008017a   0x00000000   Code   RO          565    .ARM.Collect$$libinit$$00000002  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          567    .ARM.Collect$$libinit$$00000004  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          570    .ARM.Collect$$libinit$$0000000A  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          572    .ARM.Collect$$libinit$$0000000C  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          574    .ARM.Collect$$libinit$$0000000E  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          577    .ARM.Collect$$libinit$$00000011  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          579    .ARM.Collect$$libinit$$00000013  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          581    .ARM.Collect$$libinit$$00000015  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          583    .ARM.Collect$$libinit$$00000017  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          585    .ARM.Collect$$libinit$$00000019  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          587    .ARM.Collect$$libinit$$0000001B  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          589    .ARM.Collect$$libinit$$0000001D  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          591    .ARM.Collect$$libinit$$0000001F  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          593    .ARM.Collect$$libinit$$00000021  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          595    .ARM.Collect$$libinit$$00000023  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          597    .ARM.Collect$$libinit$$00000025  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          601    .ARM.Collect$$libinit$$0000002C  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          603    .ARM.Collect$$libinit$$0000002E  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          605    .ARM.Collect$$libinit$$00000030  c_t.l(libinit2.o)
+    0x0008017a   0x00000000   Code   RO          607    .ARM.Collect$$libinit$$00000032  c_t.l(libinit2.o)
+    0x0008017a   0x0000000c   Code   RO          608    .ARM.Collect$$libinit$$00000033  c_t.l(libinit2.o)
+    0x00080186   0x00000002   PAD
+    0x00080188   0x00000008   Ven    RO          643    .ARM.Collect$$libshutdown$$00000000  c_t.l(libshutdown.o)
+    0x00080190   0x00000004   Code   RO          643    .ARM.Collect$$libshutdown$$00000000  c_t.l(libshutdown.o)
+    0x00080194   0x00000000   Code   RO          669    .ARM.Collect$$libshutdown$$00000002  c_t.l(libshutdown2.o)
+    0x00080194   0x00000000   Code   RO          671    .ARM.Collect$$libshutdown$$00000004  c_t.l(libshutdown2.o)
+    0x00080194   0x00000000   Code   RO          674    .ARM.Collect$$libshutdown$$00000007  c_t.l(libshutdown2.o)
+    0x00080194   0x00000000   Code   RO          677    .ARM.Collect$$libshutdown$$0000000A  c_t.l(libshutdown2.o)
+    0x00080194   0x00000000   Code   RO          679    .ARM.Collect$$libshutdown$$0000000C  c_t.l(libshutdown2.o)
+    0x00080194   0x00000000   Code   RO          682    .ARM.Collect$$libshutdown$$0000000F  c_t.l(libshutdown2.o)
+    0x00080194   0x00000006   Code   RO          683    .ARM.Collect$$libshutdown$$00000010  c_t.l(libshutdown2.o)
+    0x0008019a   0x00000002   PAD
+    0x0008019c   0x00000000   Code   RO          448    .ARM.Collect$$rtentry$$00000000  c_t.l(__rtentry.o)
+    0x0008019c   0x00000000   Code   RO          512    .ARM.Collect$$rtentry$$00000002  c_t.l(__rtentry2.o)
+    0x0008019c   0x00000008   Code   RO          524    .ARM.Collect$$rtentry$$00000004  c_t.l(__rtentry4.o)
+    0x000801a4   0x00000000   Code   RO          514    .ARM.Collect$$rtentry$$00000009  c_t.l(__rtentry2.o)
+    0x000801a4   0x00000004   Code   RO          515    .ARM.Collect$$rtentry$$0000000A  c_t.l(__rtentry2.o)
+    0x000801a8   0x00000000   Code   RO          517    .ARM.Collect$$rtentry$$0000000C  c_t.l(__rtentry2.o)
+    0x000801a8   0x00000028   Code   RO          518    .ARM.Collect$$rtentry$$0000000D  c_t.l(__rtentry2.o)
+    0x000801d0   0x00000004   Ven    RO          556    .ARM.Collect$$rtexit$$00000000  c_t.l(rtexit.o)
+    0x000801d4   0x00000004   Code   RO          556    .ARM.Collect$$rtexit$$00000000  c_t.l(rtexit.o)
+    0x000801d8   0x00000000   Code   RO          614    .ARM.Collect$$rtexit$$00000002  c_t.l(rtexit2.o)
+    0x000801d8   0x00000004   Code   RO          615    .ARM.Collect$$rtexit$$00000003  c_t.l(rtexit2.o)
+    0x000801dc   0x00000008   Code   RO          616    .ARM.Collect$$rtexit$$00000004  c_t.l(rtexit2.o)
+    0x000801e4   0x00000020   Code   RO            4    .text               aduc702x.o
+    0x00080204   0x00000054   Code   RO          348    .text               c_t.l(rt_memclr_w.o)
+    0x00080258   0x00000180   Code   RO          350    .text               c_t.l(aeabi_sdiv.o)
+    0x000803d8   0x00000006   Code   RO          366    .text               c_t.l(heapauxi.o)
+    0x000803de   0x00000002   PAD
+    0x000803e0   0x00000008   Ven    RO          453    .text               c_t.l(_rserrno.o)
+    0x000803e8   0x0000001a   Code   RO          453    .text               c_t.l(_rserrno.o)
+    0x00080402   0x00000002   PAD
+    0x00080404   0x00000004   Ven    RO          531    .text               c_t.l(rt_errno_addr_intlibspace.o)
+    0x00080408   0x0000000c   Code   RO          531    .text               c_t.l(rt_errno_addr_intlibspace.o)
+    0x00080414   0x0000000c   Code   RO          537    .text               c_t.l(libspace.o)
+    0x00080420   0x00000060   Code   RO          540    .text               c_t.l(sys_stackheap_outer.o)
+    0x00080480   0x00000014   Code   RO          542    .text               c_t.l(exit.o)
+    0x00080494   0x00000008   Ven    RO          611    .text               c_t.l(sys_exit.o)
+    0x0008049c   0x0000000c   Code   RO          611    .text               c_t.l(sys_exit.o)
+    0x000804a8   0x00000004   Code   RO          632    .text               c_t.l(use_no_semi.o)
+    0x000804ac   0x00000000   Code   RO          634    .text               c_t.l(indicate_semi.o)
+    0x000804ac   0x0000005c   Code   RO           11    i.ADCinput          1dofhapticrenderer.o
+    0x00080508   0x00000028   Code   RO           12    i.ADCpoweron        1dofhapticrenderer.o
+    0x00080530   0x00000030   Code   RO          302    i.DAbt_Handler      irq_arm.o
+    0x00080560   0x00000030   Code   RO          303    i.FIQ_Handler       irq_arm.o
+    0x00080590   0x00000074   Code   RO           13    i.General_IRQ_Handler  1dofhapticrenderer.o
+    0x00080604   0x00000030   Code   RO          304    i.IRQ_Handler       irq_arm.o
+    0x00080634   0x00000030   Code   RO          305    i.PAbt_Handler      irq_arm.o
+    0x00080664   0x00000404   Code   RO           14    i.PID_virtualWall   1dofhapticrenderer.o
+    0x00080a68   0x000003f0   Code   RO           15    i.PID_zeroStiffness  1dofhapticrenderer.o
+    0x00080e58   0x00000034   Code   RO           16    i.SPI_init          1dofhapticrenderer.o
+    0x00080e8c   0x00000030   Code   RO           17    i.SPI_read          1dofhapticrenderer.o
+    0x00080ebc   0x0000002c   Code   RO           18    i.SPI_write         1dofhapticrenderer.o
+    0x00080ee8   0x00000030   Code   RO          306    i.SWI_Handler       irq_arm.o
+    0x00080f18   0x00000030   Code   RO          307    i.Undef_Handler     irq_arm.o
+    0x00080f48   0x00000030   Code   RO          487    i.__ARM_fpclassify  m_ts.l(fpclassify.o)
+    0x00080f78   0x00000514   Code   RO          492    i.__ieee754_rem_pio2  m_ts.l(rred.o)
+    0x0008148c   0x0000019c   Code   RO          470    i.__kernel_cos      m_ts.l(cos_i.o)
+    0x00081628   0x00000100   Code   RO          489    i.__kernel_poly     m_ts.l(poly.o)
+    0x00081728   0x0000017c   Code   RO          497    i.__kernel_sin      m_ts.l(sin_i.o)
+    0x000818a4   0x00000018   Code   RO          473    i.__mathlib_dbl_divzero  m_ts.l(dunder.o)
+    0x000818bc   0x00000008   Code   RO          474    i.__mathlib_dbl_infnan  m_ts.l(dunder.o)
+    0x000818c4   0x00000004   Code   RO          475    i.__mathlib_dbl_infnan2  m_ts.l(dunder.o)
+    0x000818c8   0x00000014   Code   RO          476    i.__mathlib_dbl_invalid  m_ts.l(dunder.o)
+    0x000818dc   0x00000014   Code   RO          477    i.__mathlib_dbl_overflow  m_ts.l(dunder.o)
+    0x000818f0   0x00000014   Code   RO          479    i.__mathlib_dbl_underflow  m_ts.l(dunder.o)
+    0x00081904   0x00000174   Code   RO           19    i.check_sensor_status  1dofhapticrenderer.o
+    0x00081a78   0x00000038   Code   RO           23    i.delay_ms          1dofhapticrenderer.o
+    0x00081ab0   0x00000014   Code   RO           24    i.delay_sw          1dofhapticrenderer.o
+    0x00081ac4   0x0000008c   Code   RO           25    i.delay_us          1dofhapticrenderer.o
+    0x00081b50   0x00000154   Code   RO          423    i.floor             m_ts.l(floor.o)
+    0x00081ca4   0x0000004c   Code   RO           28    i.force_VoltsToGrams  1dofhapticrenderer.o
+    0x00081cf0   0x00000034   Code   RO           29    i.initial_read_store_sensors  1dofhapticrenderer.o
+    0x00081d24   0x000002e4   Code   RO           30    i.interp_cal_constants  1dofhapticrenderer.o
+    0x00082008   0x00000974   Code   RO           31    i.main              1dofhapticrenderer.o
+    0x0008297c   0x00000580   Code   RO           32    i.membrane_puncture  1dofhapticrenderer.o
+    0x00082efc   0x00000064   Code   RO          427    i.modff             m_ts.l(modff.o)
+    0x00082f60   0x000000a8   Code   RO           33    i.optical_ADCtoDisplacement  1dofhapticrenderer.o
+    0x00083008   0x000001b4   Code   RO           34    i.outputDAC         1dofhapticrenderer.o
+    0x000831bc   0x000000f4   Code   RO           35    i.parse_SPI_data    1dofhapticrenderer.o
+    0x000832b0   0x00000038   Code   RO           36    i.pot_voltage       1dofhapticrenderer.o
+    0x000832e8   0x00000ef0   Code   RO          431    i.pow               m_ts.l(pow.o)
+    0x000841d8   0x00000154   Code   RO           39    i.read_store_sensors  1dofhapticrenderer.o
+    0x0008432c   0x00000164   Code   RO           40    i.send_curr_data    1dofhapticrenderer.o
+    0x00084490   0x00000094   Code   RO           42    i.sensor_avg        1dofhapticrenderer.o
+    0x00084524   0x000000f8   Code   RO          441    i.sin               m_ts.l(sin.o)
+    0x0008461c   0x0000018c   Code   RO           43    i.sine_wave         1dofhapticrenderer.o
+    0x000847a8   0x00000070   Code   RO          504    i.sqrt              m_ts.l(sqrt.o)
+    0x00084818   0x00000020   Code   RO           45    i.store_DAC_data    1dofhapticrenderer.o
+    0x00084838   0x00000098   Code   RO           46    i.system_init       1dofhapticrenderer.o
+    0x000848d0   0x00000040   Code   RO           48    i.timer0_init       1dofhapticrenderer.o
+    0x00084910   0x00000060   Code   RO           49    i.waitForRestOfPeriod  1dofhapticrenderer.o
+    0x00084970   0x0000006c   Code   RO          370    x$fpl$d2f           fz_ts.l(d2f.o)
+    0x000849dc   0x00000154   Code   RO          372    x$fpl$dadd          fz_ts.l(daddsub_noclz.o)
+    0x00084b30   0x00000010   Code   RO          533    x$fpl$dcheck1       fz_ts.l(dcheck1.o)
+    0x00084b40   0x0000001c   Code   RO          455    x$fpl$dcmpinf       fz_ts.l(dcmpi.o)
+    0x00084b5c   0x000002e0   Code   RO          379    x$fpl$ddiv          fz_ts.l(ddiv.o)
+    0x00084e3c   0x00000070   Code   RO          382    x$fpl$dfix          fz_ts.l(dfix.o)
+    0x00084eac   0x00000058   Code   RO          387    x$fpl$dflt          fz_ts.l(dflt_noclz.o)
+    0x00084f04   0x0000000c   Code   RO          386    x$fpl$dfltu         fz_ts.l(dflt_noclz.o)
+    0x00084f10   0x00000094   Code   RO          390    x$fpl$dleqf         fz_ts.l(dleqf.o)
+    0x00084fa4   0x00000180   Code   RO          392    x$fpl$dmul          fz_ts.l(dmul.o)
+    0x00085124   0x000000c0   Code   RO          457    x$fpl$dnaninf       fz_ts.l(dnaninf.o)
+    0x000851e4   0x00000010   Code   RO          459    x$fpl$dretinf       fz_ts.l(dretinf.o)
+    0x000851f4   0x0000008c   Code   RO          394    x$fpl$drleqf        fz_ts.l(drleqf.o)
+    0x00085280   0x00000018   Code   RO          373    x$fpl$drsb          fz_ts.l(daddsub_noclz.o)
+    0x00085298   0x00000208   Code   RO          535    x$fpl$dsqrt         fz_ts.l(dsqrt_noumaal.o)
+    0x000854a0   0x00000244   Code   RO          374    x$fpl$dsub          fz_ts.l(daddsub_noclz.o)
+    0x000856e4   0x00000064   Code   RO          396    x$fpl$f2d           fz_ts.l(f2d.o)
+    0x00085748   0x000000c4   Code   RO          398    x$fpl$fadd          fz_ts.l(faddsub_noclz.o)
+    0x0008580c   0x0000001c   Code   RO          461    x$fpl$fcmpinf       fz_ts.l(fcmpi.o)
+    0x00085828   0x00000190   Code   RO          405    x$fpl$fdiv          fz_ts.l(fdiv.o)
+    0x000859b8   0x00000044   Code   RO          408    x$fpl$ffix          fz_ts.l(ffix.o)
+    0x000859fc   0x0000005c   Code   RO          413    x$fpl$fflt          fz_ts.l(fflt_noclz.o)
+    0x00085a58   0x00000084   Code   RO          416    x$fpl$fleqf         fz_ts.l(fleqf.o)
+    0x00085adc   0x00000100   Code   RO          418    x$fpl$fmul          fz_ts.l(fmul.o)
+    0x00085bdc   0x000000a8   Code   RO          463    x$fpl$fnaninf       fz_ts.l(fnaninf.o)
+    0x00085c84   0x00000010   Code   RO          465    x$fpl$fretinf       fz_ts.l(fretinf.o)
+    0x00085c94   0x0000007c   Code   RO          420    x$fpl$frleqf        fz_ts.l(frleqf.o)
+    0x00085d10   0x00000014   Code   RO          399    x$fpl$frsb          fz_ts.l(faddsub_noclz.o)
+    0x00085d24   0x00000130   Code   RO          400    x$fpl$fsub          fz_ts.l(faddsub_noclz.o)
+    0x00085e54   0x00000074   Code   RO          554    x$fpl$retnan        fz_ts.l(retnan.o)
+    0x00085ec8   0x00000068   Code   RO          467    x$fpl$scalbn        fz_ts.l(scalbn.o)
+    0x00085f30   0x0000003c   Code   RO          609    x$fpl$trapveneer    fz_ts.l(trapv.o)
+    0x00085f6c   0x00000000   Code   RO          469    x$fpl$usenofp       fz_ts.l(usenofp.o)
+    0x00085f6c   0x00000004   PAD
+    0x00085f70   0x00000088   Data   RO          432    .constdata          m_ts.l(pow.o)
+    0x00085ff8   0x00000030   Data   RO          471    .constdata          m_ts.l(cos_i.o)
+    0x00086028   0x00000008   Data   RO          491    .constdata          m_ts.l(qnan.o)
+    0x00086030   0x000000c8   Data   RO          494    .constdata          m_ts.l(rred.o)
+    0x000860f8   0x00000028   Data   RO          498    .constdata          m_ts.l(sin_i.o)
+    0x00086120   0x00000020   Data   RO          684    Region$$Table       anon$$obj.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+     10200        644          0        584        908      25796   1dofhapticrenderer.o
+       220         56          0          0       1664        540   aduc702x.o
+       288         24          0         24          0       3238   irq_arm.o
+
+    ----------------------------------------------------------------------
+     10708        724         32        608       2572      29574   Object Totals
+         0          0         32          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+        68          2          0          0          0          0   __dczerorl.o
+         8          0          0          0          0         68   __main.o
+         0          0          0          0          0          0   __rtentry.o
+        44          4          0          0          0          0   __rtentry2.o
+         8          0          0          0          0          0   __rtentry4.o
+        60          8          0          0          0          0   __scatter.o
+        44          0          0          0          0          0   __scatter_zi.o
+        34          0          0          0          0        104   _rserrno.o
+       384          0          0          0          0         80   aeabi_sdiv.o
+        20          0          0          0          0         80   exit.o
+         6          0          0          0          0        136   heapauxi.o
+         0          0          0          0          0          0   indicate_semi.o
+        10          0          0          0          0          0   libinit.o
+        12          0          0          0          0          0   libinit2.o
+        12          0          0          0          0          0   libshutdown.o
+         6          0          0          0          0          0   libshutdown2.o
+        12          4          0          0         96         68   libspace.o
+        16          4          0          0          0         68   rt_errno_addr_intlibspace.o
+        84          0          0          0          0         80   rt_memclr_w.o
+         8          0          0          0          0          0   rtexit.o
+        12          0          0          0          0          0   rtexit2.o
+        20          4          0          0          0         60   sys_exit.o
+        96          0          0          0          0         80   sys_stackheap_outer.o
+         4          0          0          0          0         68   use_no_semi.o
+       108          4          0          0          0         92   d2f.o
+       944         16          0          0          0        368   daddsub_noclz.o
+        16          4          0          0          0         68   dcheck1.o
+        28          0          0          0          0         68   dcmpi.o
+       736        140          0          0          0        228   ddiv.o
+       112          4          0          0          0         92   dfix.o
+       100          0          0          0          0        136   dflt_noclz.o
+       148          4          0          0          0         92   dleqf.o
+       384         16          0          0          0        124   dmul.o
+       192          0          0          0          0        108   dnaninf.o
+        16          0          0          0          0         68   dretinf.o
+       140          0          0          0          0         80   drleqf.o
+       520         56          0          0          0        144   dsqrt_noumaal.o
+       100          4          0          0          0         84   f2d.o
+       520          8          0          0          0        236   faddsub_noclz.o
+        28          0          0          0          0         68   fcmpi.o
+       400         76          0          0          0         96   fdiv.o
+        68          4          0          0          0         84   ffix.o
+        92          0          0          0          0         68   fflt_noclz.o
+       132          4          0          0          0         84   fleqf.o
+       256          4          0          0          0         84   fmul.o
+       168          0          0          0          0         96   fnaninf.o
+        16          0          0          0          0         68   fretinf.o
+       124          0          0          0          0         68   frleqf.o
+       116          0          0          0          0         68   retnan.o
+       104          0          0          0          0         68   scalbn.o
+        60          0          0          0          0         68   trapv.o
+         0          0          0          0          0          0   usenofp.o
+       412          8         48          0          0        152   cos_i.o
+        96          0          0          0          0        408   dunder.o
+       340          8          0          0          0        144   floor.o
+        48          0          0          0          0         68   fpclassify.o
+       100          0          0          0          0         68   modff.o
+       256          0          0          0          0        116   poly.o
+      3824        100        136          0          0        280   pow.o
+         0          0          8          0          0          0   qnan.o
+      1300         64        200          0          0        120   rred.o
+       248          4          0          0          0        128   sin.o
+       380         12         40          0          0        156   sin_i.o
+       112          0          0          0          0        100   sqrt.o
+
+    ----------------------------------------------------------------------
+     13724        566        432          0        100       5540   Library Totals
+        12          0          0          0          4          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+       968         26          0          0         96        892   c_t.l
+      5628        344          0          0          0       2908   fz_ts.l
+      7116        196        432          0          0       1740   m_ts.l
+
+    ----------------------------------------------------------------------
+     13724        566        432          0        100       5540   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+     24432       1290        464        608       2672      30766   Grand Totals
+     24432       1290        464        388       2672      30766   ELF Image Totals (compressed)
+     24432       1290        464        388          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                24896 (  24.31kB)
+    Total RW  Size (RW Data + ZI Data)              3280 (   3.20kB)
+    Total ROM Size (Code + RO Data + RW Data)      25284 (  24.69kB)
+
+==============================================================================
+

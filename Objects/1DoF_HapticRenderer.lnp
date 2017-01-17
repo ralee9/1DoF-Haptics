@@ -1,0 +1,8 @@
+--cpu ARM7TDMI
+".\objects\aduc702x.o"
+".\objects\1dofhapticrenderer.o"
+".\objects\irq_arm.o"
+--strict --scatter ".\Objects\1DoF_HapticRenderer.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\1DoF_HapticRenderer.map" -o .\Objects\1DoF_HapticRenderer.axf
