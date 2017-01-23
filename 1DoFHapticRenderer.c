@@ -1604,7 +1604,7 @@ float sine_wave(struct Wave_const *constants)
 
     /* read knob 2 to get frequency & calculate the desired change in theta */
     voltage = read_store_sensors(2, pCurr_data);
-    frequency = pot_voltage(voltage, 2.0);
+    frequency = pot_voltage(voltage, 200.0);
 
     /* update current theta and convert to radians */
     /* delta_theta = fullscale / operating freq (hz), the change in theta to  
