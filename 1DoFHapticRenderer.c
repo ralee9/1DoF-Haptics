@@ -159,6 +159,7 @@ float speaker_volts;
 float desiredSpeaker_volts, lastDesiredSpeaker_volts;
 float desiredSpeaker_mm, lastDesiredSpeaker_mm;
 float rest_pos_volts, rest_pos_mm;
+float force_std;
 
 unsigned char g_speaker_mode = 0x99;
 int g_virtual_knob1, g_virtual_knob2, g_virtual_knob3 = 0;
@@ -339,9 +340,10 @@ float PID_zeroStiffness(struct PID_const *);
 float PID_virtualWall(struct PID_const *);
 float membrane_puncture(struct PID_const *, struct PID_const *, 
                         struct PID_const *);
-float ratchet_simulation(struct PID_const *, struct PID_const *,
-                         struct PID_const *);
+float tactor_simulation(struct Wave_const *);
 float sine_wave(struct Wave_const *);
+//float ratchet_simulation(struct PID_const *, struct PID_const *,
+                         //struct PID_const *);
 
 /* sensor calibration/ manipulation functions */
 float speaker_DACtoDisplacement(float volts);
@@ -460,6 +462,7 @@ int main(void)
     
     /* initial read/store of all sensors */
     initial_read_store_sensors(pInit_data);
+
     
     /* calculate and save average voltage from the optical sensor */
     rest_pos_volts = sensor_avg(4);
@@ -589,19 +592,12 @@ int main(void)
         }
         else if (g_speaker_mode == 0xEE)
         {
-            #if TEMP_DISABLED
-            speaker_volts = ratchet_simulation(pPID_wall, pPID_zero, 
-                                               pPID_ratchet);
-            speaker_voltageHex = outputDAC(speaker_volts);
-            DAC0DAT = speaker_voltageHex;
-            store_DAC_data(speaker_voltageHex, pCurr_data);
-            #endif          
-
-            /* control speaker voltage w/ knob 1 */
-            speaker_volts = read_store_sensors(1, pCurr_data);
-            speaker_voltageHex = outputDAC(speaker_volts);
-            DAC0DAT = speaker_voltageHex;
-            store_DAC_data(speaker_voltageHex, pCurr_data);
+        	/* Basic tactor simulation */
+        	speaker_volts = tactor_simulation();
+        	speaker_voltageHex = outputDAC(speaker_volts);
+        	DAC0DAT = speaker_voltageHex;
+        	store_DAC_data(speaker_voltageHex, pCurr_data);
+        	
         }
         else
         {
@@ -655,6 +651,127 @@ int main(void)
 
 
 /* Functions -------------------------------------------------------------- */
+
+
+float tactor_simulation ()
+{
+
+	/* V1: Knob adjustment to control DC component of the sine wave function
+	   V2: Replace knob with force sensor reading (detect presence of finger) 
+	       & optical sensor reading to detect relative location in displacement 
+	   	   range
+	*/
+
+	
+    float amplitude = 0.0;
+    float frequency = 0.0;
+    float output = 0.0;
+    float radians = 0.0;
+    float voltage = 0.0;
+    float force_det = 0.0;
+    float output = 0.0;
+    float outMax = 2.5;
+    float outMin = 0.0;
+    float rise_out = 0.1;
+    float fall_out = 0.1;
+    
+    int curr_theta = 0;
+    int delta_theta = 0;
+    int fullscale = pow(2.0, 16);   /* fullscale number of bits */
+
+
+
+
+
+	/* Establish speed of the platform rise */ 
+    voltage = read_store_sensors(1, pCurr_data);
+    velocity = pot_voltage(voltage, 1.0);
+
+    /* Read force measurement from sensor over 10 second interval to establish
+     * baseline sensor voltage */
+
+    force_det = read_store_sensors(0, pCurr_data);
+
+
+    
+
+    /* Function should modify the output and return to the main while loop
+     * within the if statements */
+
+    if(force_det > force_std)
+    {
+    	while (output > outMin)
+    	{
+
+    		output -= fall_out;
+    		delay_ms(10);
+    		return output;
+    	}
+    }
+
+    else
+    {
+    	/* Platform rises to upper range in 1 second 
+		 * 1st rise from 0V to 2.5V should calibrate the system */
+
+    	if (output < outMax)
+    	{
+    		output += rise_out;
+    		delay_ms(40); // (40ms delay) + 25 iterations from 0-2.5 = 1 second
+
+    		return output;
+    	}
+    }
+
+
+    
+
+   
+
+
+    #if TEMP_DISABLED
+    constants->theta_counter = 0;
+        		
+        		/*Decide how much to pullback:
+				 *	(1) use control system to regulate continuous decrease in speaker 
+				 *	voltage
+				 *  (2) initialize new theta counter to put the sine wave in reverse
+				 *  for a short period of time
+				*/
+ 
+
+    /* read knob 1 to get amplitude, centered around 1.25 */
+    voltage = read_store_sensors(1, pCurr_data);
+    amplitude = pot_voltage(voltage, 1.0);
+
+    /* read knob 2 to get frequency & calculate the desired change in theta */
+    voltage = read_store_sensors(2, pCurr_data);
+    frequency = pot_voltage(voltage, 200.0);
+
+    
+
+
+
+    /* update current theta and convert to radians */
+    /* delta_theta = fullscale / operating freq (hz), the change in theta 
+     * (in degrees) to obtain a 1 Hz sine wave. For 16 bits @ 1333 Hz update, 
+     * delta = 49
+     */
+    //delta_theta = 49 * frequency; /* del_theta for 1333 Hz, loop = 750us */
+    delta_theta = 65 * frequency;   /* del_theta for 1000 Hz, loop = 1000us */
+    constants->theta_counter -= delta_theta;
+    curr_theta = constants->theta_counter % fullscale;
+    radians = curr_theta * (2.0 * PI) / fullscale;
+    #endif
+
+    /* calculate output voltage, centered around midpoint */
+    
+   
+    
+}
+
+
+
 
 /**  PID_virtualWall() --
  **     PID control of position to resist speaker movement by an extern. force
@@ -1434,6 +1551,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
  **     Determine if current position is within a membrane, if so, set a 
  **     global flag and membrane gains. Else, set zero stiffness gains.
  **/
+#if TEMP_DISABLED
 float ratchet_simulation(struct PID_const *PID_w, struct PID_const *PID_z,
                          struct PID_const *PID_r)
 {
@@ -1582,6 +1700,7 @@ float ratchet_simulation(struct PID_const *PID_w, struct PID_const *PID_z,
     return output_voltage;
 }
 
+#endif
 /** sine_wave() --
  **     Generate sine wave at specified amplitude and frequency, determined
  **     by knobs 1 and 2
@@ -1621,6 +1740,9 @@ float sine_wave(struct Wave_const *constants)
 
     return output;
 }
+
+
+
 
 /** speakerDACtoDisplacement() -- 
  **     Calculate expected speaker displacement from a reference voltage
@@ -2564,21 +2686,21 @@ void testmode(int times)
 }
 
 /** sensor_avg() --
- **     Takes 10 sample average of indicated channel 
+ **     Takes 30 sample average of indicated channel 
  **/
 float sensor_avg(int channel)
 {
     int i;
     float avg_voltage, add_voltage = 0;
-    float voltage[10];
+    float voltage[50];
     
-    for (i=0; i<10; i++)
+    for (i=0; i<50; i++)
     {
         voltage[i] = read_store_sensors(channel, pCurr_data);
         add_voltage += voltage[i];
-        delay_us(10);
+        delay_ms(20);
     }
-    avg_voltage = add_voltage / 10.0;
+    avg_voltage = add_voltage / 50.0;
 
     return avg_voltage;
 }
