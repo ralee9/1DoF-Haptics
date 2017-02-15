@@ -705,14 +705,16 @@ float tactor_simulation ()
 
     		output -= fall_out;
     		delay_ms(10);
-    		return output;
+    		return output; // exits out of while loop, so make output a global variable
+    						//and use a pointer input variable
+
     	}
     }
 
     else
     {
     	/* Platform rises to upper range in 1 second 
-		 * 1st rise from 0V to 2.5V should calibrate the system */
+		 * 1st rise from 0V to 2.5V calibrates the system */
 
     	if (output < outMax)
     	{
@@ -2692,15 +2694,15 @@ float sensor_avg(int channel)
 {
     int i;
     float avg_voltage, add_voltage = 0;
-    float voltage[50];
+    float voltage[10];
     
-    for (i=0; i<50; i++)
+    for (i=0; i<10; i++)
     {
         voltage[i] = read_store_sensors(channel, pCurr_data);
         add_voltage += voltage[i];
-        delay_ms(20);
+        delay_us(10);
     }
-    avg_voltage = add_voltage / 50.0;
+    avg_voltage = add_voltage / 10.0;
 
     return avg_voltage;
 }
