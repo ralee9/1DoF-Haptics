@@ -1750,8 +1750,13 @@
       <Doc>
         <Name>.\1DoFHapticRenderer.c</Name>
         <ColumnNumber>0</ColumnNumber>
+<<<<<<< HEAD
         <TopLine>1596</TopLine>
         <CurrentLine>1600</CurrentLine>
+=======
+        <TopLine>640</TopLine>
+        <CurrentLine>1618</CurrentLine>
+>>>>>>> refs/remotes/origin/master
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

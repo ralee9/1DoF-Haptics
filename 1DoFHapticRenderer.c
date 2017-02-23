@@ -2118,20 +2118,20 @@ float read_sensors(int channel)
     }
     if (channel == 1) 
     {
-        //data->knob1 = voltage_int;
-        data->knob1 = g_virtual_knob1;
+        data->knob1 = voltage_int;
+        //data->knob1 = g_virtual_knob1;
         sensor_status[4] = 1;
     }
     if (channel == 2) 
     {
-        //data->knob2 = voltage_int;
-        data->knob2 = g_virtual_knob2;
+        data->knob2 = voltage_int;
+        //data->knob2 = g_virtual_knob2;
         sensor_status[5] = 1;
     }
     if (channel == 3) 
     {
-        //data->knob3 = voltage_int;
-        data->knob3 = g_virtual_knob3;
+        data->knob3 = voltage_int;
+        //data->knob3 = g_virtual_knob3;
         sensor_status[6] = 1;
     }
     if (channel == 4) 
