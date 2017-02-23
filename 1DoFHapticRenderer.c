@@ -2107,8 +2107,10 @@ float read_sensors(int channel)
     voltageHex = ADCDAT;
     sensorVoltage = ADCinput(voltageHex);
 
-    /* right shift ADC data 16 bits to obtain result on [0, FFF] range */
-    voltage_int = voltageHex >> 16;
+    /* right shift ADC data 16 bits to obtain result on [0, FFF] range 
+		 * mask with FFF to ensure data is 12-bits 
+		 */
+    voltage_int = (voltageHex >> 16) & 0xFFF;
 
     /* store raw ADC results into curr_data and update sensor status array */
     if (channel == 0) 
