@@ -165,6 +165,7 @@ int g_virtual_knob1, g_virtual_knob2, g_virtual_knob3 = 0;
 
 /* each message received from Wixel/GUI is 1 byte in size */
 unsigned char SPI_received_data[14];
+unsigned char *pSPI_received;
 
 /* linear fit variables for zero stiffness spring 
  * @TODO: Confirm -- OBSOLETE AS OF VXX (?)
@@ -408,6 +409,9 @@ int main(void)
      */
     SPI_init();
     
+		/* SPI received data pointer */
+		pSPI_received = &SPI_received_data[0];
+		
     /* testmode() generates a triangular increase/decrease in speaker voltage 
      */
     //testmode(5);
@@ -623,7 +627,7 @@ int main(void)
          * messages. Save received data into an array to be parsed later
          */
         GP2DAT ^= 0x20000; /*flip P2.1 to examine time for each send/ read*/
-        send_curr_data(pCurr_data, SPI_received_data);
+        send_curr_data(pCurr_data, pSPI_received);
         GP2DAT ^= 0x20000;
 
         #if OBSOLETE
@@ -644,7 +648,7 @@ int main(void)
         /* parse recieved SPI data for control keys and incoming GUI info
          * global variables are updated in this function
          */
-        parse_SPI_data(SPI_received_data);
+        parse_SPI_data(pSPI_received);
     
         counter++;
         waitForRestOfPeriod(); 
@@ -1954,13 +1958,13 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
         SPI_write(split_msg[i]);
         
         /* Read data from Wixel */
-        received_data[i + 1] = SPI_read();
+        *(received_data + i + 1) = SPI_read();
     }
     delay_us(10);
     /*SPI_write(0xBB);*/
 		SPI_write(0x22);
     /* read data from Wixel */
-    received_data[13] = SPI_read();
+    *(received_data + 13) = SPI_read();
 
     return;
 }
@@ -1971,10 +1975,10 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
  **/
 void parse_SPI_data(unsigned char *received_data)
 {
-    int message;
-    unsigned short rec1, rec2, rec3;
+    int message = 0;
+    unsigned int rec1, rec2, rec3 = 0;
     int loop_count, i = 0;
-    int decoded_msg[8] = {0,0,0,0,0,0,0,0};
+    unsigned int decoded_msg[8] = {0,0,0,0,0,0,0,0};
 
     /* received data is command = 1 byte, followed by 7 1.5 byte data, with 
      * 4bits left over. 8th decoded point should be 0x0BB
@@ -1999,8 +2003,9 @@ void parse_SPI_data(unsigned char *received_data)
         decoded_msg[i*2+ 1] = ((rec2 & 0xF)<< 8) | (rec3);
     }
     
-  /* speaker mode is first entry after 0xAA response */
+  /* speaker mode is first entry after 0x11 handshake */
     g_speaker_mode = *(received_data + 1);
+		//g_speaker_mode = received_data[1];
   
     /* loop through all messages and assign globals depending on function
    * decoded_msg starts with virtual knob 1 
@@ -2041,7 +2046,7 @@ void parse_SPI_data(unsigned char *received_data)
  **/
 unsigned char SPI_read(void)
 {
-    unsigned char message;
+    unsigned char message = 0;
     while (!((SPISTA & 0x8) == 0x8)){
         /* wait while nothing in SPIRX */
     }
