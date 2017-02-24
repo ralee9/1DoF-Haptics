@@ -1940,8 +1940,12 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
     split_msg[10] = (char)((msg6 & 0xF) << 4 | (msg7 & 0xF00) >> 8);
     split_msg[11] = (char)(msg7 & 0xFF);
 
-    /* send messages with 10us delay so Wixel can process accurately */ 
-    SPI_write(0xAA);
+    /* send messages w/ 10us delay so Wixel buffer does not overflow 
+		 * start/stop handshakes 0x11 and 0x22 so they do not match any 
+		 * command bytes
+		 */ 
+    /*SPI_write(0xAA);*/
+		SPI_write(0x11);
     /* Read data from Wixel */
     *received_data = SPI_read();
     for (i=0;i<12;i++)
@@ -1953,7 +1957,8 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
         received_data[i + 1] = SPI_read();
     }
     delay_us(10);
-    SPI_write(0xBB);
+    /*SPI_write(0xBB);*/
+		SPI_write(0x22);
     /* read data from Wixel */
     received_data[13] = SPI_read();
 
@@ -1975,10 +1980,10 @@ void parse_SPI_data(unsigned char *received_data)
      * 4bits left over. 8th decoded point should be 0x0BB
      */
   /* received data is organized as:
-   * rec_data[0] = ignored
+   * rec_data[0] = ignored (0x11)
    * rec_data[1] = command mode
    * rec_data[2:12] = data from GUI
-   * rec_data[13] = 0xBB
+   * rec_data[13] = 0x22
    */
     for (i=0; i<4; i++)
     {
@@ -2188,7 +2193,7 @@ void store_DAC_data(int rawDAC_hex, struct Wixel_msg *data)
  {
     int voltage_int = 0;
 
-    voltage_int = (rawDAC_hex >> 16);
+    voltage_int = (rawDAC_hex >> 16) & 0xFFF;
     /* store speakerOut voltage and set sensor status */
     data->speakerOut = voltage_int;
     sensor_status[3] = 1;
