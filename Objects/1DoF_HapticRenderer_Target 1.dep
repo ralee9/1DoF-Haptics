@@ -1,6 +1,6 @@
 Dependencies for Project '1DoF_HapticRenderer', Target 'Target 1': (DO NOT MODIFY !)
 F (.\ADuC702x.s)(0x5346DEEE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI--pd "__UVISION_VERSION SETA 521"--list .\listings\aduc702x.lst --xref -o .\objects\aduc702x.o --depend .\objects\aduc702x.d)
-F (.\1DoFHapticRenderer.c)(0x58B098C0)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI-D__UVISION_VERSION="521"-o .\objects\1dofhapticrenderer.o --omf_browse .\objects\1dofhapticrenderer.crf --depend .\objects\1dofhapticrenderer.d)
+F (.\1DoFHapticRenderer.c)(0x58B0ABEA)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI-D__UVISION_VERSION="521"-o .\objects\1dofhapticrenderer.o --omf_browse .\objects\1dofhapticrenderer.crf --depend .\objects\1dofhapticrenderer.d)
 I (C:\Keil_v5\ARM\Inc\ADI\aduc7026.h)(0x559D839C)
 I (C:\Keil_v5\ARM\Inc\ADI\irq.h)(0x559D839A)
 I (C:\Keil_v5\ARM\Inc\ADI\timer.h)(0x559D839C)

@@ -2004,8 +2004,23 @@ void parse_SPI_data(unsigned char *received_data)
     }
     
   /* speaker mode is first entry after 0x11 handshake */
-    g_speaker_mode = *(received_data + 1);
+    //g_speaker_mode = *(received_data + 1);
 		//g_speaker_mode = received_data[1];
+		
+		/* loop through all received messages for command key */
+		for (loop_count = 0; loop_count<14; loop_count++)
+		{
+			message = received_data[loop_count];
+			if (message == 0xAA || message == 0xBB || message == 0xCC ||
+            message == 0xDD || message == 0xEE || message == 0x99)
+        {
+			/* at most one control key in each batch of received data
+			 * so we can exit the loop immediately after identifying it
+			 */
+            g_speaker_mode = message;
+					  break;
+        }
+		}
   
     /* loop through all messages and assign globals depending on function
    * decoded_msg starts with virtual knob 1 
