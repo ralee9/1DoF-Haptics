@@ -1608,7 +1608,7 @@ float sine_wave(struct Wave_const *constants)
 
     /* read knob 2 to get frequency & calculate the desired change in theta */
     voltage = read_store_sensors(2, pCurr_data);
-    frequency = pot_voltage(voltage, 200.0);
+    frequency = pot_voltage(voltage, 50.0);
 
     /* update current theta and convert to radians */
     /* delta_theta = fullscale / operating freq (hz), the change in theta to  
@@ -2012,14 +2012,14 @@ void parse_SPI_data(unsigned char *received_data)
 		{
 			message = received_data[loop_count];
 			if (message == 0xAA || message == 0xBB || message == 0xCC ||
-            message == 0xDD || message == 0xEE || message == 0x99)
-        {
-			/* at most one control key in each batch of received data
-			 * so we can exit the loop immediately after identifying it
-			 */
-            g_speaker_mode = message;
-					  break;
-        }
+          message == 0xDD || message == 0xEE || message == 0x99)
+      {
+				/* at most one control key in each batch of received data
+			   * so we can exit the loop immediately after identifying it
+			   */
+         g_speaker_mode = message;
+				 break;
+      }
 		}
   
     /* loop through all messages and assign globals depending on function
