@@ -1954,12 +1954,15 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
     split_msg[11] = (char)(msg7 & 0xFF);
 
     /* send messages w/ 10us delay so Wixel buffer does not overflow 
-		 * start/stop handshakes 0x11 and 0x22 so they do not match any 
-		 * command bytes
-		 */ 
+	 * start/stop handshakes 0x11 and 0x22 so they do not match any 
+	 * command bytes
+	 */
+
+    /* start handshake */
     /*SPI_write(0xAA);*/
-		SPI_write(0x11);
-    /* Read data from Wixel */
+	SPI_write(0x11);
+
+    /* Read data from Wixel after handshake */
     *received_data = SPI_read();
     for (i=0;i<12;i++)
     {
@@ -1970,9 +1973,12 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
         *(received_data + i + 1) = SPI_read();
     }
     delay_us(10);
+
+    /* end handshake */
     /*SPI_write(0xBB);*/
-		SPI_write(0x22);
-    /* read data from Wixel */
+	SPI_write(0x22);
+
+    /* Read data from Wixel after handshake*/
     *(received_data + 13) = SPI_read();
 
     return;
@@ -1990,14 +1996,14 @@ void parse_SPI_data(unsigned char *received_data)
     unsigned int decoded_msg[8] = {0,0,0,0,0,0,0,0};
 
     /* received data is command = 1 byte, followed by 7 1.5 byte data, with 
-     * 4bits left over. 8th decoded point should be 0x0BB
+     * 4bits left over. 8th decoded point should be 0x22
      */
-  /* received data is organized as:
-   * rec_data[0] = ignored (0x11)
-   * rec_data[1] = command mode
-   * rec_data[2:12] = data from GUI
-   * rec_data[13] = 0x22
-   */
+    /* received data is organized as:
+     * rec_data[0] = ignored (0x11)
+     * rec_data[1] = command mode
+     * rec_data[2:12] = data from GUI
+     * rec_data[13] = 0x22
+     */
     for (i=0; i<4; i++)
     {
         /* extract three byte sections from rec_data to decode into two 1.5
@@ -2012,28 +2018,28 @@ void parse_SPI_data(unsigned char *received_data)
         decoded_msg[i*2+ 1] = ((rec2 & 0xF)<< 8) | (rec3);
     }
     
-  /* speaker mode is first entry after 0x11 handshake */
+    /* speaker mode is first entry after 0x11 handshake */
     //g_speaker_mode = *(received_data + 1);
-		//g_speaker_mode = received_data[1];
+	//g_speaker_mode = received_data[1];
 		
-		/* loop through all received messages for command key */
-		for (loop_count = 0; loop_count<14; loop_count++)
-		{
-			message = received_data[loop_count];
-			if (message == 0xAA || message == 0xBB || message == 0xCC ||
-          message == 0xDD || message == 0xEE || message == 0x99)
-      {
-				/* at most one control key in each batch of received data
-			   * so we can exit the loop immediately after identifying it
-			   */
-         g_speaker_mode = message;
-				 break;
-      }
-		}
+	/* loop through all received messages for command key */
+	for (loop_count = 0; loop_count<14; loop_count++)
+	{
+		message = received_data[loop_count];
+		if (message == 0xAA || message == 0xBB || message == 0xCC ||
+            message == 0xDD || message == 0xEE || message == 0x99)
+        {
+			/* at most one control key in each batch of received data
+			 * so we can exit the loop immediately after identifying it
+			 */
+            g_speaker_mode = message;
+			break;
+        }
+	}
   
     /* loop through all messages and assign globals depending on function
-   * decoded_msg starts with virtual knob 1 
-   */
+     * decoded_msg starts with virtual knob 1 
+     */
     for (loop_count=0; loop_count<8; loop_count++)
     {
         message = decoded_msg[loop_count];
