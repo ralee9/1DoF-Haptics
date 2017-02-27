@@ -673,14 +673,14 @@ float PID_virtualWall(struct PID_const *PID)
     float outMax = 2.5;
     float outMin = 0.0;
 	
-		float output_voltage, calc_output;
+	float output_voltage, calc_output;
     float currOptical_volts, currOptical_mm;
     float pState, iState, dState;
     float pGain, iGain, dGain;
 	
-		/* set point weights */
-		float beta = 1.0;
-		float gamma = 0.0;
+	/* set point weights */
+	float beta = 1.0;
+	float gamma = 0.0;
 	
     float error = 0.0;
     float slew_rate_limit = 0;
@@ -1172,7 +1172,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float outMin = 0.0;
 	float beta = 1.0;
 
-    /* critical force implementation */
+    /* critical force puncture implementation */
 	float iMax = 2.5;
 	float iMin = -2.5;
     float critical_force;
@@ -1319,8 +1319,10 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     
     //#if OBSOLETE
 	/* membrane puncture by critical force/voltage change */
-	/* make critical force 10 grams more than preload */
-	critical_force = 2.5 + force_preload;
+	applied_force = PID_z->setPoint - curr_force_volts;
+
+    /* make critical force 1.5V change from preload */
+    critical_force = 1.50;
     if (curr_pos >= membrane_top || curr_pos <= membrane_bot)
     {
         /* above & below membrane, render zero stiffness */
