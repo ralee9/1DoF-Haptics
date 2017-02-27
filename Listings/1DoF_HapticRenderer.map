@@ -129,16 +129,15 @@ Section Cross References
     1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.optical_ADCtoDisplacement) for optical_ADCtoDisplacement
     1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.force_VoltsToGrams) for force_VoltsToGrams
     1dofhapticrenderer.o(i.membrane_puncture) refers to faddsub_noclz.o(x$fpl$fsub) for __aeabi_fsub
-    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.interp_cal_constants) for interp_cal_constants
+    1dofhapticrenderer.o(i.membrane_puncture) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
     1dofhapticrenderer.o(i.membrane_puncture) refers to frleqf.o(x$fpl$frleqf) for __aeabi_cfrcmple
     1dofhapticrenderer.o(i.membrane_puncture) refers to fleqf.o(x$fpl$fleqf) for __aeabi_cfcmple
-    1dofhapticrenderer.o(i.membrane_puncture) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
-    1dofhapticrenderer.o(i.membrane_puncture) refers to faddsub_noclz.o(x$fpl$fadd) for __aeabi_fadd
-    1dofhapticrenderer.o(i.membrane_puncture) refers to fdiv.o(x$fpl$fdiv) for __aeabi_fdiv
+    1dofhapticrenderer.o(i.membrane_puncture) refers to ffix.o(x$fpl$ffix) for __aeabi_f2iz
     1dofhapticrenderer.o(i.membrane_puncture) refers to fflt_noclz.o(x$fpl$fflt) for __aeabi_i2f
     1dofhapticrenderer.o(i.membrane_puncture) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
+    1dofhapticrenderer.o(i.membrane_puncture) refers to fmul.o(x$fpl$fmul) for __aeabi_fmul
+    1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(i.displacement_SpeakerToDAC) for displacement_SpeakerToDAC
     1dofhapticrenderer.o(i.membrane_puncture) refers to dleqf.o(x$fpl$dleqf) for __aeabi_cdcmple
-    1dofhapticrenderer.o(i.membrane_puncture) refers to ddiv.o(x$fpl$ddiv) for __aeabi_ddiv
     1dofhapticrenderer.o(i.membrane_puncture) refers to 1dofhapticrenderer.o(.data) for pCurr_data
     1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to f2d.o(x$fpl$f2d) for __aeabi_f2d
     1dofhapticrenderer.o(i.optical_ADCtoDisplacement) refers to dmul.o(x$fpl$dmul) for __aeabi_dmul
@@ -571,7 +570,7 @@ Removing Unused input sections from the image.
     Removing 1dofhapticrenderer.o(i.dataUpdate_testformat), (40 bytes).
     Removing 1dofhapticrenderer.o(i.dataUpdate_testmsg), (208 bytes).
     Removing 1dofhapticrenderer.o(i.displacement_OpticalToADC), (168 bytes).
-    Removing 1dofhapticrenderer.o(i.displacement_SpeakerToDAC), (248 bytes).
+    Removing 1dofhapticrenderer.o(i.interp_cal_constants), (740 bytes).
     Removing 1dofhapticrenderer.o(i.ratchet_simulation), (1440 bytes).
     Removing 1dofhapticrenderer.o(i.read_sensors), (112 bytes).
     Removing 1dofhapticrenderer.o(i.send_test_data), (176 bytes).
@@ -579,7 +578,7 @@ Removing Unused input sections from the image.
     Removing 1dofhapticrenderer.o(i.testmode), (404 bytes).
     Removing 1dofhapticrenderer.o(.constdata), (24 bytes).
 
-11 unused section(s) (total 3260 bytes) removed from the image.
+11 unused section(s) (total 3752 bytes) removed from the image.
 
 ==============================================================================
 
@@ -602,35 +601,35 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/dczerorl.s                 0x00000000   Number         0  __dczerorl.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_div0.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  aeabi_idiv0_sigfpe.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_div0.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
     ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
@@ -639,27 +638,27 @@ Image Symbol Table
     ../clib/fenv.c                           0x00000000   Number         0  _rserrno.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/d2f.s                           0x00000000   Number         0  d2f.o ABSOLUTE
@@ -701,8 +700,8 @@ Image Symbol Table
     ../mathlib/pow.c                         0x00000000   Number         0  pow_x.o ABSOLUTE
     ../mathlib/qnan.c                        0x00000000   Number         0  qnan.o ABSOLUTE
     ../mathlib/rred.c                        0x00000000   Number         0  rred.o ABSOLUTE
-    ../mathlib/sin.c                         0x00000000   Number         0  sin.o ABSOLUTE
     ../mathlib/sin.c                         0x00000000   Number         0  sin_x.o ABSOLUTE
+    ../mathlib/sin.c                         0x00000000   Number         0  sin.o ABSOLUTE
     ../mathlib/sin_i.c                       0x00000000   Number         0  sin_i_x.o ABSOLUTE
     ../mathlib/sin_i.c                       0x00000000   Number         0  sin_i.o ABSOLUTE
     ../mathlib/sqrt.c                        0x00000000   Number         0  sqrt_x.o ABSOLUTE
@@ -811,81 +810,80 @@ Image Symbol Table
     i.delay_ms                               0x00081a7c   Section        0  1dofhapticrenderer.o(i.delay_ms)
     i.delay_sw                               0x00081ab4   Section        0  1dofhapticrenderer.o(i.delay_sw)
     i.delay_us                               0x00081ac8   Section        0  1dofhapticrenderer.o(i.delay_us)
-    i.floor                                  0x00081b54   Section        0  floor.o(i.floor)
-    i.force_VoltsToGrams                     0x00081ca8   Section        0  1dofhapticrenderer.o(i.force_VoltsToGrams)
-    i.initial_read_store_sensors             0x00081cf4   Section        0  1dofhapticrenderer.o(i.initial_read_store_sensors)
-    i.interp_cal_constants                   0x00081d28   Section        0  1dofhapticrenderer.o(i.interp_cal_constants)
-    i.main                                   0x0008200c   Section        0  1dofhapticrenderer.o(i.main)
-    i.membrane_puncture                      0x00082998   Section        0  1dofhapticrenderer.o(i.membrane_puncture)
-    i.modff                                  0x00082f18   Section        0  modff.o(i.modff)
-    i.optical_ADCtoDisplacement              0x00082f7c   Section        0  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
-    i.outputDAC                              0x00083024   Section        0  1dofhapticrenderer.o(i.outputDAC)
-    i.parse_SPI_data                         0x000831d8   Section        0  1dofhapticrenderer.o(i.parse_SPI_data)
-    i.pot_voltage                            0x00083320   Section        0  1dofhapticrenderer.o(i.pot_voltage)
-    i.pow                                    0x00083358   Section        0  pow.o(i.pow)
-    i.read_store_sensors                     0x00084248   Section        0  1dofhapticrenderer.o(i.read_store_sensors)
-    i.send_curr_data                         0x00084380   Section        0  1dofhapticrenderer.o(i.send_curr_data)
-    i.sensor_avg                             0x000844e4   Section        0  1dofhapticrenderer.o(i.sensor_avg)
-    i.sin                                    0x00084578   Section        0  sin.o(i.sin)
-    i.sine_wave                              0x00084670   Section        0  1dofhapticrenderer.o(i.sine_wave)
-    i.sqrt                                   0x000847fc   Section        0  sqrt.o(i.sqrt)
-    i.store_DAC_data                         0x0008486c   Section        0  1dofhapticrenderer.o(i.store_DAC_data)
-    i.system_init                            0x00084894   Section        0  1dofhapticrenderer.o(i.system_init)
-    i.timer0_init                            0x0008492c   Section        0  1dofhapticrenderer.o(i.timer0_init)
-    i.waitForRestOfPeriod                    0x0008496c   Section        0  1dofhapticrenderer.o(i.waitForRestOfPeriod)
-    x$fpl$d2f                                0x000849cc   Section      108  d2f.o(x$fpl$d2f)
-    x$fpl$dadd                               0x00084a38   Section      340  daddsub_noclz.o(x$fpl$dadd)
-    _dadd1                                   0x00084a48   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
-    x$fpl$dcheck1                            0x00084b8c   Section       16  dcheck1.o(x$fpl$dcheck1)
-    x$fpl$dcmpinf                            0x00084b9c   Section       28  dcmpi.o(x$fpl$dcmpinf)
-    x$fpl$ddiv                               0x00084bb8   Section      736  ddiv.o(x$fpl$ddiv)
-    ddiv_entry                               0x00084bc0   ARM Code       0  ddiv.o(x$fpl$ddiv)
-    x$fpl$dfix                               0x00084e98   Section      112  dfix.o(x$fpl$dfix)
-    x$fpl$dflt                               0x00084f08   Section       88  dflt_noclz.o(x$fpl$dflt)
-    x$fpl$dfltu                              0x00084f60   Section       12  dflt_noclz.o(x$fpl$dfltu)
-    x$fpl$dleqf                              0x00084f6c   Section      148  dleqf.o(x$fpl$dleqf)
-    x$fpl$dmul                               0x00085000   Section      384  dmul.o(x$fpl$dmul)
-    x$fpl$dnaninf                            0x00085180   Section      192  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dretinf                            0x00085240   Section       16  dretinf.o(x$fpl$dretinf)
-    x$fpl$drleqf                             0x00085250   Section      140  drleqf.o(x$fpl$drleqf)
-    x$fpl$drsb                               0x000852dc   Section       24  daddsub_noclz.o(x$fpl$drsb)
-    x$fpl$dsqrt                              0x000852f4   Section      520  dsqrt_noumaal.o(x$fpl$dsqrt)
-    x$fpl$dsub                               0x000854fc   Section      580  daddsub_noclz.o(x$fpl$dsub)
-    _dsub1                                   0x0008550c   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
-    x$fpl$f2d                                0x00085740   Section      100  f2d.o(x$fpl$f2d)
-    x$fpl$fadd                               0x000857a4   Section      196  faddsub_noclz.o(x$fpl$fadd)
-    _fadd1                                   0x000857b0   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
-    x$fpl$fcmpinf                            0x00085868   Section       28  fcmpi.o(x$fpl$fcmpinf)
-    x$fpl$fdiv                               0x00085884   Section      400  fdiv.o(x$fpl$fdiv)
-    _fdiv1                                   0x00085884   ARM Code       0  fdiv.o(x$fpl$fdiv)
-    x$fpl$ffix                               0x00085a14   Section       68  ffix.o(x$fpl$ffix)
-    x$fpl$fflt                               0x00085a58   Section       92  fflt_noclz.o(x$fpl$fflt)
-    x$fpl$fleqf                              0x00085ab4   Section      132  fleqf.o(x$fpl$fleqf)
-    x$fpl$fmul                               0x00085b38   Section      256  fmul.o(x$fpl$fmul)
-    x$fpl$fnaninf                            0x00085c38   Section      168  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fretinf                            0x00085ce0   Section       16  fretinf.o(x$fpl$fretinf)
-    x$fpl$frleqf                             0x00085cf0   Section      124  frleqf.o(x$fpl$frleqf)
-    x$fpl$frsb                               0x00085d6c   Section       20  faddsub_noclz.o(x$fpl$frsb)
-    x$fpl$fsub                               0x00085d80   Section      304  faddsub_noclz.o(x$fpl$fsub)
-    _fsub1                                   0x00085d8c   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
-    x$fpl$retnan                             0x00085eb0   Section      116  retnan.o(x$fpl$retnan)
-    x$fpl$scalbn                             0x00085f24   Section      104  scalbn.o(x$fpl$scalbn)
-    x$fpl$trapveneer                         0x00085f8c   Section       60  trapv.o(x$fpl$trapveneer)
-    .constdata                               0x00085fc8   Section      136  pow.o(.constdata)
-    x$fpl$usenofp                            0x00085fc8   Section        0  usenofp.o(x$fpl$usenofp)
-    bp                                       0x00085fc8   Data          16  pow.o(.constdata)
-    dp_h                                     0x00085fd8   Data          16  pow.o(.constdata)
-    dp_l                                     0x00085fe8   Data          16  pow.o(.constdata)
-    L                                        0x00085ff8   Data          48  pow.o(.constdata)
-    P                                        0x00086028   Data          40  pow.o(.constdata)
-    .constdata                               0x00086050   Section       48  cos_i.o(.constdata)
-    C                                        0x00086050   Data          48  cos_i.o(.constdata)
-    .constdata                               0x00086080   Section        8  qnan.o(.constdata)
-    .constdata                               0x00086088   Section      200  rred.o(.constdata)
-    pio2s                                    0x00086088   Data          48  rred.o(.constdata)
-    twooverpi                                0x000860b8   Data         152  rred.o(.constdata)
-    .constdata                               0x00086150   Section       40  sin_i.o(.constdata)
-    S                                        0x00086150   Data          40  sin_i.o(.constdata)
+    i.displacement_SpeakerToDAC              0x00081b54   Section        0  1dofhapticrenderer.o(i.displacement_SpeakerToDAC)
+    i.floor                                  0x00081c4c   Section        0  floor.o(i.floor)
+    i.force_VoltsToGrams                     0x00081da0   Section        0  1dofhapticrenderer.o(i.force_VoltsToGrams)
+    i.initial_read_store_sensors             0x00081dec   Section        0  1dofhapticrenderer.o(i.initial_read_store_sensors)
+    i.main                                   0x00081e20   Section        0  1dofhapticrenderer.o(i.main)
+    i.membrane_puncture                      0x000827ac   Section        0  1dofhapticrenderer.o(i.membrane_puncture)
+    i.optical_ADCtoDisplacement              0x00082c38   Section        0  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
+    i.outputDAC                              0x00082ce0   Section        0  1dofhapticrenderer.o(i.outputDAC)
+    i.parse_SPI_data                         0x00082e94   Section        0  1dofhapticrenderer.o(i.parse_SPI_data)
+    i.pot_voltage                            0x00082fdc   Section        0  1dofhapticrenderer.o(i.pot_voltage)
+    i.pow                                    0x00083014   Section        0  pow.o(i.pow)
+    i.read_store_sensors                     0x00083f04   Section        0  1dofhapticrenderer.o(i.read_store_sensors)
+    i.send_curr_data                         0x0008403c   Section        0  1dofhapticrenderer.o(i.send_curr_data)
+    i.sensor_avg                             0x000841a0   Section        0  1dofhapticrenderer.o(i.sensor_avg)
+    i.sin                                    0x00084234   Section        0  sin.o(i.sin)
+    i.sine_wave                              0x0008432c   Section        0  1dofhapticrenderer.o(i.sine_wave)
+    i.sqrt                                   0x000844b8   Section        0  sqrt.o(i.sqrt)
+    i.store_DAC_data                         0x00084528   Section        0  1dofhapticrenderer.o(i.store_DAC_data)
+    i.system_init                            0x00084550   Section        0  1dofhapticrenderer.o(i.system_init)
+    i.timer0_init                            0x000845e8   Section        0  1dofhapticrenderer.o(i.timer0_init)
+    i.waitForRestOfPeriod                    0x00084628   Section        0  1dofhapticrenderer.o(i.waitForRestOfPeriod)
+    x$fpl$d2f                                0x00084688   Section      108  d2f.o(x$fpl$d2f)
+    x$fpl$dadd                               0x000846f4   Section      340  daddsub_noclz.o(x$fpl$dadd)
+    _dadd1                                   0x00084704   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    x$fpl$dcheck1                            0x00084848   Section       16  dcheck1.o(x$fpl$dcheck1)
+    x$fpl$dcmpinf                            0x00084858   Section       28  dcmpi.o(x$fpl$dcmpinf)
+    x$fpl$ddiv                               0x00084874   Section      736  ddiv.o(x$fpl$ddiv)
+    ddiv_entry                               0x0008487c   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    x$fpl$dfix                               0x00084b54   Section      112  dfix.o(x$fpl$dfix)
+    x$fpl$dflt                               0x00084bc4   Section       88  dflt_noclz.o(x$fpl$dflt)
+    x$fpl$dfltu                              0x00084c1c   Section       12  dflt_noclz.o(x$fpl$dfltu)
+    x$fpl$dleqf                              0x00084c28   Section      148  dleqf.o(x$fpl$dleqf)
+    x$fpl$dmul                               0x00084cbc   Section      384  dmul.o(x$fpl$dmul)
+    x$fpl$dnaninf                            0x00084e3c   Section      192  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dretinf                            0x00084efc   Section       16  dretinf.o(x$fpl$dretinf)
+    x$fpl$drleqf                             0x00084f0c   Section      140  drleqf.o(x$fpl$drleqf)
+    x$fpl$drsb                               0x00084f98   Section       24  daddsub_noclz.o(x$fpl$drsb)
+    x$fpl$dsqrt                              0x00084fb0   Section      520  dsqrt_noumaal.o(x$fpl$dsqrt)
+    x$fpl$dsub                               0x000851b8   Section      580  daddsub_noclz.o(x$fpl$dsub)
+    _dsub1                                   0x000851c8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    x$fpl$f2d                                0x000853fc   Section      100  f2d.o(x$fpl$f2d)
+    x$fpl$fadd                               0x00085460   Section      196  faddsub_noclz.o(x$fpl$fadd)
+    _fadd1                                   0x0008546c   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    x$fpl$fcmpinf                            0x00085524   Section       28  fcmpi.o(x$fpl$fcmpinf)
+    x$fpl$fdiv                               0x00085540   Section      400  fdiv.o(x$fpl$fdiv)
+    _fdiv1                                   0x00085540   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    x$fpl$ffix                               0x000856d0   Section       68  ffix.o(x$fpl$ffix)
+    x$fpl$fflt                               0x00085714   Section       92  fflt_noclz.o(x$fpl$fflt)
+    x$fpl$fleqf                              0x00085770   Section      132  fleqf.o(x$fpl$fleqf)
+    x$fpl$fmul                               0x000857f4   Section      256  fmul.o(x$fpl$fmul)
+    x$fpl$fnaninf                            0x000858f4   Section      168  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fretinf                            0x0008599c   Section       16  fretinf.o(x$fpl$fretinf)
+    x$fpl$frleqf                             0x000859ac   Section      124  frleqf.o(x$fpl$frleqf)
+    x$fpl$frsb                               0x00085a28   Section       20  faddsub_noclz.o(x$fpl$frsb)
+    x$fpl$fsub                               0x00085a3c   Section      304  faddsub_noclz.o(x$fpl$fsub)
+    _fsub1                                   0x00085a48   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    x$fpl$retnan                             0x00085b6c   Section      116  retnan.o(x$fpl$retnan)
+    x$fpl$scalbn                             0x00085be0   Section      104  scalbn.o(x$fpl$scalbn)
+    x$fpl$trapveneer                         0x00085c48   Section       60  trapv.o(x$fpl$trapveneer)
+    x$fpl$usenofp                            0x00085c84   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x00085c88   Section      136  pow.o(.constdata)
+    bp                                       0x00085c88   Data          16  pow.o(.constdata)
+    dp_h                                     0x00085c98   Data          16  pow.o(.constdata)
+    dp_l                                     0x00085ca8   Data          16  pow.o(.constdata)
+    L                                        0x00085cb8   Data          48  pow.o(.constdata)
+    P                                        0x00085ce8   Data          40  pow.o(.constdata)
+    .constdata                               0x00085d10   Section       48  cos_i.o(.constdata)
+    C                                        0x00085d10   Data          48  cos_i.o(.constdata)
+    .constdata                               0x00085d40   Section        8  qnan.o(.constdata)
+    .constdata                               0x00085d48   Section      200  rred.o(.constdata)
+    pio2s                                    0x00085d48   Data          48  rred.o(.constdata)
+    twooverpi                                0x00085d78   Data         152  rred.o(.constdata)
+    .constdata                               0x00085e10   Section       40  sin_i.o(.constdata)
+    S                                        0x00085e10   Data          40  sin_i.o(.constdata)
 
     Global Symbols
 
@@ -1101,89 +1099,88 @@ Image Symbol Table
     delay_ms                                 0x00081a7c   ARM Code      56  1dofhapticrenderer.o(i.delay_ms)
     delay_sw                                 0x00081ab4   ARM Code      20  1dofhapticrenderer.o(i.delay_sw)
     delay_us                                 0x00081ac8   ARM Code     128  1dofhapticrenderer.o(i.delay_us)
-    floor                                    0x00081b54   ARM Code     332  floor.o(i.floor)
-    force_VoltsToGrams                       0x00081ca8   ARM Code      64  1dofhapticrenderer.o(i.force_VoltsToGrams)
-    initial_read_store_sensors               0x00081cf4   ARM Code      52  1dofhapticrenderer.o(i.initial_read_store_sensors)
-    interp_cal_constants                     0x00081d28   ARM Code     732  1dofhapticrenderer.o(i.interp_cal_constants)
-    main                                     0x0008200c   ARM Code    2220  1dofhapticrenderer.o(i.main)
-    membrane_puncture                        0x00082998   ARM Code    1360  1dofhapticrenderer.o(i.membrane_puncture)
-    modff                                    0x00082f18   ARM Code     100  modff.o(i.modff)
-    optical_ADCtoDisplacement                0x00082f7c   ARM Code     144  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
-    outputDAC                                0x00083024   ARM Code     384  1dofhapticrenderer.o(i.outputDAC)
-    parse_SPI_data                           0x000831d8   ARM Code     312  1dofhapticrenderer.o(i.parse_SPI_data)
-    pot_voltage                              0x00083320   ARM Code      52  1dofhapticrenderer.o(i.pot_voltage)
-    pow                                      0x00083358   ARM Code    3824  pow.o(i.pow)
-    read_store_sensors                       0x00084248   ARM Code     288  1dofhapticrenderer.o(i.read_store_sensors)
-    send_curr_data                           0x00084380   ARM Code     352  1dofhapticrenderer.o(i.send_curr_data)
-    sensor_avg                               0x000844e4   ARM Code     140  1dofhapticrenderer.o(i.sensor_avg)
-    sin                                      0x00084578   ARM Code     244  sin.o(i.sin)
-    sine_wave                                0x00084670   ARM Code     368  1dofhapticrenderer.o(i.sine_wave)
-    sqrt                                     0x000847fc   ARM Code     112  sqrt.o(i.sqrt)
-    store_DAC_data                           0x0008486c   ARM Code      32  1dofhapticrenderer.o(i.store_DAC_data)
-    system_init                              0x00084894   ARM Code     148  1dofhapticrenderer.o(i.system_init)
-    timer0_init                              0x0008492c   ARM Code      52  1dofhapticrenderer.o(i.timer0_init)
-    waitForRestOfPeriod                      0x0008496c   ARM Code      92  1dofhapticrenderer.o(i.waitForRestOfPeriod)
-    __aeabi_d2f                              0x000849cc   ARM Code       0  d2f.o(x$fpl$d2f)
-    _d2f                                     0x000849cc   ARM Code     108  d2f.o(x$fpl$d2f)
-    __aeabi_dadd                             0x00084a38   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
-    _dadd                                    0x00084a38   ARM Code     336  daddsub_noclz.o(x$fpl$dadd)
-    __fpl_dcheck_NaN1                        0x00084b8c   ARM Code      12  dcheck1.o(x$fpl$dcheck1)
-    __fpl_dcmp_Inf                           0x00084b9c   ARM Code      28  dcmpi.o(x$fpl$dcmpinf)
-    __aeabi_ddiv                             0x00084bb8   ARM Code       0  ddiv.o(x$fpl$ddiv)
-    _ddiv                                    0x00084bb8   ARM Code     600  ddiv.o(x$fpl$ddiv)
-    __aeabi_d2iz                             0x00084e98   ARM Code       0  dfix.o(x$fpl$dfix)
-    _dfix                                    0x00084e98   ARM Code     112  dfix.o(x$fpl$dfix)
-    __aeabi_i2d                              0x00084f08   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
-    _dflt                                    0x00084f08   ARM Code      88  dflt_noclz.o(x$fpl$dflt)
-    __dflt_normalise                         0x00084f18   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
-    __aeabi_ui2d                             0x00084f60   ARM Code       0  dflt_noclz.o(x$fpl$dfltu)
-    _dfltu                                   0x00084f60   ARM Code      12  dflt_noclz.o(x$fpl$dfltu)
-    __aeabi_cdcmple                          0x00084f6c   ARM Code       0  dleqf.o(x$fpl$dleqf)
-    _dcmple                                  0x00084f6c   ARM Code     148  dleqf.o(x$fpl$dleqf)
-    __fpl_dcmple_InfNaN                      0x00084fe8   ARM Code       0  dleqf.o(x$fpl$dleqf)
-    __aeabi_dmul                             0x00085000   ARM Code       0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x00085000   ARM Code     372  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x00085180   ARM Code     192  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x00085240   ARM Code      16  dretinf.o(x$fpl$dretinf)
-    __aeabi_cdrcmple                         0x00085250   ARM Code       0  drleqf.o(x$fpl$drleqf)
-    _drcmple                                 0x00085250   ARM Code     140  drleqf.o(x$fpl$drleqf)
-    __aeabi_drsub                            0x000852dc   ARM Code       0  daddsub_noclz.o(x$fpl$drsb)
-    _drsb                                    0x000852dc   ARM Code      24  daddsub_noclz.o(x$fpl$drsb)
-    _dsqrt                                   0x000852f4   ARM Code     516  dsqrt_noumaal.o(x$fpl$dsqrt)
-    __aeabi_dsub                             0x000854fc   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
-    _dsub                                    0x000854fc   ARM Code     576  daddsub_noclz.o(x$fpl$dsub)
-    __aeabi_f2d                              0x00085740   ARM Code       0  f2d.o(x$fpl$f2d)
-    _f2d                                     0x00085740   ARM Code     100  f2d.o(x$fpl$f2d)
-    __aeabi_fadd                             0x000857a4   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
-    _fadd                                    0x000857a4   ARM Code     196  faddsub_noclz.o(x$fpl$fadd)
-    __fpl_fcmp_Inf                           0x00085868   ARM Code      28  fcmpi.o(x$fpl$fcmpinf)
-    __aeabi_fdiv                             0x00085884   ARM Code       0  fdiv.o(x$fpl$fdiv)
-    _fdiv                                    0x00085884   ARM Code     396  fdiv.o(x$fpl$fdiv)
-    __aeabi_f2iz                             0x00085a14   ARM Code       0  ffix.o(x$fpl$ffix)
-    _ffix                                    0x00085a14   ARM Code      68  ffix.o(x$fpl$ffix)
-    __aeabi_i2f                              0x00085a58   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
-    _fflt                                    0x00085a58   ARM Code      92  fflt_noclz.o(x$fpl$fflt)
-    __fflt_normalise                         0x00085a64   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
-    __aeabi_cfcmple                          0x00085ab4   ARM Code       0  fleqf.o(x$fpl$fleqf)
-    _fcmple                                  0x00085ab4   ARM Code     132  fleqf.o(x$fpl$fleqf)
-    __fpl_fcmple_InfNaN                      0x00085b20   ARM Code       0  fleqf.o(x$fpl$fleqf)
-    __aeabi_fmul                             0x00085b38   ARM Code       0  fmul.o(x$fpl$fmul)
-    _fmul                                    0x00085b38   ARM Code     256  fmul.o(x$fpl$fmul)
-    __fpl_fnaninf                            0x00085c38   ARM Code     168  fnaninf.o(x$fpl$fnaninf)
-    __fpl_fretinf                            0x00085ce0   ARM Code      16  fretinf.o(x$fpl$fretinf)
-    __aeabi_cfrcmple                         0x00085cf0   ARM Code       0  frleqf.o(x$fpl$frleqf)
-    _frcmple                                 0x00085cf0   ARM Code     124  frleqf.o(x$fpl$frleqf)
-    __aeabi_frsub                            0x00085d6c   ARM Code       0  faddsub_noclz.o(x$fpl$frsb)
-    _frsb                                    0x00085d6c   ARM Code      20  faddsub_noclz.o(x$fpl$frsb)
-    __aeabi_fsub                             0x00085d80   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
-    _fsub                                    0x00085d80   ARM Code     304  faddsub_noclz.o(x$fpl$fsub)
-    __fpl_return_NaN                         0x00085eb0   ARM Code     116  retnan.o(x$fpl$retnan)
-    __ARM_scalbn                             0x00085f24   ARM Code     104  scalbn.o(x$fpl$scalbn)
-    __fpl_cmpreturn                          0x00085f8c   ARM Code      60  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x00085fc8   Number         0  usenofp.o(x$fpl$usenofp)
-    __mathlib_zero                           0x00086080   Data           8  qnan.o(.constdata)
-    Region$$Table$$Base                      0x00086178   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00086198   Number         0  anon$$obj.o(Region$$Table)
+    displacement_SpeakerToDAC                0x00081b54   ARM Code     212  1dofhapticrenderer.o(i.displacement_SpeakerToDAC)
+    floor                                    0x00081c4c   ARM Code     332  floor.o(i.floor)
+    force_VoltsToGrams                       0x00081da0   ARM Code      64  1dofhapticrenderer.o(i.force_VoltsToGrams)
+    initial_read_store_sensors               0x00081dec   ARM Code      52  1dofhapticrenderer.o(i.initial_read_store_sensors)
+    main                                     0x00081e20   ARM Code    2220  1dofhapticrenderer.o(i.main)
+    membrane_puncture                        0x000827ac   ARM Code    1120  1dofhapticrenderer.o(i.membrane_puncture)
+    optical_ADCtoDisplacement                0x00082c38   ARM Code     144  1dofhapticrenderer.o(i.optical_ADCtoDisplacement)
+    outputDAC                                0x00082ce0   ARM Code     384  1dofhapticrenderer.o(i.outputDAC)
+    parse_SPI_data                           0x00082e94   ARM Code     312  1dofhapticrenderer.o(i.parse_SPI_data)
+    pot_voltage                              0x00082fdc   ARM Code      52  1dofhapticrenderer.o(i.pot_voltage)
+    pow                                      0x00083014   ARM Code    3824  pow.o(i.pow)
+    read_store_sensors                       0x00083f04   ARM Code     288  1dofhapticrenderer.o(i.read_store_sensors)
+    send_curr_data                           0x0008403c   ARM Code     352  1dofhapticrenderer.o(i.send_curr_data)
+    sensor_avg                               0x000841a0   ARM Code     140  1dofhapticrenderer.o(i.sensor_avg)
+    sin                                      0x00084234   ARM Code     244  sin.o(i.sin)
+    sine_wave                                0x0008432c   ARM Code     368  1dofhapticrenderer.o(i.sine_wave)
+    sqrt                                     0x000844b8   ARM Code     112  sqrt.o(i.sqrt)
+    store_DAC_data                           0x00084528   ARM Code      32  1dofhapticrenderer.o(i.store_DAC_data)
+    system_init                              0x00084550   ARM Code     148  1dofhapticrenderer.o(i.system_init)
+    timer0_init                              0x000845e8   ARM Code      52  1dofhapticrenderer.o(i.timer0_init)
+    waitForRestOfPeriod                      0x00084628   ARM Code      92  1dofhapticrenderer.o(i.waitForRestOfPeriod)
+    __aeabi_d2f                              0x00084688   ARM Code       0  d2f.o(x$fpl$d2f)
+    _d2f                                     0x00084688   ARM Code     108  d2f.o(x$fpl$d2f)
+    __aeabi_dadd                             0x000846f4   ARM Code       0  daddsub_noclz.o(x$fpl$dadd)
+    _dadd                                    0x000846f4   ARM Code     336  daddsub_noclz.o(x$fpl$dadd)
+    __fpl_dcheck_NaN1                        0x00084848   ARM Code      12  dcheck1.o(x$fpl$dcheck1)
+    __fpl_dcmp_Inf                           0x00084858   ARM Code      28  dcmpi.o(x$fpl$dcmpinf)
+    __aeabi_ddiv                             0x00084874   ARM Code       0  ddiv.o(x$fpl$ddiv)
+    _ddiv                                    0x00084874   ARM Code     600  ddiv.o(x$fpl$ddiv)
+    __aeabi_d2iz                             0x00084b54   ARM Code       0  dfix.o(x$fpl$dfix)
+    _dfix                                    0x00084b54   ARM Code     112  dfix.o(x$fpl$dfix)
+    __aeabi_i2d                              0x00084bc4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    _dflt                                    0x00084bc4   ARM Code      88  dflt_noclz.o(x$fpl$dflt)
+    __dflt_normalise                         0x00084bd4   ARM Code       0  dflt_noclz.o(x$fpl$dflt)
+    __aeabi_ui2d                             0x00084c1c   ARM Code       0  dflt_noclz.o(x$fpl$dfltu)
+    _dfltu                                   0x00084c1c   ARM Code      12  dflt_noclz.o(x$fpl$dfltu)
+    __aeabi_cdcmple                          0x00084c28   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    _dcmple                                  0x00084c28   ARM Code     148  dleqf.o(x$fpl$dleqf)
+    __fpl_dcmple_InfNaN                      0x00084ca4   ARM Code       0  dleqf.o(x$fpl$dleqf)
+    __aeabi_dmul                             0x00084cbc   ARM Code       0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x00084cbc   ARM Code     372  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x00084e3c   ARM Code     192  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x00084efc   ARM Code      16  dretinf.o(x$fpl$dretinf)
+    __aeabi_cdrcmple                         0x00084f0c   ARM Code       0  drleqf.o(x$fpl$drleqf)
+    _drcmple                                 0x00084f0c   ARM Code     140  drleqf.o(x$fpl$drleqf)
+    __aeabi_drsub                            0x00084f98   ARM Code       0  daddsub_noclz.o(x$fpl$drsb)
+    _drsb                                    0x00084f98   ARM Code      24  daddsub_noclz.o(x$fpl$drsb)
+    _dsqrt                                   0x00084fb0   ARM Code     516  dsqrt_noumaal.o(x$fpl$dsqrt)
+    __aeabi_dsub                             0x000851b8   ARM Code       0  daddsub_noclz.o(x$fpl$dsub)
+    _dsub                                    0x000851b8   ARM Code     576  daddsub_noclz.o(x$fpl$dsub)
+    __aeabi_f2d                              0x000853fc   ARM Code       0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x000853fc   ARM Code     100  f2d.o(x$fpl$f2d)
+    __aeabi_fadd                             0x00085460   ARM Code       0  faddsub_noclz.o(x$fpl$fadd)
+    _fadd                                    0x00085460   ARM Code     196  faddsub_noclz.o(x$fpl$fadd)
+    __fpl_fcmp_Inf                           0x00085524   ARM Code      28  fcmpi.o(x$fpl$fcmpinf)
+    __aeabi_fdiv                             0x00085540   ARM Code       0  fdiv.o(x$fpl$fdiv)
+    _fdiv                                    0x00085540   ARM Code     396  fdiv.o(x$fpl$fdiv)
+    __aeabi_f2iz                             0x000856d0   ARM Code       0  ffix.o(x$fpl$ffix)
+    _ffix                                    0x000856d0   ARM Code      68  ffix.o(x$fpl$ffix)
+    __aeabi_i2f                              0x00085714   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    _fflt                                    0x00085714   ARM Code      92  fflt_noclz.o(x$fpl$fflt)
+    __fflt_normalise                         0x00085720   ARM Code       0  fflt_noclz.o(x$fpl$fflt)
+    __aeabi_cfcmple                          0x00085770   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    _fcmple                                  0x00085770   ARM Code     132  fleqf.o(x$fpl$fleqf)
+    __fpl_fcmple_InfNaN                      0x000857dc   ARM Code       0  fleqf.o(x$fpl$fleqf)
+    __aeabi_fmul                             0x000857f4   ARM Code       0  fmul.o(x$fpl$fmul)
+    _fmul                                    0x000857f4   ARM Code     256  fmul.o(x$fpl$fmul)
+    __fpl_fnaninf                            0x000858f4   ARM Code     168  fnaninf.o(x$fpl$fnaninf)
+    __fpl_fretinf                            0x0008599c   ARM Code      16  fretinf.o(x$fpl$fretinf)
+    __aeabi_cfrcmple                         0x000859ac   ARM Code       0  frleqf.o(x$fpl$frleqf)
+    _frcmple                                 0x000859ac   ARM Code     124  frleqf.o(x$fpl$frleqf)
+    __aeabi_frsub                            0x00085a28   ARM Code       0  faddsub_noclz.o(x$fpl$frsb)
+    _frsb                                    0x00085a28   ARM Code      20  faddsub_noclz.o(x$fpl$frsb)
+    __aeabi_fsub                             0x00085a3c   ARM Code       0  faddsub_noclz.o(x$fpl$fsub)
+    _fsub                                    0x00085a3c   ARM Code     304  faddsub_noclz.o(x$fpl$fsub)
+    __fpl_return_NaN                         0x00085b6c   ARM Code     116  retnan.o(x$fpl$retnan)
+    __ARM_scalbn                             0x00085be0   ARM Code     104  scalbn.o(x$fpl$scalbn)
+    __fpl_cmpreturn                          0x00085c48   ARM Code      60  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x00085c84   Number         0  usenofp.o(x$fpl$usenofp)
+    __mathlib_zero                           0x00085d40   Data           8  qnan.o(.constdata)
+    Region$$Table$$Base                      0x00085e38   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00085e58   Number         0  anon$$obj.o(Region$$Table)
 
 
 
@@ -1193,7 +1190,7 @@ Memory Map of the image
 
   Image Entry point : 0x000800bc
 
-  Load Region LR_IROM1 (Base: 0x00080000, Size: 0x000063fc, Max: 0x0000f800, ABSOLUTE, COMPRESSED[0x0000631c])
+  Load Region LR_IROM1 (Base: 0x00080000, Size: 0x000060bc, Max: 0x0000f800, ABSOLUTE, COMPRESSED[0x00005fdc])
 
     Execution Region RW_IRAM1 (Base: 0x00010000, Size: 0x00000cd0, Max: 0x00002000, ABSOLUTE, COMPRESSED[0x00000184])
 
@@ -1207,7 +1204,7 @@ Memory Map of the image
     0x00010650   0x00000680   Zero   RW            1    STACK               aduc702x.o
 
 
-    Execution Region ER_IROM1 (Base: 0x00080000, Size: 0x00006198, Max: 0x0000f800, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x00080000, Size: 0x00005e58, Max: 0x0000f800, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1308,67 +1305,67 @@ Memory Map of the image
     0x00081a7c   0x00000038   Code   RO           23    i.delay_ms          1dofhapticrenderer.o
     0x00081ab4   0x00000014   Code   RO           24    i.delay_sw          1dofhapticrenderer.o
     0x00081ac8   0x0000008c   Code   RO           25    i.delay_us          1dofhapticrenderer.o
-    0x00081b54   0x00000154   Code   RO          423    i.floor             m_ts.l(floor.o)
-    0x00081ca8   0x0000004c   Code   RO           28    i.force_VoltsToGrams  1dofhapticrenderer.o
-    0x00081cf4   0x00000034   Code   RO           29    i.initial_read_store_sensors  1dofhapticrenderer.o
-    0x00081d28   0x000002e4   Code   RO           30    i.interp_cal_constants  1dofhapticrenderer.o
-    0x0008200c   0x0000098c   Code   RO           31    i.main              1dofhapticrenderer.o
-    0x00082998   0x00000580   Code   RO           32    i.membrane_puncture  1dofhapticrenderer.o
-    0x00082f18   0x00000064   Code   RO          427    i.modff             m_ts.l(modff.o)
-    0x00082f7c   0x000000a8   Code   RO           33    i.optical_ADCtoDisplacement  1dofhapticrenderer.o
-    0x00083024   0x000001b4   Code   RO           34    i.outputDAC         1dofhapticrenderer.o
-    0x000831d8   0x00000148   Code   RO           35    i.parse_SPI_data    1dofhapticrenderer.o
-    0x00083320   0x00000038   Code   RO           36    i.pot_voltage       1dofhapticrenderer.o
-    0x00083358   0x00000ef0   Code   RO          431    i.pow               m_ts.l(pow.o)
-    0x00084248   0x00000138   Code   RO           39    i.read_store_sensors  1dofhapticrenderer.o
-    0x00084380   0x00000164   Code   RO           40    i.send_curr_data    1dofhapticrenderer.o
-    0x000844e4   0x00000094   Code   RO           42    i.sensor_avg        1dofhapticrenderer.o
-    0x00084578   0x000000f8   Code   RO          441    i.sin               m_ts.l(sin.o)
-    0x00084670   0x0000018c   Code   RO           43    i.sine_wave         1dofhapticrenderer.o
-    0x000847fc   0x00000070   Code   RO          504    i.sqrt              m_ts.l(sqrt.o)
-    0x0008486c   0x00000028   Code   RO           45    i.store_DAC_data    1dofhapticrenderer.o
-    0x00084894   0x00000098   Code   RO           46    i.system_init       1dofhapticrenderer.o
-    0x0008492c   0x00000040   Code   RO           48    i.timer0_init       1dofhapticrenderer.o
-    0x0008496c   0x00000060   Code   RO           49    i.waitForRestOfPeriod  1dofhapticrenderer.o
-    0x000849cc   0x0000006c   Code   RO          370    x$fpl$d2f           fz_ts.l(d2f.o)
-    0x00084a38   0x00000154   Code   RO          372    x$fpl$dadd          fz_ts.l(daddsub_noclz.o)
-    0x00084b8c   0x00000010   Code   RO          533    x$fpl$dcheck1       fz_ts.l(dcheck1.o)
-    0x00084b9c   0x0000001c   Code   RO          455    x$fpl$dcmpinf       fz_ts.l(dcmpi.o)
-    0x00084bb8   0x000002e0   Code   RO          379    x$fpl$ddiv          fz_ts.l(ddiv.o)
-    0x00084e98   0x00000070   Code   RO          382    x$fpl$dfix          fz_ts.l(dfix.o)
-    0x00084f08   0x00000058   Code   RO          387    x$fpl$dflt          fz_ts.l(dflt_noclz.o)
-    0x00084f60   0x0000000c   Code   RO          386    x$fpl$dfltu         fz_ts.l(dflt_noclz.o)
-    0x00084f6c   0x00000094   Code   RO          390    x$fpl$dleqf         fz_ts.l(dleqf.o)
-    0x00085000   0x00000180   Code   RO          392    x$fpl$dmul          fz_ts.l(dmul.o)
-    0x00085180   0x000000c0   Code   RO          457    x$fpl$dnaninf       fz_ts.l(dnaninf.o)
-    0x00085240   0x00000010   Code   RO          459    x$fpl$dretinf       fz_ts.l(dretinf.o)
-    0x00085250   0x0000008c   Code   RO          394    x$fpl$drleqf        fz_ts.l(drleqf.o)
-    0x000852dc   0x00000018   Code   RO          373    x$fpl$drsb          fz_ts.l(daddsub_noclz.o)
-    0x000852f4   0x00000208   Code   RO          535    x$fpl$dsqrt         fz_ts.l(dsqrt_noumaal.o)
-    0x000854fc   0x00000244   Code   RO          374    x$fpl$dsub          fz_ts.l(daddsub_noclz.o)
-    0x00085740   0x00000064   Code   RO          396    x$fpl$f2d           fz_ts.l(f2d.o)
-    0x000857a4   0x000000c4   Code   RO          398    x$fpl$fadd          fz_ts.l(faddsub_noclz.o)
-    0x00085868   0x0000001c   Code   RO          461    x$fpl$fcmpinf       fz_ts.l(fcmpi.o)
-    0x00085884   0x00000190   Code   RO          405    x$fpl$fdiv          fz_ts.l(fdiv.o)
-    0x00085a14   0x00000044   Code   RO          408    x$fpl$ffix          fz_ts.l(ffix.o)
-    0x00085a58   0x0000005c   Code   RO          413    x$fpl$fflt          fz_ts.l(fflt_noclz.o)
-    0x00085ab4   0x00000084   Code   RO          416    x$fpl$fleqf         fz_ts.l(fleqf.o)
-    0x00085b38   0x00000100   Code   RO          418    x$fpl$fmul          fz_ts.l(fmul.o)
-    0x00085c38   0x000000a8   Code   RO          463    x$fpl$fnaninf       fz_ts.l(fnaninf.o)
-    0x00085ce0   0x00000010   Code   RO          465    x$fpl$fretinf       fz_ts.l(fretinf.o)
-    0x00085cf0   0x0000007c   Code   RO          420    x$fpl$frleqf        fz_ts.l(frleqf.o)
-    0x00085d6c   0x00000014   Code   RO          399    x$fpl$frsb          fz_ts.l(faddsub_noclz.o)
-    0x00085d80   0x00000130   Code   RO          400    x$fpl$fsub          fz_ts.l(faddsub_noclz.o)
-    0x00085eb0   0x00000074   Code   RO          554    x$fpl$retnan        fz_ts.l(retnan.o)
-    0x00085f24   0x00000068   Code   RO          467    x$fpl$scalbn        fz_ts.l(scalbn.o)
-    0x00085f8c   0x0000003c   Code   RO          609    x$fpl$trapveneer    fz_ts.l(trapv.o)
-    0x00085fc8   0x00000000   Code   RO          469    x$fpl$usenofp       fz_ts.l(usenofp.o)
-    0x00085fc8   0x00000088   Data   RO          432    .constdata          m_ts.l(pow.o)
-    0x00086050   0x00000030   Data   RO          471    .constdata          m_ts.l(cos_i.o)
-    0x00086080   0x00000008   Data   RO          491    .constdata          m_ts.l(qnan.o)
-    0x00086088   0x000000c8   Data   RO          494    .constdata          m_ts.l(rred.o)
-    0x00086150   0x00000028   Data   RO          498    .constdata          m_ts.l(sin_i.o)
-    0x00086178   0x00000020   Data   RO          684    Region$$Table       anon$$obj.o
+    0x00081b54   0x000000f8   Code   RO           27    i.displacement_SpeakerToDAC  1dofhapticrenderer.o
+    0x00081c4c   0x00000154   Code   RO          423    i.floor             m_ts.l(floor.o)
+    0x00081da0   0x0000004c   Code   RO           28    i.force_VoltsToGrams  1dofhapticrenderer.o
+    0x00081dec   0x00000034   Code   RO           29    i.initial_read_store_sensors  1dofhapticrenderer.o
+    0x00081e20   0x0000098c   Code   RO           31    i.main              1dofhapticrenderer.o
+    0x000827ac   0x0000048c   Code   RO           32    i.membrane_puncture  1dofhapticrenderer.o
+    0x00082c38   0x000000a8   Code   RO           33    i.optical_ADCtoDisplacement  1dofhapticrenderer.o
+    0x00082ce0   0x000001b4   Code   RO           34    i.outputDAC         1dofhapticrenderer.o
+    0x00082e94   0x00000148   Code   RO           35    i.parse_SPI_data    1dofhapticrenderer.o
+    0x00082fdc   0x00000038   Code   RO           36    i.pot_voltage       1dofhapticrenderer.o
+    0x00083014   0x00000ef0   Code   RO          431    i.pow               m_ts.l(pow.o)
+    0x00083f04   0x00000138   Code   RO           39    i.read_store_sensors  1dofhapticrenderer.o
+    0x0008403c   0x00000164   Code   RO           40    i.send_curr_data    1dofhapticrenderer.o
+    0x000841a0   0x00000094   Code   RO           42    i.sensor_avg        1dofhapticrenderer.o
+    0x00084234   0x000000f8   Code   RO          441    i.sin               m_ts.l(sin.o)
+    0x0008432c   0x0000018c   Code   RO           43    i.sine_wave         1dofhapticrenderer.o
+    0x000844b8   0x00000070   Code   RO          504    i.sqrt              m_ts.l(sqrt.o)
+    0x00084528   0x00000028   Code   RO           45    i.store_DAC_data    1dofhapticrenderer.o
+    0x00084550   0x00000098   Code   RO           46    i.system_init       1dofhapticrenderer.o
+    0x000845e8   0x00000040   Code   RO           48    i.timer0_init       1dofhapticrenderer.o
+    0x00084628   0x00000060   Code   RO           49    i.waitForRestOfPeriod  1dofhapticrenderer.o
+    0x00084688   0x0000006c   Code   RO          370    x$fpl$d2f           fz_ts.l(d2f.o)
+    0x000846f4   0x00000154   Code   RO          372    x$fpl$dadd          fz_ts.l(daddsub_noclz.o)
+    0x00084848   0x00000010   Code   RO          533    x$fpl$dcheck1       fz_ts.l(dcheck1.o)
+    0x00084858   0x0000001c   Code   RO          455    x$fpl$dcmpinf       fz_ts.l(dcmpi.o)
+    0x00084874   0x000002e0   Code   RO          379    x$fpl$ddiv          fz_ts.l(ddiv.o)
+    0x00084b54   0x00000070   Code   RO          382    x$fpl$dfix          fz_ts.l(dfix.o)
+    0x00084bc4   0x00000058   Code   RO          387    x$fpl$dflt          fz_ts.l(dflt_noclz.o)
+    0x00084c1c   0x0000000c   Code   RO          386    x$fpl$dfltu         fz_ts.l(dflt_noclz.o)
+    0x00084c28   0x00000094   Code   RO          390    x$fpl$dleqf         fz_ts.l(dleqf.o)
+    0x00084cbc   0x00000180   Code   RO          392    x$fpl$dmul          fz_ts.l(dmul.o)
+    0x00084e3c   0x000000c0   Code   RO          457    x$fpl$dnaninf       fz_ts.l(dnaninf.o)
+    0x00084efc   0x00000010   Code   RO          459    x$fpl$dretinf       fz_ts.l(dretinf.o)
+    0x00084f0c   0x0000008c   Code   RO          394    x$fpl$drleqf        fz_ts.l(drleqf.o)
+    0x00084f98   0x00000018   Code   RO          373    x$fpl$drsb          fz_ts.l(daddsub_noclz.o)
+    0x00084fb0   0x00000208   Code   RO          535    x$fpl$dsqrt         fz_ts.l(dsqrt_noumaal.o)
+    0x000851b8   0x00000244   Code   RO          374    x$fpl$dsub          fz_ts.l(daddsub_noclz.o)
+    0x000853fc   0x00000064   Code   RO          396    x$fpl$f2d           fz_ts.l(f2d.o)
+    0x00085460   0x000000c4   Code   RO          398    x$fpl$fadd          fz_ts.l(faddsub_noclz.o)
+    0x00085524   0x0000001c   Code   RO          461    x$fpl$fcmpinf       fz_ts.l(fcmpi.o)
+    0x00085540   0x00000190   Code   RO          405    x$fpl$fdiv          fz_ts.l(fdiv.o)
+    0x000856d0   0x00000044   Code   RO          408    x$fpl$ffix          fz_ts.l(ffix.o)
+    0x00085714   0x0000005c   Code   RO          413    x$fpl$fflt          fz_ts.l(fflt_noclz.o)
+    0x00085770   0x00000084   Code   RO          416    x$fpl$fleqf         fz_ts.l(fleqf.o)
+    0x000857f4   0x00000100   Code   RO          418    x$fpl$fmul          fz_ts.l(fmul.o)
+    0x000858f4   0x000000a8   Code   RO          463    x$fpl$fnaninf       fz_ts.l(fnaninf.o)
+    0x0008599c   0x00000010   Code   RO          465    x$fpl$fretinf       fz_ts.l(fretinf.o)
+    0x000859ac   0x0000007c   Code   RO          420    x$fpl$frleqf        fz_ts.l(frleqf.o)
+    0x00085a28   0x00000014   Code   RO          399    x$fpl$frsb          fz_ts.l(faddsub_noclz.o)
+    0x00085a3c   0x00000130   Code   RO          400    x$fpl$fsub          fz_ts.l(faddsub_noclz.o)
+    0x00085b6c   0x00000074   Code   RO          554    x$fpl$retnan        fz_ts.l(retnan.o)
+    0x00085be0   0x00000068   Code   RO          467    x$fpl$scalbn        fz_ts.l(scalbn.o)
+    0x00085c48   0x0000003c   Code   RO          609    x$fpl$trapveneer    fz_ts.l(trapv.o)
+    0x00085c84   0x00000000   Code   RO          469    x$fpl$usenofp       fz_ts.l(usenofp.o)
+    0x00085c84   0x00000004   PAD
+    0x00085c88   0x00000088   Data   RO          432    .constdata          m_ts.l(pow.o)
+    0x00085d10   0x00000030   Data   RO          471    .constdata          m_ts.l(cos_i.o)
+    0x00085d40   0x00000008   Data   RO          491    .constdata          m_ts.l(qnan.o)
+    0x00085d48   0x000000c8   Data   RO          494    .constdata          m_ts.l(rred.o)
+    0x00085e10   0x00000028   Data   RO          498    .constdata          m_ts.l(sin_i.o)
+    0x00085e38   0x00000020   Data   RO          684    Region$$Table       anon$$obj.o
 
 
 ==============================================================================
@@ -1378,12 +1375,12 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-     10292        644          0        588        908      25946   1dofhapticrenderer.o
-       220         56          0          0       1664        540   aduc702x.o
-       288         24          0         24          0       3238   irq_arm.o
+      9556        668          0        588        908      25619   1dofhapticrenderer.o
+       220         56          0          0       1664        556   aduc702x.o
+       288         24          0         24          0       3282   irq_arm.o
 
     ----------------------------------------------------------------------
-     10800        724         32        612       2572      29724   Object Totals
+     10064        748         32        612       2572      29457   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -1447,7 +1444,6 @@ Image component sizes
         96          0          0          0          0        408   dunder.o
        340          8          0          0          0        144   floor.o
         48          0          0          0          0         68   fpclassify.o
-       100          0          0          0          0         68   modff.o
        256          0          0          0          0        116   poly.o
       3824        100        136          0          0        280   pow.o
          0          0          8          0          0          0   qnan.o
@@ -1457,8 +1453,8 @@ Image component sizes
        112          0          0          0          0        100   sqrt.o
 
     ----------------------------------------------------------------------
-     13720        566        432          0         96       5540   Library Totals
-         8          0          0          0          0          0   (incl. Padding)
+     13624        566        432          0         96       5472   Library Totals
+        12          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1466,10 +1462,10 @@ Image component sizes
 
        968         26          0          0         96        892   c_t.l
       5628        344          0          0          0       2908   fz_ts.l
-      7116        196        432          0          0       1740   m_ts.l
+      7016        196        432          0          0       1672   m_ts.l
 
     ----------------------------------------------------------------------
-     13720        566        432          0         96       5540   Library Totals
+     13624        566        432          0         96       5472   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -1478,15 +1474,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     24520       1290        464        612       2668      30916   Grand Totals
-     24520       1290        464        388       2668      30916   ELF Image Totals (compressed)
-     24520       1290        464        388          0          0   ROM Totals
+     23688       1314        464        612       2668      30633   Grand Totals
+     23688       1314        464        388       2668      30633   ELF Image Totals (compressed)
+     23688       1314        464        388          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                24984 (  24.40kB)
+    Total RO  Size (Code + RO Data)                24152 (  23.59kB)
     Total RW  Size (RW Data + ZI Data)              3280 (   3.20kB)
-    Total ROM Size (Code + RO Data + RW Data)      25372 (  24.78kB)
+    Total ROM Size (Code + RO Data + RW Data)      24540 (  23.96kB)
 
 ==============================================================================
 

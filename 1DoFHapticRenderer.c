@@ -1161,6 +1161,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float membrane_top = PID_m->setPoint + 1.0;
     float membrane_bot = PID_m->setPoint - 1.0;
     float membrane_center = PID_m->setPoint;
+		int in_membrane_flag = 0;
     
     float pState, iState, dState;
     float pGain, iGain, dGain;
@@ -1171,6 +1172,8 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float outMax = 2.5;
     float outMin = 0.0;
 		float beta = 1.0;
+		float iMax = 2.5;
+		float iMin = 0.0;
 
     /* read position and force sensors */
     curr_pos_volts = read_store_sensors(4, pCurr_data);
@@ -1186,7 +1189,9 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
      */
     spring_stiff = 50.0;
     spring_damping = 5.0;
-
+		
+		#if TEMP_DISABLED
+		/* membrane puncture by force interpolation/ PID */
     /* interpolate slope and intercept from current pos */
     interp_cal_constants(curr_pos, pForce_to_DAC, pInterpolated);
     interp_m = pInterpolated->slope;
@@ -1307,8 +1312,12 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastPos = curr_pos;
     PID_m->lastOutput = output_voltage;
+		#endif
     
-    #if OBSOLETE
+    //#if OBSOLETE
+		/* membrane puncture by critical force/voltage change */
+		/* make critical force 10 grams more than preload */
+		critical_force = 20 + force_preload;
     if (curr_pos >= membrane_top || curr_pos <= membrane_bot)
     {
         /* above & below membrane, render zero stiffness */
@@ -1428,7 +1437,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastOutput = output_voltage;
     PID_m->lastError = error;
-    #endif
+    //#endif
 
     return output_voltage;
 }

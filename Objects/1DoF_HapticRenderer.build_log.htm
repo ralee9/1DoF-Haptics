@@ -21,8 +21,8 @@ Target DLL:      Segger\JLTAgdi.dll V1.60.0.0
 Dialog DLL:      TARMAD.DLL V1.17.0.0
  
 <h2>Project:</h2>
-C:\Users\ForceMagnifier\Documents\1DoF Haptic Renderer\1DoF_HapticRenderer.uvproj
-Project File Date:  01/17/2017
+C:\Users\ForceMagnifier\Documents\GitHub\randy\1DoF-Haptics\1DoF_HapticRenderer.uvproj
+Project File Date:  01/23/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -38,16 +38,32 @@ compiling 1DoFHapticRenderer.c...
       float curr_pos_volts, curr_pos;
 1DoFHapticRenderer.c(903): warning:  #177-D: variable "gamma" was declared but never referenced
       float gamma = 0.0;      /* delta reference point weight */
-1DoFHapticRenderer.c(1155): warning:  #550-D: variable "applied_force" was set but never used
+1DoFHapticRenderer.c(1155): warning:  #177-D: variable "membrane_force" was declared but never referenced
       float applied_force, critical_force, membrane_force;
-1DoFHapticRenderer.c(1155): warning:  #177-D: variable "critical_force" was declared but never referenced
-      float applied_force, critical_force, membrane_force;
+1DoFHapticRenderer.c(1156): warning:  #550-D: variable "spring_stiff" was set but never used
+      float spring_stiff, spring_damping;
 1DoFHapticRenderer.c(1156): warning:  #550-D: variable "spring_damping" was set but never used
       float spring_stiff, spring_damping;
+1DoFHapticRenderer.c(1158): warning:  #177-D: variable "interp_m" was declared but never referenced
+      float interp_m, interp_b;
+1DoFHapticRenderer.c(1158): warning:  #177-D: variable "interp_b" was declared but never referenced
+      float interp_m, interp_b;
+1DoFHapticRenderer.c(1168): warning:  #177-D: variable "T_f" was declared but never referenced
+      float T_f, K_t;
+1DoFHapticRenderer.c(1168): warning:  #177-D: variable "K_t" was declared but never referenced
+      float T_f, K_t;
+1DoFHapticRenderer.c(1170): warning:  #177-D: variable "calc_output" was declared but never referenced
+      float calc_output, output_voltage;
+1DoFHapticRenderer.c(1172): warning:  #177-D: variable "outMax" was declared but never referenced
+      float outMax = 2.5;
+1DoFHapticRenderer.c(1173): warning:  #177-D: variable "outMin" was declared but never referenced
+      float outMin = 0.0;
+1DoFHapticRenderer.c(1174): warning:  #177-D: variable "beta" was declared but never referenced
+  		float beta = 1.0;
 linking...
-Program Size: Code=24520 RO-data=464 RW-data=612 ZI-data=2668  
+Program Size: Code=23688 RO-data=464 RW-data=612 ZI-data=2668  
 FromELF: creating hex file...
-".\Objects\1DoF_HapticRenderer.axf" - 0 Error(s), 7 Warning(s).
+".\Objects\1DoF_HapticRenderer.axf" - 0 Error(s), 15 Warning(s).
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
