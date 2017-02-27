@@ -1152,16 +1152,15 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 {
     float curr_pos, curr_pos_volts;
     float curr_force_grams, curr_force_volts;
-    float applied_force, critical_force, membrane_force;
+    float applied_force, membrane_force;
     float spring_stiff, spring_damping;
 
     float interp_m, interp_b;
 
-    /* membrane is 1mm thick, centered around init point */
+    /* membrane is 2mm thick, centered around init point */
     float membrane_top = PID_m->setPoint + 1.0;
     float membrane_bot = PID_m->setPoint - 1.0;
     float membrane_center = PID_m->setPoint;
-		int in_membrane_flag = 0;
     
     float pState, iState, dState;
     float pGain, iGain, dGain;
@@ -1171,9 +1170,13 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float slew_rate_limit;
     float outMax = 2.5;
     float outMin = 0.0;
-		float beta = 1.0;
-		float iMax = 2.5;
-		float iMin = 0.0;
+	float beta = 1.0;
+
+    /* critical force implementation */
+	float iMax = 2.5;
+	float iMin = -2.5;
+    float critical_force;
+    int in_membrane_flag = 0;
 
     /* read position and force sensors */
     curr_pos_volts = read_store_sensors(4, pCurr_data);
@@ -1190,8 +1193,8 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     spring_stiff = 50.0;
     spring_damping = 5.0;
 		
-		#if TEMP_DISABLED
-		/* membrane puncture by force interpolation/ PID */
+	#if TEMP_DISABLED
+	/* membrane puncture by force interpolation/ PID */
     /* interpolate slope and intercept from current pos */
     interp_cal_constants(curr_pos, pForce_to_DAC, pInterpolated);
     interp_m = pInterpolated->slope;
@@ -1312,12 +1315,12 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastPos = curr_pos;
     PID_m->lastOutput = output_voltage;
-		#endif
+	#endif
     
     //#if OBSOLETE
-		/* membrane puncture by critical force/voltage change */
-		/* make critical force 10 grams more than preload */
-		critical_force = 20 + force_preload;
+	/* membrane puncture by critical force/voltage change */
+	/* make critical force 10 grams more than preload */
+	critical_force = 2.5 + force_preload;
     if (curr_pos >= membrane_top || curr_pos <= membrane_bot)
     {
         /* above & below membrane, render zero stiffness */
