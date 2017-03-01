@@ -1168,14 +1168,14 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 {
     float curr_pos, curr_pos_volts;
     float curr_force_grams, curr_force_volts;
-    float applied_force, critical_force, membrane_force;
+    float applied_force, membrane_force;
     float spring_stiff, spring_damping;
 
     float interp_m, interp_b;
 
     /* membrane is 1mm thick, centered around init point */
-    float membrane_top = PID_m->setPoint + 1.0;
-    float membrane_bot = PID_m->setPoint - 1.0;
+    float membrane_top = PID_m->setPoint + 0.5;
+    float membrane_bot = PID_m->setPoint - 0.5;
     float membrane_center = PID_m->setPoint;
     
     float pState, iState, dState;
@@ -1187,6 +1187,12 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float outMax = 2.5;
     float outMin = 0.0;
 		float beta = 1.0;
+    
+    /* critical force/voltage puncture implementation */
+    float iMax = 2.5;
+    float iMin = -2.5;
+    float critical_force;
+    int in_membrane_flag = 0;
 
     /* read position and force sensors */
     curr_pos_volts = read_store_sensors(4, pCurr_data);
@@ -1197,12 +1203,13 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     applied_force = curr_force_grams - force_preload;
     
     /* spring stiffness in grams/mm, 
-	 * @TODO: in [N/m] = [101.97162 grams/1000 mm]
+     * @TODO: in [N/m] = [101.97162 grams/1000 mm]
      * spring damping in [N*s/m]
      */
     spring_stiff = 50.0;
     spring_damping = 5.0;
 
+    #if TEMP_DISABLED
     /* interpolate slope and intercept from current pos */
     interp_cal_constants(curr_pos, pForce_to_DAC, pInterpolated);
     interp_m = pInterpolated->slope;
@@ -1254,20 +1261,20 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         if (g_membrane_entry == 1)
         {
             /* entered from top */
-			membrane_force = spring_stiff * (membrane_top - curr_pos);
-			#if TEMP_DISABLED
+            membrane_force = spring_stiff * (membrane_top - curr_pos);
+            #if TEMP_DISABLED
             membrane_force = spring_stiff * (membrane_top - curr_pos) +
                              spring_damping * (PID_m->lastPos - curr_pos);
-			#endif
+            #endif
         }
         else if (g_membrane_entry == 2)
         {
             /* entered from bottom */
-			membrane_force = spring_stiff * (membrane_bot - curr_pos);
-			#if TEMP_DISABLED
+            membrane_force = spring_stiff * (membrane_bot - curr_pos);
+            #if TEMP_DISABLED
             membrane_force = spring_stiff * (membrane_bot - curr_pos) +
                              spring_damping * (PID_m->lastPos - curr_pos);
-			#endif
+            #endif
         }
 
     }
@@ -1287,7 +1294,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         dState = ((T_f/(T_f + g_sample_time)) * PID_m->lastErrorDerivative) -
                  (dGain/(T_f + g_sample_time)) * (curr_force_volts - PID_m->lastInput);
 
-		/* calculate PID output */
+        /* calculate PID output */
         calc_output = pState + iState + dState;
 
         /* check for saturation */
@@ -1323,8 +1330,14 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastPos = curr_pos;
     PID_m->lastOutput = output_voltage;
+    #endif
     
-    #if OBSOLETE
+    //#if OBSOLETE
+    /* membrane puncture by critical force/voltage change */
+    applied_force = PID_z->setPoint - curr_force_volts;
+    
+    /* make critical force 1.50 V from preload */
+    critical_force = 1.00;
     if (curr_pos >= membrane_top || curr_pos <= membrane_bot)
     {
         /* above & below membrane, render zero stiffness */
@@ -1412,7 +1425,13 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     /* PID output equation */
     //output_voltage = pState + iState + dState + 1.25;
     
+    /* check for saturation */
+    //if (calc_output >= outMax) output_voltage = outMax;
+    //else if (calc_output <= outMin) output_voltage = outMin;
+    //else output_voltage = calc_output;
+    
     /* PID output equation with position dependent speaker bias */
+    //#if TEMP_DISABLED
     if (in_membrane_flag)
     {
         output_voltage = pState + iState + dState + 1.25;
@@ -1422,6 +1441,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         PID_m->speakerBias = displacement_SpeakerToDAC(curr_pos);
         output_voltage = pState + iState + dState + PID_m->speakerBias;
     }
+    //#endif
     
     /* limiter to block single loop impulses, checks diff between last
      * output and current output
@@ -1444,7 +1464,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastOutput = output_voltage;
     PID_m->lastError = error;
-    #endif
+    //#endif
 
     return output_voltage;
 }
