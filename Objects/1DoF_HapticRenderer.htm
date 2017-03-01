@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\1DoF_HapticRenderer.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\1DoF_HapticRenderer.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Fri Feb 24 17:06:49 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Wed Mar 01 12:27:20 2017
 <BR><P>
 <H3>Maximum Stack Usage =        392 bytes + Unknown(Functions without stacksize, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -263,7 +263,7 @@ Global Symbols
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
 </UL>
 
 <P><STRONG><a name="[ba]"></a>__semihosting_library_function</STRONG> (ARM, 0 bytes, Stack size 40 bytes, indicate_semi.o(.text), UNUSED)
@@ -299,44 +299,44 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> aduc702x.o(RESET)
 </UL>
-<P><STRONG><a name="[29]"></a>PID_virtualWall</STRONG> (ARM, 980 bytes, Stack size 128 bytes, 1dofhapticrenderer.o(i.PID_virtualWall))
-<BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = PID_virtualWall &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
+<P><STRONG><a name="[29]"></a>PID_virtualWall</STRONG> (ARM, 792 bytes, Stack size 112 bytes, 1dofhapticrenderer.o(i.PID_virtualWall))
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = PID_virtualWall &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
-<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
-<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[36]"></a>PID_zeroStiffness</STRONG> (ARM, 972 bytes, Stack size 128 bytes, 1dofhapticrenderer.o(i.PID_zeroStiffness))
-<BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = PID_zeroStiffness &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
+<P><STRONG><a name="[36]"></a>PID_zeroStiffness</STRONG> (ARM, 784 bytes, Stack size 112 bytes, 1dofhapticrenderer.o(i.PID_zeroStiffness))
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = PID_zeroStiffness &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
-<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -469,7 +469,7 @@ Global Symbols
 <P><STRONG><a name="[48]"></a>check_sensor_status</STRONG> (ARM, 360 bytes, Stack size 8 bytes, 1dofhapticrenderer.o(i.check_sensor_status))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = check_sensor_status &rArr; read_store_sensors &rArr; ADCinput &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -508,7 +508,7 @@ Global Symbols
 <P><STRONG><a name="[4d]"></a>force_VoltsToGrams</STRONG> (ARM, 64 bytes, Stack size 32 bytes, 1dofhapticrenderer.o(i.force_VoltsToGrams))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = force_VoltsToGrams &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<BR>[Calls]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
@@ -520,7 +520,7 @@ Global Symbols
 <P><STRONG><a name="[4e]"></a>initial_read_store_sensors</STRONG> (ARM, 52 bytes, Stack size 16 bytes, 1dofhapticrenderer.o(i.initial_read_store_sensors))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = initial_read_store_sensors &rArr; read_store_sensors &rArr; ADCinput &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<BR>[Calls]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -530,10 +530,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;modff
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
@@ -548,9 +548,9 @@ Global Symbols
 <P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 2220 bytes, Stack size 0 bytes, 1dofhapticrenderer.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = main &rArr; membrane_puncture &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
@@ -561,10 +561,10 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_avg
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_curr_data
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;parse_SPI_data
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_read_store_sensors
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;force_VoltsToGrams
@@ -582,21 +582,21 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = membrane_puncture &rArr; optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;force_VoltsToGrams
 </UL>
@@ -606,16 +606,16 @@ Global Symbols
 <P><STRONG><a name="[50]"></a>modff</STRONG> (ARM, 100 bytes, Stack size 0 bytes, modff.o(i.modff))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = modff &rArr; __aeabi_fsub
 </UL>
-<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<BR>[Calls]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
 </UL>
 
-<P><STRONG><a name="[2f]"></a>optical_ADCtoDisplacement</STRONG> (ARM, 144 bytes, Stack size 64 bytes, 1dofhapticrenderer.o(i.optical_ADCtoDisplacement))
+<P><STRONG><a name="[2e]"></a>optical_ADCtoDisplacement</STRONG> (ARM, 144 bytes, Stack size 64 bytes, 1dofhapticrenderer.o(i.optical_ADCtoDisplacement))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = optical_ADCtoDisplacement &rArr; pow &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -631,8 +631,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = outputDAC &rArr; floor &rArr; __aeabi_cdrcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floor
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
@@ -652,11 +652,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[2b]"></a>pot_voltage</STRONG> (ARM, 52 bytes, Stack size 24 bytes, 1dofhapticrenderer.o(i.pot_voltage))
+<P><STRONG><a name="[2d]"></a>pot_voltage</STRONG> (ARM, 52 bytes, Stack size 24 bytes, 1dofhapticrenderer.o(i.pot_voltage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = pot_voltage &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<BR>[Calls]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_virtualWall
@@ -684,10 +684,10 @@ Global Symbols
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 </UL>
 
-<P><STRONG><a name="[2a]"></a>read_store_sensors</STRONG> (ARM, 288 bytes, Stack size 24 bytes, 1dofhapticrenderer.o(i.read_store_sensors))
+<P><STRONG><a name="[2c]"></a>read_store_sensors</STRONG> (ARM, 288 bytes, Stack size 24 bytes, 1dofhapticrenderer.o(i.read_store_sensors))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = read_store_sensors &rArr; ADCinput &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCinput
@@ -716,10 +716,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = sensor_avg &rArr; read_store_sensors &rArr; ADCinput &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -743,9 +743,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow
-<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
@@ -753,8 +753,8 @@ Global Symbols
 <LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
-<LI><a href="#[2a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
-<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
+<LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_store_sensors
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -790,7 +790,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_avg
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
@@ -815,7 +815,7 @@ Global Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;floor
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
 </UL>
@@ -922,7 +922,7 @@ Global Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
@@ -1002,7 +1002,7 @@ Global Symbols
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pow
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 </UL>
 
@@ -1011,13 +1011,13 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dadd1
 </UL>
 
-<P><STRONG><a name="[2c]"></a>__aeabi_f2d</STRONG> (ARM, 0 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d))
+<P><STRONG><a name="[2b]"></a>__aeabi_f2d</STRONG> (ARM, 0 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2d
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_avg
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
-<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;optical_ADCtoDisplacement
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interp_cal_constants
@@ -1050,10 +1050,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fcmple
 </UL>
 
-<P><STRONG><a name="[2e]"></a>__aeabi_fdiv</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
+<P><STRONG><a name="[2a]"></a>__aeabi_fdiv</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fdiv.o(x$fpl$fdiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fdiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
+<BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_zeroStiffness
 <LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_virtualWall
@@ -1101,11 +1101,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_frcmple
 </UL>
 
-<P><STRONG><a name="[2d]"></a>__aeabi_fmul</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
+<P><STRONG><a name="[30]"></a>__aeabi_fmul</STRONG> (ARM, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sine_wave
-<LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pot_voltage
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;outputDAC
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;membrane_puncture
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1156,7 +1156,7 @@ Global Symbols
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd1
 </UL>
 
-<P><STRONG><a name="[30]"></a>__aeabi_fsub</STRONG> (ARM, 0 bytes, Stack size 16 bytes, faddsub_noclz.o(x$fpl$fsub))
+<P><STRONG><a name="[2f]"></a>__aeabi_fsub</STRONG> (ARM, 0 bytes, Stack size 16 bytes, faddsub_noclz.o(x$fpl$fsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fsub
 </UL>
 <BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;modff

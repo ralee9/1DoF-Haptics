@@ -666,9 +666,9 @@ int main(void)
 float PID_virtualWall(struct PID_const *PID)
 {
     #if TEMP_DISABLED
-	float iMax = 1.25;
+    float iMax = 1.25;
     float iMin = -1.25;
-	#endif
+    #endif
     /* actuator limits */
     float outMax = 2.5;
     float outMin = 0.0;
@@ -687,19 +687,26 @@ float PID_virtualWall(struct PID_const *PID)
     float sample_time = 0.001; // sample (inter-loop) time in seconds
 		float T_f, K_t;
     
-    /* Z-N tuning parameters */
-    float K_u = PID->K_u;
-    float T_u = PID->T_u;
+    //#if NOT_YET_IMPLEMENTED
+    /* retreive PID constants, which already compensate for sample time
+     * @TODO: remove NOT_YET_IMPLEMENTED blockers when prototyping done */
+    pGain = PID->pGain;
+    iGain = PID->iGain;
+    dGain = PID->dGain;
 
+    /* derivative filter constant and anti-kick gains */
+    T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
+    K_t = iGain/pGain;             /* K_t = 1/T_i, where T_i = K_p/K_i */
+    //#endif
+
+
+    #if TEMP_DISABLED
     /* Obtain PID gains from knobs 1-3. Only update if knob has changed by
      * more than epsilon 
      */
-    #if TEMP_DISABLED
     //pGain = read_store_sensors(1, pCurr_data);
     //pGain = 1.0 + read_store_sensors(6, pCurr_data); -- V16
     //pGain = pot_voltage(pGain, 5.0);
-   
-    pGain = ((float)g_virtual_knob1)/4096.0 + 1.0; 
 
     if (abs(pGain - PID->pGain) >= g_epsilon) PID->pGain = pGain;
     else pGain = PID->pGain;
@@ -711,6 +718,9 @@ float PID_virtualWall(struct PID_const *PID)
     dGain = read_store_sensors(3, pCurr_data);
     if (abs(dGain - PID->dGain) >= g_epsilon) PID->dGain = dGain;
     else dGain = PID->dGain;
+    
+    /* Ziegler Nichols tuning using virtual knob */
+    pGain = ((float)g_virtual_knob1)/4096.0 + 1.0; 
     
     /* set dGain & iGain to zero for Ziegler Nichols tuning */
     iGain = 0.0;
@@ -728,6 +738,7 @@ float PID_virtualWall(struct PID_const *PID)
     //rest_pos_mm = opticalADCtoDisplacement(rest_pos_volts);
     PID->setPoint = rest_pos_mm;
 
+    #if TEMP_DISABLED
     /* Z-N tuning resulted in Ku = 1.861, Tu = 10ms = 0.010 s
      * PID: K_p = 0.60 Ku; K_i = 2K_p/T_u; K_d = 0.125*K_p*T_u
      * PI: K_p = 0.45K_u; K_i = 1.2*K_p/T_u
@@ -741,6 +752,10 @@ float PID_virtualWall(struct PID_const *PID)
     /* (06/30/16) - K_u = 1.50. T_u = 0.025 s WITH slew rate limiter*/
     //K_u = 1.50;    /* ultimate gain @ sustained oscillation */
     //T_u = 0.025;     /* oscillation period */
+    
+    /* Z-N tuning parameters */
+    float K_u = PID->K_u;
+    float T_u = PID->T_u;
      
     /* PID */
     //pGain = 0.60*K_u;
@@ -794,11 +809,9 @@ float PID_virtualWall(struct PID_const *PID)
     iGain = iGain * sample_time;
     //dGain = dGain / sample_time;
 
-		#if TEMP_DISABLED
     PID->pGain = pGain;
     PID->iGain = iGain;     
     PID->dGain = dGain; 
-		#endif
 	
 		/* derivative filter constant and anti-kick gains
      * @TODO: delete after prototyping done
@@ -806,6 +819,8 @@ float PID_virtualWall(struct PID_const *PID)
     T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
     K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
                                   /* can also try T_i = sqrt(T_d*T_i) */
+    #endif
+    
     
     /* read current position and calculate error */
     currOptical_volts = read_store_sensors(4, pCurr_data);
@@ -863,7 +878,7 @@ float PID_virtualWall(struct PID_const *PID)
         output_voltage = PID->lastOutput - slew_rate_limit;
     }
 	
-	/* update integral using saturation and integral of k_i*e to reduce
+    /* update integral using saturation and integral of k_i*e to reduce
      * kick related to changing gains
      */
     PID->errorSum += (iGain * error) + K_t * (output_voltage - calc_output);
@@ -885,7 +900,6 @@ float PID_zeroStiffness(struct PID_const *PID)
     float iMax = 1.25;
     float iMin = -1.25;
     #endif
-
     /* actuator limits */
     float outMax = 2.5;
     float outMin = 0.0;
@@ -905,24 +919,18 @@ float PID_zeroStiffness(struct PID_const *PID)
     float slew_rate_limit = 0.0;
     float sample_time = 0.001;  // sample (inter-loop) time in seconds
 
-    #if NOT_YET_IMPLEMENTED
+    //#if NOT_YET_IMPLEMENTED
     /* retreive PID constants, which already compensate for sample time
      * @TODO: remove NOT_YET_IMPLEMENTED blockers when prototyping done */
-    float pGain = PID->pGain;
-    float iGain = PID->iGain;
-    float dGain = PID->dGain;
+    pGain = PID->pGain;
+    iGain = PID->iGain;
+    dGain = PID->dGain;
 
     /* derivative filter constant and anti-kick gains */
-    float T_f = (pGain/dGain)/2.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
-    float T_t = pGain/iGain             /* K_t = 1/T_i, where T_i = K_p/K_i */
-    #endif
+    T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
+    K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
+    //#endif
 
-    /* Z-N tuning parameters
-     * @TODO: disable when prototyping completed 
-     */
-    float K_u = PID->K_u;
-    float T_u = PID->T_u;
-    
     #if TEMP_DISABLED
     /* @TODO: DISABLE PID constant settings when prototyping completed. */
 
@@ -952,6 +960,7 @@ float PID_zeroStiffness(struct PID_const *PID)
     PID->dGain = 0.0;
     #endif
     
+    #if TEMP_DISABLED
     /* Z-N tuning resulted in Ku = 2.870, Tu = 2ms = 0.002 s
      * PID: K_p = 0.60 Ku; K_i = 2K_p/T_u; K_d = 0.125*K_p*T_u
      * PI: K_p = 0.45K_u; K_i = 1.2*K_p/T_u
@@ -959,6 +968,12 @@ float PID_zeroStiffness(struct PID_const *PID)
      */
     //K_u = 7.348;        /* ultimate gain @ sustained oscillation */
     //T_u = 0.002;        /* oscillation period in seconds */
+    
+    /* Z-N tuning parameters
+     * @TODO: disable when prototyping completed 
+     */
+    K_u = PID->K_u;
+    T_u = PID->T_u;
 
     /* P */
     //pGain = 0.50*K_u;
@@ -1017,14 +1032,13 @@ float PID_zeroStiffness(struct PID_const *PID)
     /* disabled b/c derivative filtering uses g_sample_time in gain calc */
     //dGain = dGain / sample_time;
 
-    #if TEMP_DISABLED
+    //#if TEMP_DISABLED
 		/* store PID gains 
      * @TODO: comment out when prototyping completed
      */
     PID->pGain = pGain;
     PID->iGain = iGain;     
     PID->dGain = dGain;
-		#endif
 
     /* derivative filter constant and anti-kick gains
      * @TODO: delete after prototyping done
@@ -1032,7 +1046,9 @@ float PID_zeroStiffness(struct PID_const *PID)
     T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
     K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
                                   /* can also try T_i = sqrt(T_d*T_i) */
+    #endif
 
+    
     /* push --> voltage drop; pull --> voltage increase */
     force_volts = read_store_sensors(0, pCurr_data);
     curr_pos_volts = read_store_sensors(4, pCurr_data);
