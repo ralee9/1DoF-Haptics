@@ -159,7 +159,6 @@ float speaker_volts;
 float desiredSpeaker_volts, lastDesiredSpeaker_volts;
 float desiredSpeaker_mm, lastDesiredSpeaker_mm;
 float rest_pos_volts, rest_pos_mm;
-float force_std;
 
 unsigned char g_speaker_mode = 0x99;
 int g_virtual_knob1, g_virtual_knob2, g_virtual_knob3 = 0;
@@ -248,17 +247,6 @@ struct Wave_const{
 /* structure of wave constants */
 struct Wave_const Sine_const, *pSine_const;
 
-/* define struct for MAB tactor simulation */
-struct MAB_const{
-	float rise_speed;
-	float fall_speed;
-	float force_avg;
-	float force_det;
-	int iterations;
-};
-
-/* structure of MAB constants */
-struct MAB_const Tactor_const, *pTactor_const;
 
 /* define general structure for calibration equations */
 struct calibration{
@@ -352,10 +340,9 @@ float PID_zeroStiffness(struct PID_const *);
 float PID_virtualWall(struct PID_const *);
 float membrane_puncture(struct PID_const *, struct PID_const *, 
                         struct PID_const *);
-float tactor_simulation(struct Wave_const *);
+float ratchet_simulation(struct PID_const *, struct PID_const *,
+                         struct PID_const *);
 float sine_wave(struct Wave_const *);
-//float ratchet_simulation(struct PID_const *, struct PID_const *,
-                         //struct PID_const *);
 
 /* sensor calibration/ manipulation functions */
 float speaker_DACtoDisplacement(float volts);
@@ -444,7 +431,7 @@ int main(void)
     pPID_zero = &PID_zeroStiff;
     pPID_wall = &PID_wall;
     pPID_mem = &PID_membrane;
-    //pPID_ratchet = &PID_ratchet;
+    pPID_ratchet = &PID_ratchet;
 
     /* calibration equation pointers */
     pDAC_to_Force = &DAC_to_Force[0];
@@ -467,10 +454,6 @@ int main(void)
     pSine_const = &Sine_const;
     pSine_const->theta_counter = 0; /* initialize theta_counter */
 
-    /* tactor constants */
-    pTactor_const = &Tactor_const;
-
-
     /* initialize speaker output at 1.25 so sensors have a baseline */
     speaker_voltageHex = outputDAC(1.25);
     DAC0DAT = speaker_voltageHex;
@@ -481,7 +464,6 @@ int main(void)
     
     /* initial read/store of all sensors */
     initial_read_store_sensors(pInit_data);
-
     
     /* calculate and save average voltage from the optical sensor */
     rest_pos_volts = sensor_avg(4);
@@ -611,16 +593,19 @@ int main(void)
         }
         else if (g_speaker_mode == 0xEE)
         {
-        	/* Basic tactor simulation */
+            #if TEMP_DISABLED
+            speaker_volts = ratchet_simulation(pPID_wall, pPID_zero, 
+                                               pPID_ratchet);
+            speaker_voltageHex = outputDAC(speaker_volts);
+            DAC0DAT = speaker_voltageHex;
+            store_DAC_data(speaker_voltageHex, pCurr_data);
+            #endif          
 
-        	/* Input to the function is a pointer (address), which is
-        	 * dereferenced within the function itself to set the values */
-
-        	speaker_volts = tactor_simulation(pTactor_const); 
-        	speaker_voltageHex = outputDAC(speaker_volts);
-        	DAC0DAT = speaker_voltageHex;
-        	store_DAC_data(speaker_voltageHex, pCurr_data);
-        	
+            /* control speaker voltage w/ knob 1 */
+            speaker_volts = read_store_sensors(1, pCurr_data);
+            speaker_voltageHex = outputDAC(speaker_volts);
+            DAC0DAT = speaker_voltageHex;
+            store_DAC_data(speaker_voltageHex, pCurr_data);
         }
         else
         {
@@ -674,158 +659,6 @@ int main(void)
 
 
 /* Functions -------------------------------------------------------------- */
-
-
-float tactor_simulation(struct MAB_simulation *MAB) 
-{
-	/* NOTE: 2.5V output is bottom of the speaker cone, 0V represents top*/
-
-	/* V1: MAB tactor simulation with hard-coded settings for speaker rise
-		   and fall speeds. 
-		   - Create global structure with all variables
-		   - Tare function to be implemented -- sampled average over
-		   	 1 second period (during initial rise)
-		   - Force detection capability -- speaker cone should fall when 
-		   	 detected force is above the average
-
-	   V2: More specific Tare function samples and stores using a lookup table
-	   	   of storage times
-
-	*/
-    float output = 0.0;
-    float radians = 0.0;
-    float voltage_r = 0.0;
-    float velocity_r = 0.0;
-    float voltage_f = 0.0;
-    float velocity_f = 0.0;
-    float force_det = 0.0;
-    float output = 0.0;
-    float outMax = 2.5;
-    float outMin = 0.0;
-    float divider_r = 1000; //changes the rise and fall speed of the speaker
-    float divider_f = 1000; //larger divider means slower rise/fall
-    float rise = 0.1;
-    float fall = 0.1;
-    float tare_force[1000];
-    float avg = 0.0;
-    int tare_iterate = 0; //should iterate to 10
-    				  //indicates 10 samples taken for force sensor average
-    
-    //int curr_theta = 0;
-    //int delta_theta = 0;
-    //int fullscale = pow(2.0, 16);   /* fullscale number of bits */
-
-	/* Establish speed of the platform rise */ 
-    voltage_r = read_store_sensors(1, pCurr_data);
-    velocity_r = pot_voltage(voltage, 2.52);
-    rise = velocity/divider_r;
-    MAB->rise_speed = rise;
-
-    /* Establish speed of the platform fall */ 
-    voltage_f = read_store_sensors(2, pCurr_data);
-    velocity_f = pot_voltage(voltage, 2.52); //velocity from 0-2.5 V in one loop
-    fall = velocity/divider_f;
-    MAB->fall_speed = fall;
-
-    /* Read force measurement from sensor over 10 second interval to establish
-     * baseline sensor voltage */
-
-    MAB->force_det = read_store_sensors(0, pCurr_data);
-
-    /* INITIAL TARE: 
-     * Iteration counter to count the number of times function is executed 
-     * and initialize avg*/
-
-    /* ALSO USED TO TEST IF THIS FUNCTION RUNS */
-    if(tare_iterate < 1000)
-    {
-    	output = read_store_sensors(0, pCurr_data);
-    	tare_force[tare_iterate] = output;
-    	avg = tare_force[tare_iterate] + avg;
-    	tare_iterate++;
-    	MAB->iterations = tare_iterate + 1;
-
-    	return output;
-    }
-    else
-    {
-   
-    /* Function should modify the output and return to the main while loop
-     * within the if statements */
-
-	    if(force_det > avg_force)
-	    {
-	    	while (output > outMin)
-	    	{
-
-	    		output -= fall;
-	    		return output; // exits out of while loop, so make output 
-	    					   // a global variable and use pointer input variable
-
-	    	}
-	    }
-
-	    else
-	    {
-	    	/* Platform rises to upper range in 1 second 
-			 * 1st rise from 0V to 2.5V calibrates the system */
-
-	    	if (output < outMax)
-	    	{
-	    		output += rise;
-	       		return output;
-	    	}
-	    }
-	}
-
-    
-
-   
-
-
-    #if TEMP_DISABLED
-    constants->theta_counter = 0;
-        		
-        		/*Decide how much to pullback:
-				 *	(1) use control system to regulate continuous decrease in speaker 
-				 *	voltage
-				 *  (2) initialize new theta counter to put the sine wave in reverse
-				 *  for a short period of time
-				*/
- 
-
-    /* read knob 1 to get amplitude, centered around 1.25 */
-    voltage = read_store_sensors(1, pCurr_data);
-    amplitude = pot_voltage(voltage, 1.0);
-
-    /* read knob 2 to get frequency & calculate the desired change in theta */
-    voltage = read_store_sensors(2, pCurr_data);
-    frequency = pot_voltage(voltage, 200.0);
-
-    
-
-
-
-    /* update current theta and convert to radians */
-    /* delta_theta = fullscale / operating freq (hz), the change in theta 
-     * (in degrees) to obtain a 1 Hz sine wave. For 16 bits @ 1333 Hz update, 
-     * delta = 49
-     */
-    //delta_theta = 49 * frequency; /* del_theta for 1333 Hz, loop = 750us */
-    delta_theta = 65 * frequency;   /* del_theta for 1000 Hz, loop = 1000us */
-    constants->theta_counter -= delta_theta;
-    curr_theta = constants->theta_counter % fullscale;
-    radians = curr_theta * (2.0 * PI) / fullscale;
-    #endif
-
-    /* calculate output voltage, centered around midpoint */
-    
-   
-    
-}
-
-
-
 
 /**  PID_virtualWall() --
  **     PID control of position to resist speaker movement by an extern. force
@@ -1641,7 +1474,6 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
  **     Determine if current position is within a membrane, if so, set a 
  **     global flag and membrane gains. Else, set zero stiffness gains.
  **/
-#if TEMP_DISABLED
 float ratchet_simulation(struct PID_const *PID_w, struct PID_const *PID_z,
                          struct PID_const *PID_r)
 {
@@ -1790,7 +1622,6 @@ float ratchet_simulation(struct PID_const *PID_w, struct PID_const *PID_z,
     return output_voltage;
 }
 
-#endif
 /** sine_wave() --
  **     Generate sine wave at specified amplitude and frequency, determined
  **     by knobs 1 and 2
@@ -1830,9 +1661,6 @@ float sine_wave(struct Wave_const *constants)
 
     return output;
 }
-
-
-
 
 /** speakerDACtoDisplacement() -- 
  **     Calculate expected speaker displacement from a reference voltage
