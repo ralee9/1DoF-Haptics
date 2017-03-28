@@ -1,18 +1,0 @@
-Dependencies for Project '1DoF_HapticRenderer', Target 'Target 1': (DO NOT MODIFY !)
-F (.\ADuC702x.s)(0x5346DEEE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI--pd "__UVISION_VERSION SETA 521"--list .\listings\aduc702x.lst --xref -o .\objects\aduc702x.o --depend .\objects\aduc702x.d)
-F (.\1DoFHapticRenderer.c)(0x587E8118)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI-D__UVISION_VERSION="521"-o .\objects\1dofhapticrenderer.o --omf_browse .\objects\1dofhapticrenderer.crf --depend .\objects\1dofhapticrenderer.d)
-I (C:\Keil_v5\ARM\Inc\ADI\aduc7026.h)(0x559D839C)
-I (C:\Keil_v5\ARM\Inc\ADI\irq.h)(0x559D839A)
-I (C:\Keil_v5\ARM\Inc\ADI\timer.h)(0x559D839C)
-I (C:\Keil_v5\ARM\Inc\ADI\dac.h)(0x559D839A)
-I (C:\Keil_v5\ARM\Inc\ADI\uart.h)(0x559D839C)
-I (C:\Keil_v5\ARM\Inc\ADI\I2C.h)(0x559D839A)
-I (C:\Keil_v5\ARM\Inc\ADI\PLA.H)(0x559D839C)
-I (C:\Keil_v5\ARM\Inc\ADI\GPIO.h)(0x559D8398)
-I (C:\Keil_v5\ARM\Inc\ADI\flash.h)(0x559D8398)
-I (C:\Keil_v5\ARM\Inc\ADI\pwm.h)(0x559D8398)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574EF4F6)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x574EF4F6)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574EF4F6)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x574EF4F6)
-F (.\irq_arm.c)(0x5037CB1C)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork --split_sections-IC:\Keil_v5\ARM\RV31\INC-IC:\Keil_v5\ARM\CMSIS\Include-IC:\Keil_v5\ARM\Inc\ADI-D__UVISION_VERSION="521"-o .\objects\irq_arm.o --omf_browse .\objects\irq_arm.crf --depend .\objects\irq_arm.d)

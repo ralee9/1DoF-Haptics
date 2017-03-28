@@ -166,6 +166,7 @@ int g_virtual_knob1, g_virtual_knob2, g_virtual_knob3 = 0;
 
 /* each message received from Wixel/GUI is 1 byte in size */
 unsigned char SPI_received_data[14];
+unsigned char *pSPI_received;
 
 /* linear fit variables for zero stiffness spring 
  * @TODO: Confirm -- OBSOLETE AS OF VXX (?)
@@ -422,6 +423,9 @@ int main(void)
      */
     SPI_init();
     
+		/* SPI received data pointer */
+		pSPI_received = &SPI_received_data[0];
+		
     /* testmode() generates a triangular increase/decrease in speaker voltage 
      */
     //testmode(5);
@@ -638,7 +642,7 @@ int main(void)
          * messages. Save received data into an array to be parsed later
          */
         GP2DAT ^= 0x20000; /*flip P2.1 to examine time for each send/ read*/
-        send_curr_data(pCurr_data, SPI_received_data);
+        send_curr_data(pCurr_data, pSPI_received);
         GP2DAT ^= 0x20000;
 
         #if OBSOLETE
@@ -659,7 +663,7 @@ int main(void)
         /* parse recieved SPI data for control keys and incoming GUI info
          * global variables are updated in this function
          */
-        parse_SPI_data(SPI_received_data);
+        parse_SPI_data(pSPI_received);
     
         counter++;
         waitForRestOfPeriod(); 
@@ -829,9 +833,9 @@ float tactor_simulation(struct MAB_simulation *MAB)
 float PID_virtualWall(struct PID_const *PID)
 {
     #if TEMP_DISABLED
-	float iMax = 1.25;
+    float iMax = 1.25;
     float iMin = -1.25;
-	#endif
+    #endif
     /* actuator limits */
     float outMax = 2.5;
     float outMin = 0.0;
@@ -850,19 +854,26 @@ float PID_virtualWall(struct PID_const *PID)
     float sample_time = 0.001; // sample (inter-loop) time in seconds
 		float T_f, K_t;
     
-    /* Z-N tuning parameters */
-    float K_u = PID->K_u;
-    float T_u = PID->T_u;
+    //#if NOT_YET_IMPLEMENTED
+    /* retreive PID constants, which already compensate for sample time
+     * @TODO: remove NOT_YET_IMPLEMENTED blockers when prototyping done */
+    pGain = PID->pGain;
+    iGain = PID->iGain;
+    dGain = PID->dGain;
 
+    /* derivative filter constant and anti-kick gains */
+    T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
+    K_t = iGain/pGain;             /* K_t = 1/T_i, where T_i = K_p/K_i */
+    //#endif
+
+
+    #if TEMP_DISABLED
     /* Obtain PID gains from knobs 1-3. Only update if knob has changed by
      * more than epsilon 
      */
-    #if TEMP_DISABLED
     //pGain = read_store_sensors(1, pCurr_data);
     //pGain = 1.0 + read_store_sensors(6, pCurr_data); -- V16
     //pGain = pot_voltage(pGain, 5.0);
-   
-    pGain = ((float)g_virtual_knob1)/4096.0 + 1.0; 
 
     if (abs(pGain - PID->pGain) >= g_epsilon) PID->pGain = pGain;
     else pGain = PID->pGain;
@@ -874,6 +885,9 @@ float PID_virtualWall(struct PID_const *PID)
     dGain = read_store_sensors(3, pCurr_data);
     if (abs(dGain - PID->dGain) >= g_epsilon) PID->dGain = dGain;
     else dGain = PID->dGain;
+    
+    /* Ziegler Nichols tuning using virtual knob */
+    pGain = ((float)g_virtual_knob1)/4096.0 + 1.0; 
     
     /* set dGain & iGain to zero for Ziegler Nichols tuning */
     iGain = 0.0;
@@ -891,6 +905,7 @@ float PID_virtualWall(struct PID_const *PID)
     //rest_pos_mm = opticalADCtoDisplacement(rest_pos_volts);
     PID->setPoint = rest_pos_mm;
 
+    #if TEMP_DISABLED
     /* Z-N tuning resulted in Ku = 1.861, Tu = 10ms = 0.010 s
      * PID: K_p = 0.60 Ku; K_i = 2K_p/T_u; K_d = 0.125*K_p*T_u
      * PI: K_p = 0.45K_u; K_i = 1.2*K_p/T_u
@@ -904,6 +919,10 @@ float PID_virtualWall(struct PID_const *PID)
     /* (06/30/16) - K_u = 1.50. T_u = 0.025 s WITH slew rate limiter*/
     //K_u = 1.50;    /* ultimate gain @ sustained oscillation */
     //T_u = 0.025;     /* oscillation period */
+    
+    /* Z-N tuning parameters */
+    float K_u = PID->K_u;
+    float T_u = PID->T_u;
      
     /* PID */
     //pGain = 0.60*K_u;
@@ -957,11 +976,9 @@ float PID_virtualWall(struct PID_const *PID)
     iGain = iGain * sample_time;
     //dGain = dGain / sample_time;
 
-		#if TEMP_DISABLED
     PID->pGain = pGain;
     PID->iGain = iGain;     
     PID->dGain = dGain; 
-		#endif
 	
 		/* derivative filter constant and anti-kick gains
      * @TODO: delete after prototyping done
@@ -969,6 +986,8 @@ float PID_virtualWall(struct PID_const *PID)
     T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
     K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
                                   /* can also try T_i = sqrt(T_d*T_i) */
+    #endif
+    
     
     /* read current position and calculate error */
     currOptical_volts = read_store_sensors(4, pCurr_data);
@@ -1026,7 +1045,7 @@ float PID_virtualWall(struct PID_const *PID)
         output_voltage = PID->lastOutput - slew_rate_limit;
     }
 	
-	/* update integral using saturation and integral of k_i*e to reduce
+    /* update integral using saturation and integral of k_i*e to reduce
      * kick related to changing gains
      */
     PID->errorSum += (iGain * error) + K_t * (output_voltage - calc_output);
@@ -1048,7 +1067,6 @@ float PID_zeroStiffness(struct PID_const *PID)
     float iMax = 1.25;
     float iMin = -1.25;
     #endif
-
     /* actuator limits */
     float outMax = 2.5;
     float outMin = 0.0;
@@ -1068,24 +1086,18 @@ float PID_zeroStiffness(struct PID_const *PID)
     float slew_rate_limit = 0.0;
     float sample_time = 0.001;  // sample (inter-loop) time in seconds
 
-    #if NOT_YET_IMPLEMENTED
+    //#if NOT_YET_IMPLEMENTED
     /* retreive PID constants, which already compensate for sample time
      * @TODO: remove NOT_YET_IMPLEMENTED blockers when prototyping done */
-    float pGain = PID->pGain;
-    float iGain = PID->iGain;
-    float dGain = PID->dGain;
+    pGain = PID->pGain;
+    iGain = PID->iGain;
+    dGain = PID->dGain;
 
     /* derivative filter constant and anti-kick gains */
-    float T_f = (pGain/dGain)/2.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
-    float T_t = pGain/iGain             /* K_t = 1/T_i, where T_i = K_p/K_i */
-    #endif
+    T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
+    K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
+    //#endif
 
-    /* Z-N tuning parameters
-     * @TODO: disable when prototyping completed 
-     */
-    float K_u = PID->K_u;
-    float T_u = PID->T_u;
-    
     #if TEMP_DISABLED
     /* @TODO: DISABLE PID constant settings when prototyping completed. */
 
@@ -1115,6 +1127,7 @@ float PID_zeroStiffness(struct PID_const *PID)
     PID->dGain = 0.0;
     #endif
     
+    #if TEMP_DISABLED
     /* Z-N tuning resulted in Ku = 2.870, Tu = 2ms = 0.002 s
      * PID: K_p = 0.60 Ku; K_i = 2K_p/T_u; K_d = 0.125*K_p*T_u
      * PI: K_p = 0.45K_u; K_i = 1.2*K_p/T_u
@@ -1122,6 +1135,12 @@ float PID_zeroStiffness(struct PID_const *PID)
      */
     //K_u = 7.348;        /* ultimate gain @ sustained oscillation */
     //T_u = 0.002;        /* oscillation period in seconds */
+    
+    /* Z-N tuning parameters
+     * @TODO: disable when prototyping completed 
+     */
+    K_u = PID->K_u;
+    T_u = PID->T_u;
 
     /* P */
     //pGain = 0.50*K_u;
@@ -1180,14 +1199,13 @@ float PID_zeroStiffness(struct PID_const *PID)
     /* disabled b/c derivative filtering uses g_sample_time in gain calc */
     //dGain = dGain / sample_time;
 
-    #if TEMP_DISABLED
+    //#if TEMP_DISABLED
 		/* store PID gains 
      * @TODO: comment out when prototyping completed
      */
     PID->pGain = pGain;
     PID->iGain = iGain;     
     PID->dGain = dGain;
-		#endif
 
     /* derivative filter constant and anti-kick gains
      * @TODO: delete after prototyping done
@@ -1195,7 +1213,9 @@ float PID_zeroStiffness(struct PID_const *PID)
     T_f = (pGain/dGain)/20.0;      /* T_f = (k_d/k_p)/N, N=[2,20] */
     K_t = iGain/pGain;            /* K_t = 1/T_i, where T_i = K_p/K_i */
                                   /* can also try T_i = sqrt(T_d*T_i) */
+    #endif
 
+    
     /* push --> voltage drop; pull --> voltage increase */
     force_volts = read_store_sensors(0, pCurr_data);
     curr_pos_volts = read_store_sensors(4, pCurr_data);
@@ -1315,14 +1335,14 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 {
     float curr_pos, curr_pos_volts;
     float curr_force_grams, curr_force_volts;
-    float applied_force, critical_force, membrane_force;
+    float applied_force, membrane_force;
     float spring_stiff, spring_damping;
 
     float interp_m, interp_b;
 
     /* membrane is 1mm thick, centered around init point */
-    float membrane_top = PID_m->setPoint + 1.0;
-    float membrane_bot = PID_m->setPoint - 1.0;
+    float membrane_top = PID_m->setPoint + 0.5;
+    float membrane_bot = PID_m->setPoint - 0.5;
     float membrane_center = PID_m->setPoint;
     
     float pState, iState, dState;
@@ -1334,6 +1354,12 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     float outMax = 2.5;
     float outMin = 0.0;
 		float beta = 1.0;
+    
+    /* critical force/voltage puncture implementation */
+    float iMax = 2.5;
+    float iMin = -2.5;
+    float critical_force;
+    int in_membrane_flag = 0;
 
     /* read position and force sensors */
     curr_pos_volts = read_store_sensors(4, pCurr_data);
@@ -1344,12 +1370,13 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     applied_force = curr_force_grams - force_preload;
     
     /* spring stiffness in grams/mm, 
-	 * @TODO: in [N/m] = [101.97162 grams/1000 mm]
+     * @TODO: in [N/m] = [101.97162 grams/1000 mm]
      * spring damping in [N*s/m]
      */
     spring_stiff = 50.0;
     spring_damping = 5.0;
 
+    #if TEMP_DISABLED
     /* interpolate slope and intercept from current pos */
     interp_cal_constants(curr_pos, pForce_to_DAC, pInterpolated);
     interp_m = pInterpolated->slope;
@@ -1401,20 +1428,20 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         if (g_membrane_entry == 1)
         {
             /* entered from top */
-			membrane_force = spring_stiff * (membrane_top - curr_pos);
-			#if TEMP_DISABLED
+            membrane_force = spring_stiff * (membrane_top - curr_pos);
+            #if TEMP_DISABLED
             membrane_force = spring_stiff * (membrane_top - curr_pos) +
                              spring_damping * (PID_m->lastPos - curr_pos);
-			#endif
+            #endif
         }
         else if (g_membrane_entry == 2)
         {
             /* entered from bottom */
-			membrane_force = spring_stiff * (membrane_bot - curr_pos);
-			#if TEMP_DISABLED
+            membrane_force = spring_stiff * (membrane_bot - curr_pos);
+            #if TEMP_DISABLED
             membrane_force = spring_stiff * (membrane_bot - curr_pos) +
                              spring_damping * (PID_m->lastPos - curr_pos);
-			#endif
+            #endif
         }
 
     }
@@ -1434,7 +1461,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         dState = ((T_f/(T_f + g_sample_time)) * PID_m->lastErrorDerivative) -
                  (dGain/(T_f + g_sample_time)) * (curr_force_volts - PID_m->lastInput);
 
-		/* calculate PID output */
+        /* calculate PID output */
         calc_output = pState + iState + dState;
 
         /* check for saturation */
@@ -1470,8 +1497,14 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastPos = curr_pos;
     PID_m->lastOutput = output_voltage;
+    #endif
     
-    #if OBSOLETE
+    //#if OBSOLETE
+    /* membrane puncture by critical force/voltage change */
+    applied_force = PID_z->setPoint - curr_force_volts;
+    
+    /* make critical force 1.50 V from preload */
+    critical_force = 1.00;
     if (curr_pos >= membrane_top || curr_pos <= membrane_bot)
     {
         /* above & below membrane, render zero stiffness */
@@ -1559,7 +1592,13 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
     /* PID output equation */
     //output_voltage = pState + iState + dState + 1.25;
     
+    /* check for saturation */
+    //if (calc_output >= outMax) output_voltage = outMax;
+    //else if (calc_output <= outMin) output_voltage = outMin;
+    //else output_voltage = calc_output;
+    
     /* PID output equation with position dependent speaker bias */
+    //#if TEMP_DISABLED
     if (in_membrane_flag)
     {
         output_voltage = pState + iState + dState + 1.25;
@@ -1569,6 +1608,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
         PID_m->speakerBias = displacement_SpeakerToDAC(curr_pos);
         output_voltage = pState + iState + dState + PID_m->speakerBias;
     }
+    //#endif
     
     /* limiter to block single loop impulses, checks diff between last
      * output and current output
@@ -1591,7 +1631,7 @@ float membrane_puncture(struct PID_const *PID_w, struct PID_const *PID_z,
 
     PID_m->lastOutput = output_voltage;
     PID_m->lastError = error;
-    #endif
+    //#endif
 
     return output_voltage;
 }
@@ -1773,7 +1813,7 @@ float sine_wave(struct Wave_const *constants)
 
     /* read knob 2 to get frequency & calculate the desired change in theta */
     voltage = read_store_sensors(2, pCurr_data);
-    frequency = pot_voltage(voltage, 200.0);
+    frequency = pot_voltage(voltage, 50.0);
 
     /* update current theta and convert to radians */
     /* delta_theta = fullscale / operating freq (hz), the change in theta to  
@@ -2112,8 +2152,12 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
     split_msg[10] = (char)((msg6 & 0xF) << 4 | (msg7 & 0xF00) >> 8);
     split_msg[11] = (char)(msg7 & 0xFF);
 
-    /* send messages with 10us delay so Wixel can process accurately */ 
-    SPI_write(0xAA);
+    /* send messages w/ 10us delay so Wixel buffer does not overflow 
+		 * start/stop handshakes 0x11 and 0x22 so they do not match any 
+		 * command bytes
+		 */ 
+    /*SPI_write(0xAA);*/
+		SPI_write(0x11);
     /* Read data from Wixel */
     *received_data = SPI_read();
     for (i=0;i<12;i++)
@@ -2122,12 +2166,13 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
         SPI_write(split_msg[i]);
         
         /* Read data from Wixel */
-        received_data[i + 1] = SPI_read();
+        *(received_data + i + 1) = SPI_read();
     }
     delay_us(10);
-    SPI_write(0xBB);
+    /*SPI_write(0xBB);*/
+		SPI_write(0x22);
     /* read data from Wixel */
-    received_data[13] = SPI_read();
+    *(received_data + 13) = SPI_read();
 
     return;
 }
@@ -2138,19 +2183,19 @@ void send_curr_data(struct Wixel_msg *data, unsigned char *received_data)
  **/
 void parse_SPI_data(unsigned char *received_data)
 {
-    int message;
-    unsigned short rec1, rec2, rec3;
+    int message = 0;
+    unsigned int rec1, rec2, rec3 = 0;
     int loop_count, i = 0;
-    int decoded_msg[8] = {0,0,0,0,0,0,0,0};
+    unsigned int decoded_msg[8] = {0,0,0,0,0,0,0,0};
 
     /* received data is command = 1 byte, followed by 7 1.5 byte data, with 
      * 4bits left over. 8th decoded point should be 0x0BB
      */
   /* received data is organized as:
-   * rec_data[0] = ignored
+   * rec_data[0] = ignored (0x11)
    * rec_data[1] = command mode
    * rec_data[2:12] = data from GUI
-   * rec_data[13] = 0xBB
+   * rec_data[13] = 0x22
    */
     for (i=0; i<4; i++)
     {
@@ -2166,8 +2211,24 @@ void parse_SPI_data(unsigned char *received_data)
         decoded_msg[i*2+ 1] = ((rec2 & 0xF)<< 8) | (rec3);
     }
     
-  /* speaker mode is first entry after 0xAA response */
-    g_speaker_mode = *(received_data + 1);
+  /* speaker mode is first entry after 0x11 handshake */
+    //g_speaker_mode = *(received_data + 1);
+		//g_speaker_mode = received_data[1];
+		
+		/* loop through all received messages for command key */
+		for (loop_count = 0; loop_count<14; loop_count++)
+		{
+			message = received_data[loop_count];
+			if (message == 0xAA || message == 0xBB || message == 0xCC ||
+          message == 0xDD || message == 0xEE || message == 0x99)
+      {
+				/* at most one control key in each batch of received data
+			   * so we can exit the loop immediately after identifying it
+			   */
+         g_speaker_mode = message;
+				 break;
+      }
+		}
   
     /* loop through all messages and assign globals depending on function
    * decoded_msg starts with virtual knob 1 
@@ -2208,7 +2269,7 @@ void parse_SPI_data(unsigned char *received_data)
  **/
 unsigned char SPI_read(void)
 {
-    unsigned char message;
+    unsigned char message = 0;
     while (!((SPISTA & 0x8) == 0x8)){
         /* wait while nothing in SPIRX */
     }
@@ -2279,8 +2340,10 @@ float read_sensors(int channel)
     voltageHex = ADCDAT;
     sensorVoltage = ADCinput(voltageHex);
 
-    /* right shift ADC data 16 bits to obtain result on [0, FFF] range */
-    voltage_int = voltageHex >> 16;
+    /* right shift ADC data 16 bits to obtain result on [0, FFF] range 
+		 * mask with FFF to ensure data is 12-bits 
+		 */
+    voltage_int = (voltageHex >> 16) & 0xFFF;
 
     /* store raw ADC results into curr_data and update sensor status array */
     if (channel == 0) 
@@ -2290,20 +2353,20 @@ float read_sensors(int channel)
     }
     if (channel == 1) 
     {
-        //data->knob1 = voltage_int;
-        data->knob1 = g_virtual_knob1;
+        data->knob1 = voltage_int;
+        //data->knob1 = g_virtual_knob1;
         sensor_status[4] = 1;
     }
     if (channel == 2) 
     {
-        //data->knob2 = voltage_int;
-        data->knob2 = g_virtual_knob2;
+        data->knob2 = voltage_int;
+        //data->knob2 = g_virtual_knob2;
         sensor_status[5] = 1;
     }
     if (channel == 3) 
     {
-        //data->knob3 = voltage_int;
-        data->knob3 = g_virtual_knob3;
+        data->knob3 = voltage_int;
+        //data->knob3 = g_virtual_knob3;
         sensor_status[6] = 1;
     }
     if (channel == 4) 
@@ -2358,7 +2421,7 @@ void store_DAC_data(int rawDAC_hex, struct Wixel_msg *data)
  {
     int voltage_int = 0;
 
-    voltage_int = (rawDAC_hex >> 16);
+    voltage_int = (rawDAC_hex >> 16) & 0xFFF;
     /* store speakerOut voltage and set sensor status */
     data->speakerOut = voltage_int;
     sensor_status[3] = 1;
