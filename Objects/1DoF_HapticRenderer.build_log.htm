@@ -30,25 +30,45 @@ Rebuild target 'Target 1'
 assembling ADuC702x.s...
 compiling irq_arm.c...
 compiling 1DoFHapticRenderer.c...
-1DoFHapticRenderer.c(653): warning:  #111-D: statement is unreachable
+1DoFHapticRenderer.c(657): warning:  #111-D: statement is unreachable
       return 0;
-1DoFHapticRenderer.c(679): warning:  #177-D: variable "gamma" was declared but never referenced
+1DoFHapticRenderer.c(683): warning:  #177-D: variable "gamma" was declared but never referenced
   		float gamma = 0.0;
-1DoFHapticRenderer.c(894): warning:  #550-D: variable "curr_pos" was set but never used
+1DoFHapticRenderer.c(687): warning:  #177-D: variable "sample_time" was declared but never referenced
+      float sample_time = 0.001; // sample (inter-loop) time in seconds
+1DoFHapticRenderer.c(912): warning:  #550-D: variable "curr_pos" was set but never used
       float curr_pos_volts, curr_pos;
-1DoFHapticRenderer.c(899): warning:  #177-D: variable "gamma" was declared but never referenced
+1DoFHapticRenderer.c(917): warning:  #177-D: variable "gamma" was declared but never referenced
       float gamma = 0.0;      /* delta reference point weight */
-1DoFHapticRenderer.c(1151): warning:  #550-D: variable "applied_force" was set but never used
-      float applied_force, critical_force, membrane_force;
-1DoFHapticRenderer.c(1151): warning:  #177-D: variable "critical_force" was declared but never referenced
-      float applied_force, critical_force, membrane_force;
-1DoFHapticRenderer.c(1152): warning:  #550-D: variable "spring_damping" was set but never used
+1DoFHapticRenderer.c(920): warning:  #177-D: variable "sample_time" was declared but never referenced
+      float sample_time = 0.001;  // sample (inter-loop) time in seconds
+1DoFHapticRenderer.c(1171): warning:  #177-D: variable "membrane_force" was declared but never referenced
+      float applied_force, membrane_force;
+1DoFHapticRenderer.c(1172): warning:  #550-D: variable "spring_stiff" was set but never used
       float spring_stiff, spring_damping;
+1DoFHapticRenderer.c(1172): warning:  #550-D: variable "spring_damping" was set but never used
+      float spring_stiff, spring_damping;
+1DoFHapticRenderer.c(1174): warning:  #177-D: variable "interp_m" was declared but never referenced
+      float interp_m, interp_b;
+1DoFHapticRenderer.c(1174): warning:  #177-D: variable "interp_b" was declared but never referenced
+      float interp_m, interp_b;
+1DoFHapticRenderer.c(1183): warning:  #177-D: variable "T_f" was declared but never referenced
+      float T_f, K_t;
+1DoFHapticRenderer.c(1183): warning:  #177-D: variable "K_t" was declared but never referenced
+      float T_f, K_t;
+1DoFHapticRenderer.c(1185): warning:  #177-D: variable "calc_output" was declared but never referenced
+      float calc_output, output_voltage;
+1DoFHapticRenderer.c(1187): warning:  #177-D: variable "outMax" was declared but never referenced
+      float outMax = 2.5;
+1DoFHapticRenderer.c(1188): warning:  #177-D: variable "outMin" was declared but never referenced
+      float outMin = 0.0;
+1DoFHapticRenderer.c(1189): warning:  #177-D: variable "beta" was declared but never referenced
+  		float beta = 1.0;
 linking...
-Program Size: Code=24432 RO-data=464 RW-data=608 ZI-data=2672  
+Program Size: Code=23272 RO-data=464 RW-data=612 ZI-data=2668  
 FromELF: creating hex file...
-".\Objects\1DoF_HapticRenderer.axf" - 0 Error(s), 7 Warning(s).
-Build Time Elapsed:  00:00:02
+".\Objects\1DoF_HapticRenderer.axf" - 0 Error(s), 17 Warning(s).
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
