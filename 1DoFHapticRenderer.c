@@ -247,6 +247,18 @@ struct Wave_const{
 /* structure of wave constants */
 struct Wave_const Sine_const, *pSine_const;
 
+/* define struct for MAB tactor simulation */
+struct MAB_const{
+  float rise_speed;
+  float fall_speed;
+  float force_avg;
+  float force_det;
+  int iterations;
+};
+
+/* structure of MAB constants */
+struct MAB_const Tactor_const, *pTactor_const;
+
 
 /* define general structure for calibration equations */
 struct calibration{
@@ -340,7 +352,7 @@ float PID_zeroStiffness(struct PID_const *);
 float PID_virtualWall(struct PID_const *);
 float membrane_puncture(struct PID_const *, struct PID_const *, 
                         struct PID_const *);
-float tactor_simulation(struct Wave_const *);
+float tactor_simulation(struct MAB_const *);
 float sine_wave(struct Wave_const *);
 //float ratchet_simulation(struct PID_const *, struct PID_const *,
                          //struct PID_const *);
@@ -451,6 +463,9 @@ int main(void)
     /* wave constants */
     pSine_const = &Sine_const;
     pSine_const->theta_counter = 0; /* initialize theta_counter */
+
+    /* tactor constants */
+    pTactor_const = &Tactor_const;
 
     /* initialize speaker output at 1.25 so sensors have a baseline */
     speaker_voltageHex = outputDAC(1.25);
@@ -592,12 +607,16 @@ int main(void)
         }
         else if (g_speaker_mode == 0xEE)
         {
-        	/* Basic tactor simulation */
-        	speaker_volts = tactor_simulation();
-        	speaker_voltageHex = outputDAC(speaker_volts);
-        	DAC0DAT = speaker_voltageHex;
-        	store_DAC_data(speaker_voltageHex, pCurr_data);
-        	
+          /* Basic tactor simulation */
+
+          /* Input to the function is a pointer (address), which is
+           * dereferenced within the function itself to set the values */
+
+          speaker_volts = tactor_simulation(pTactor_const); 
+          speaker_voltageHex = outputDAC(speaker_volts);
+          DAC0DAT = speaker_voltageHex;
+          store_DAC_data(speaker_voltageHex, pCurr_data);
+          
         }
         else
         {
@@ -652,79 +671,107 @@ int main(void)
 
 /* Functions -------------------------------------------------------------- */
 
-
-float tactor_simulation ()
+float tactor_simulation(struct MAB_simulation *MAB) 
 {
+  /* NOTE: 2.5V output is bottom of the speaker cone, 0V represents top*/
 
-	/* V1: Knob adjustment to control DC component of the sine wave function
-	   V2: Replace knob with force sensor reading (detect presence of finger) 
-	       & optical sensor reading to detect relative location in displacement 
-	   	   range
-	*/
+  /* V1: MAB tactor simulation with hard-coded settings for speaker rise
+       and fall speeds. 
+       - Create global structure with all variables
+       - Tare function to be implemented -- sampled average over
+         1 second period (during initial rise)
+       - Force detection capability -- speaker cone should fall when 
+         detected force is above the average
 
-	
-    float amplitude = 0.0;
-    float frequency = 0.0;
-    float output = 0.0;
+     V2: More specific Tare function samples and stores using a lookup table
+         of storage times
+
+  */
+  float output = 0.0;
     float radians = 0.0;
-    float voltage = 0.0;
+    float voltage_r = 0.0;
+    float velocity_r = 0.0;
+    float voltage_f = 0.0;
+    float velocity_f = 0.0;
     float force_det = 0.0;
     float output = 0.0;
     float outMax = 2.5;
     float outMin = 0.0;
-    float rise_out = 0.1;
-    float fall_out = 0.1;
+    float divider_r = 1000; //changes the rise and fall speed of the speaker
+    float divider_f = 1000; //larger divider means slower rise/fall
+    float rise = 0.1;
+    float fall = 0.1;
+    float tare_force[1000];
+    float avg = 0.0;
+    int tare_iterate = 0; //should iterate to 10
+              //indicates 10 samples taken for force sensor average
     
-    int curr_theta = 0;
-    int delta_theta = 0;
-    int fullscale = pow(2.0, 16);   /* fullscale number of bits */
+    //int curr_theta = 0;
+    //int delta_theta = 0;
+    //int fullscale = pow(2.0, 16);   /* fullscale number of bits */
 
+  /* Establish speed of the platform rise */ 
+    voltage_r = read_store_sensors(1, pCurr_data);
+    velocity_r = pot_voltage(voltage, 2.52);
+    rise = velocity/divider_r;
+    MAB->rise_speed = rise;
 
-
-
-
-	/* Establish speed of the platform rise */ 
-    voltage = read_store_sensors(1, pCurr_data);
-    velocity = pot_voltage(voltage, 1.0);
+    /* Establish speed of the platform fall */ 
+    voltage_f = read_store_sensors(2, pCurr_data);
+    velocity_f = pot_voltage(voltage, 2.52); //velocity from 0-2.5 V in one loop
+    fall = velocity/divider_f;
+    MAB->fall_speed = fall;
 
     /* Read force measurement from sensor over 10 second interval to establish
      * baseline sensor voltage */
 
-    force_det = read_store_sensors(0, pCurr_data);
+    MAB->force_det = read_store_sensors(0, pCurr_data);
 
+    /* INITIAL TARE: 
+     * Iteration counter to count the number of times function is executed 
+     * and initialize avg*/
 
-    
+    /* ALSO USED TO TEST IF THIS FUNCTION RUNS */
+    if(tare_iterate < 1000)
+    {
+      output = read_store_sensors(0, pCurr_data);
+      tare_force[tare_iterate] = output;
+      avg = tare_force[tare_iterate] + avg;
+      tare_iterate++;
+      MAB->iterations = tare_iterate + 1;
 
+      return output;
+    }
+    else
+    {
+   
     /* Function should modify the output and return to the main while loop
      * within the if statements */
 
-    if(force_det > force_std)
-    {
-    	while (output > outMin)
-    	{
+      if(force_det > avg_force)
+      {
+        while (output > outMin)
+        {
 
-    		output -= fall_out;
-    		delay_ms(10);
-    		return output; // exits out of while loop, so make output a global variable
-    						//and use a pointer input variable
+          output -= fall;
+          return output; // exits out of while loop, so make output 
+                   // a global variable and use pointer input variable
 
-    	}
-    }
+        }
+      }
 
-    else
-    {
-    	/* Platform rises to upper range in 1 second 
-		 * 1st rise from 0V to 2.5V calibrates the system */
+      else
+      {
+        /* Platform rises to upper range in 1 second 
+       * 1st rise from 0V to 2.5V calibrates the system */
 
-    	if (output < outMax)
-    	{
-    		output += rise_out;
-    		delay_ms(40); // (40ms delay) + 25 iterations from 0-2.5 = 1 second
-
-    		return output;
-    	}
-    }
-
+        if (output < outMax)
+        {
+          output += rise;
+            return output;
+        }
+      }
+  }
 
     
 
@@ -733,13 +780,13 @@ float tactor_simulation ()
 
     #if TEMP_DISABLED
     constants->theta_counter = 0;
-        		
-        		/*Decide how much to pullback:
-				 *	(1) use control system to regulate continuous decrease in speaker 
-				 *	voltage
-				 *  (2) initialize new theta counter to put the sine wave in reverse
-				 *  for a short period of time
-				*/
+            
+            /*Decide how much to pullback:
+         *  (1) use control system to regulate continuous decrease in speaker 
+         *  voltage
+         *  (2) initialize new theta counter to put the sine wave in reverse
+         *  for a short period of time
+        */
  
 
     /* read knob 1 to get amplitude, centered around 1.25 */
@@ -768,9 +815,10 @@ float tactor_simulation ()
 
     /* calculate output voltage, centered around midpoint */
     
-   
-    
-}
+   }
+
+
+
 
 
 
