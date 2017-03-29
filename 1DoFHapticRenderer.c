@@ -470,6 +470,7 @@ int main(void)
 
     /* tactor constants */
     pTactor_const = &Tactor_const;
+    pTactor_const->iterations = 0;
 
     /* initialize speaker output at 1.25 so sensors have a baseline */
     speaker_voltageHex = outputDAC(1.25);
@@ -707,8 +708,7 @@ float tactor_simulation(struct MAB_simulation *MAB)
     float fall = 0.1;
     float tare_force[1000];
     float avg = 0.0;
-    int tare_iterate = 0; //should iterate to 10
-              //indicates 10 samples taken for force sensor average
+    
     
     //int curr_theta = 0;
     //int delta_theta = 0;
@@ -736,15 +736,15 @@ float tactor_simulation(struct MAB_simulation *MAB)
      * and initialize avg*/
 
     /* ALSO USED TO TEST IF THIS FUNCTION RUNS */
-    if(tare_iterate < 1000)
+    if(MAB->iterations < 1000)
     {
       output = read_store_sensors(0, pCurr_data);
-      tare_force[tare_iterate] = output;
-      avg = tare_force[tare_iterate] + avg;
-      tare_iterate++;
-      MAB->iterations = tare_iterate + 1;
-
+      tare_force[MAB->iterations] = output;
+      avg = tare_force[MAB->iterations] + avg;
+      MAB->iterations++;
+    
       return output;
+
     }
     else
     {
@@ -820,12 +820,6 @@ float tactor_simulation(struct MAB_simulation *MAB)
     /* calculate output voltage, centered around midpoint */
     
    }
-
-
-
-
-
-
 
 /**  PID_virtualWall() --
  **     PID control of position to resist speaker movement by an extern. force
