@@ -758,28 +758,19 @@ float tactor_simulation(struct MAB_const *MAB)
       
       if(MAB->force_det > actual_avg)
       {
-        while (output > outMin)
-        {
-
-          output -= fall;
-          return output; // exits out of while loop, so make output 
-                   // a global variable and use pointer input variable
-
-        }
+          output += fall;
+          
+        
       }
-
+    
       else
       {
-        /* Platform rises to upper range in 1 second 
-       * 1st rise from 0V to 2.5V calibrates the system */
-
-        if (output < outMax)
-        {
-          output += rise;
-            return output;
+        /* Platform rises to upper range in 1 second */
+          output -= rise;
         }
+      return output;
       }
-  }
+
 
     
 
