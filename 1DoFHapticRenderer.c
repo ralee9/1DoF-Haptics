@@ -254,6 +254,7 @@ struct MAB_const{
   float fall_speed;
   float force_avg;
   float force_det;
+  float output;
   int iterations;
 };
 
@@ -471,6 +472,7 @@ int main(void)
     /* tactor constants */
     pTactor_const = &Tactor_const;
     pTactor_const->iterations = 0;
+    pTactor_const->output = 0.0;
 
     /* initialize speaker output at 1.25 so sensors have a baseline */
     speaker_voltageHex = outputDAC(1.25);
@@ -676,7 +678,7 @@ int main(void)
 
 /* Functions -------------------------------------------------------------- */
 
-float tactor_simulation(struct MAB_simulation *MAB) 
+float tactor_simulation(struct MAB_const *MAB) 
 {
   /* NOTE: 2.5V output is bottom of the speaker cone, 0V represents top*/
 
@@ -699,7 +701,6 @@ float tactor_simulation(struct MAB_simulation *MAB)
     float voltage_f = 0.0;
     float velocity_f = 0.0;
     float force_det = 0.0;
-    float output = 0.0;
     float outMax = 2.5;
     float outMin = 0.0;
     float divider_r = 1000; //changes the rise and fall speed of the speaker
@@ -708,6 +709,8 @@ float tactor_simulation(struct MAB_simulation *MAB)
     float fall = 0.1;
     float tare_force[1000];
     float avg = 0.0;
+    float actual_avg = 0.0;
+    
     
     
     //int curr_theta = 0;
@@ -716,14 +719,14 @@ float tactor_simulation(struct MAB_simulation *MAB)
 
   /* Establish speed of the platform rise */ 
     voltage_r = read_store_sensors(1, pCurr_data);
-    velocity_r = pot_voltage(voltage, 2.52);
-    rise = velocity/divider_r;
+    velocity_r = pot_voltage(voltage_r, 2.52);
+    rise = velocity_r/divider_r;
     MAB->rise_speed = rise;
 
     /* Establish speed of the platform fall */ 
     voltage_f = read_store_sensors(2, pCurr_data);
-    velocity_f = pot_voltage(voltage, 2.52); //velocity from 0-2.5 V in one loop
-    fall = velocity/divider_f;
+    velocity_f = pot_voltage(voltage_f, 2.52); //velocity from 0-2.5 V in one loop
+    fall = velocity_f/divider_f;
     MAB->fall_speed = fall;
 
     /* Read force measurement from sensor over 10 second interval to establish
@@ -740,10 +743,10 @@ float tactor_simulation(struct MAB_simulation *MAB)
     {
       output = read_store_sensors(0, pCurr_data);
       tare_force[MAB->iterations] = output;
-      avg = tare_force[MAB->iterations] + avg;
-      MAB->iterations++;
+      avg += tare_force[MAB->iterations];
+      MAB->iterations += 1;
     
-      return output;
+      return 1.25;
 
     }
     else
@@ -751,8 +754,9 @@ float tactor_simulation(struct MAB_simulation *MAB)
    
     /* Function should modify the output and return to the main while loop
      * within the if statements */
-
-      if(force_det > avg_force)
+      actual_avg = avg/1000.0;
+      
+      if(MAB->force_det > actual_avg)
       {
         while (output > outMin)
         {
@@ -819,7 +823,7 @@ float tactor_simulation(struct MAB_simulation *MAB)
 
     /* calculate output voltage, centered around midpoint */
     
-   }
+}
 
 /**  PID_virtualWall() --
  **     PID control of position to resist speaker movement by an extern. force
