@@ -256,6 +256,8 @@ struct MAB_const{
   float force_det;
   float output;
   int iterations;
+  float average;
+  float force_det;
 };
 
 /* structure of MAB constants */
@@ -694,13 +696,11 @@ float tactor_simulation(struct MAB_const *MAB)
          of storage times
 
   */
-  float output = 0.0;
-    float radians = 0.0;
+    float output;
     float voltage_r = 0.0;
     float velocity_r = 0.0;
     float voltage_f = 0.0;
     float velocity_f = 0.0;
-    float force_det = 0.0;
     float outMax = 2.5;
     float outMin = 0.0;
     float divider_r = 1000; //changes the rise and fall speed of the speaker
@@ -708,8 +708,7 @@ float tactor_simulation(struct MAB_const *MAB)
     float rise = 0.1;
     float fall = 0.1;
     float tare_force[1000];
-    float avg = 0.0;
-    float actual_avg = 0.0;
+    
     
     
     
@@ -743,7 +742,7 @@ float tactor_simulation(struct MAB_const *MAB)
     {
       output = read_store_sensors(0, pCurr_data);
       tare_force[MAB->iterations] = output;
-      avg += tare_force[MAB->iterations];
+      MAB->average += tare_force[MAB->iterations];
       MAB->iterations += 1;
     
       return 1.25;
@@ -754,9 +753,9 @@ float tactor_simulation(struct MAB_const *MAB)
    
     /* Function should modify the output and return to the main while loop
      * within the if statements */
-      actual_avg = avg/1000.0;
+      MAB->average /= 1000.0;
       
-      if(MAB->force_det > actual_avg)
+      if(MAB->force_det > MAB->average)
       {
           output += fall;
           
